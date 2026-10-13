@@ -1,8 +1,19 @@
 # ReFi Hub — landing page prototype
 
-A clickable prototype of the repositioned ReFi Hub landing page, built to be shown to the
-team. It is a single self-contained HTML file with no build step: open `index.html` in a
-browser, or view the published version.
+The repositioned ReFi Hub site: the landing page plus every report and article migrated
+out of Framer. It is an [Astro](https://astro.build) site that builds to plain static HTML.
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # static site in dist/
+npm run preview    # serve dist/ locally
+```
+
+The landing page is `src/pages/index.astro`. It was converted from the single-file
+prototype `index.html` as of commit 72c3168. Its CSS is split into `src/styles/global.css`
+and `landing.css`, and the base64 hero photo is now `public/hero-solar.jpg`. `index.html`
+stays in the repo until any later prototype edits are merged into the Astro version.
 
 **Live prototype:** https://claude.ai/code/artifact/9b54fbab-1c28-4ac2-9ab2-cda0973ea600
 
@@ -40,7 +51,7 @@ reveal them.
 - **mock** — invented for the prototype: EV charging sessions, the delegation event, and
   all transaction signatures.
 
-All content is driven by one `DATA` block near the top of `index.html`. Wiring real feeds
+All landing-page content is driven by one `DATA` block near the top of `src/pages/index.astro`. Wiring real feeds
 later means replacing that block with a fetch; nothing else needs to change.
 
 ### Asset reference
@@ -74,6 +85,58 @@ already tells this story, and the map panels carry it:
 - Validator uptime (98%) and commission need confirming.
 - The Solidproof audit link is still a placeholder.
 - Marker coordinates are city level. The asset listings only give country.
+
+## Reports and articles (`/blog`)
+
+The 22 posts from refihub.io/blog live in `src/content/blog/`, one Markdown file per post,
+at the same URLs as on Framer (`/blog/<slug>`), so links and search rankings carry over.
+Styling copies the Framer blog as published (measured at 1440px): `src/styles/blog.css`.
+
+| Path | What it is |
+|---|---|
+| `src/content/blog/*.md` | One post each. The frontmatter holds the metadata. |
+| `src/assets/blog/<slug>/` | That post's cover and inline images, optimised at build time |
+| `src/data/authors.json` + `src/assets/authors/` | Author names, roles and avatars |
+| `src/content.config.ts` | Frontmatter schema. The build fails on a missing field or unknown category. |
+| `src/pages/blog/index.astro` | `/blog`: hero, category tabs (`?c=asset-updates`), card grid |
+| `src/pages/blog/[slug].astro` | Article: header, cover, table of contents, share, related posts |
+| `src/components/PostCard.astro` | The card, also used for the four latest posts on the homepage |
+| `src/components/Reveal.astro` | Framer-style fade-up on scroll and word-by-word headlines. Respects reduced motion. |
+
+### Publishing a new post
+
+1. Put the cover image in `src/assets/blog/<slug>/`.
+2. Create `src/content/blog/<slug>.md`:
+
+   ```markdown
+   ---
+   title: "Project Surya — March Operating & Distribution Report"
+   description: "One or two sentences. Shown under the title and used for search and social previews."
+   date: 2026-03-23
+   category: asset-updates        # or: resources
+   author: jeremy                 # a key in src/data/authors.json
+   cover: "../../assets/blog/<slug>/cover.webp"
+   coverAlt: "What the photo shows"
+   ---
+   #### Overview
+
+   Body in Markdown…
+   ```
+
+3. `npm run build`. The sitemap, RSS feed (`/rss.xml`), homepage cards and related posts
+   all update themselves. Add `draft: true` to keep a post out of the build.
+
+### Re-importing from Framer
+
+`npm run import:blog` pulls every post in refihub.io's sitemap again and overwrites the
+Markdown (`npm run import:blog -- <slug>` does one post). After that,
+`npm run verify:blog` checks every post's text word for word against the live page. Both
+only work while the Framer site is still up.
+
+## Hosting
+
+`dist/` is static. On Vercel, `vercel.json` sets clean URLs, so `/blog/<slug>` is served
+without `.html` or a trailing slash. Cloudflare Pages does the same by default.
 
 ## reference/
 

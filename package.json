@@ -1,0 +1,21 @@
+{
+  "name": "refihub-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "import:blog": "node scripts/import-blog.mjs",
+    "verify:blog": "node scripts/verify-blog.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "linkedom": "^0.18.13",
+    "turndown": "^7.2.4"
+  }
+}

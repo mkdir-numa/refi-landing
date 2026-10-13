@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+  /** The homepage keeps its prototype-only chrome (data-status toggle). */
+  home?: boolean;
+  bodyClass?: string;
+}
+
+const { title, description, image, type = 'website', jsonLd, home = false, bodyClass } = Astro.props;
+// build.format 'file' reports /blog.html here; the public URL is /blog.
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
+const ogImage = new URL(image ?? '/hero-solar.jpg', Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+<meta property="og:type" content={type}>
+<meta property="og:site_name" content="ReFi Hub">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@refihub">
+<link rel="alternate" type="application/rss+xml" title="ReFi Hub reports and articles" href="/rss.xml">
+<link rel="sitemap" href="/sitemap-index.xml">
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600;700&family=Chivo+Mono:wght@400;500&family=Geist:wght@200;300;400;500&display=swap">
+<script is:inline>document.documentElement.classList.add('js')</script>
+<slot name="head" />
+</head>
+<body class={bodyClass}>
+<slot name="before-nav" />
+<Nav home={home} />
+<slot />
+<Footer home={home} />
+</body>
+</html>

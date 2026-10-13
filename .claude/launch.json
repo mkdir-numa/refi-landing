@@ -1,0 +1,26 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "refihub-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "astro",
+        "preview",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
+    },
+    {
+      "name": "landing-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4178"
+      ],
+      "port": 4178
+    }
+  ]
+}

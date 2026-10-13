@@ -1,0 +1,39 @@
+---
+interface Props { home?: boolean }
+const { home = false } = Astro.props;
+---
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div>
+      <span class="eyebrow">Stay on the record</span>
+      <p style="margin-top:12px;max-width:44ch;color:var(--ink2)">One email when something worth knowing happens: a distribution report, a change at the validator, a private deal.</p>
+      <form class="sub" id="subForm" novalidate>
+        <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+      <p id="subOk" style="display:none;margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--green)">Logged. No spam, unsubscribe any time.</p>
+    </div>
+    <div class="fcols">
+      <div><b>ReFi Hub</b><a href="/">Company</a><a href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener">Energy assets</a><a href="https://app.refihub.io/stake/" target="_blank" rel="noopener">Stake</a><a href="/blog?c=asset-updates">Investor reports</a><a href="/blog?c=resources">Articles</a></div>
+      <div><b>Community</b><a href="https://twitter.com/refihub" target="_blank" rel="noopener">X</a><a href="https://discord.com/invite/B7f8Vx2ZFK" target="_blank" rel="noopener">Discord</a><a href="https://www.linkedin.com/company/refi-hub/" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div><b>Legal</b><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/risk-and-variability" target="_blank" rel="noopener">Risk disclosures</a><a href="https://refihub.gitbook.io/refi-hub/legal/terms-and-conditions" target="_blank" rel="noopener">Terms</a><a href="https://refihub.gitbook.io/refi-hub/legal/privacy-policy" target="_blank" rel="noopener">Privacy</a><a href="https://resources.refihub.io/blog/kyc-faqs" target="_blank" rel="noopener">KYC FAQs</a></div>
+    </div>
+  </div>
+  <div class="legal">{home
+    ? <><span>© ReFi Hub 2026 · Prototype for team review</span><span>Numbers marked verify or mock are not final. Toggle Data status in the top bar.</span></>
+    : <span>© ReFi Hub 2026</span>}</div>
+</div></footer>
+
+<script is:inline>
+(function(){
+var f = document.getElementById('subForm');
+if(!f) return;
+f.addEventListener('submit', function(e){
+  e.preventDefault();
+  var em = f.querySelector('[type=email]');
+  if(!em.value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em.value)){ em.style.borderColor = 'var(--amber)'; em.focus(); return; }
+  f.style.display = 'none';
+  document.getElementById('subOk').style.display = 'block';
+});
+})();
+</script>

@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import AuthorChip from './AuthorChip.astro';
+import { CATEGORIES, formatDate, type Post } from '../lib/blog';
+interface Props { post: Post; index?: number }
+const { post, index = 0 } = Astro.props;
+const { title, date, category, cover, coverAlt, author } = post.data;
+---
+<a class="pcard" href={`/blog/${post.id}`} data-reveal data-category={category} style={`--i:${index % 3}`}>
+  <div class="img">
+    <Image src={cover} alt={coverAlt === title ? '' : coverAlt} widths={[480, 720, 960]} sizes="(max-width:680px) 100vw, (max-width:1100px) 50vw, 440px" loading={index < 3 ? 'eager' : 'lazy'} />
+    <span class="more" aria-hidden="true">Read more</span>
+  </div>
+  <div class="body">
+    <div class="top">
+      <div class="meta"><time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time><span aria-hidden="true">•</span><span class="pill">{CATEGORIES[category]}</span></div>
+      <h3>{title}</h3>
+    </div>
+    <AuthorChip id={author} />
+  </div>
+</a>

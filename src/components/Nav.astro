@@ -1,0 +1,20 @@
+---
+import Logo from './Logo.astro';
+interface Props { home?: boolean }
+const { home = false } = Astro.props;
+const onBlog = Astro.url.pathname.startsWith('/blog');
+---
+<header class="nav"><div class="wrap">
+  <a class="brand" href="/" aria-label="ReFi Hub home"><Logo /></a>
+  <ul>
+    <li><a href="/#record">Record</a></li>
+    <li><a href="/#live">Live</a></li>
+    <li><a href="/#map">Assets</a></li>
+    <li><a href="/#refisol">refiSOL</a></li>
+    <li><a href="/blog" aria-current={onBlog ? 'page' : undefined}>Reports</a></li>
+    <li><a href="/#proof">Proof of Work</a></li>
+  </ul>
+  <span class="sp"></span>
+  {home && <button class="pv" id="pvBtn" aria-pressed="false" title="Show which numbers are real, to verify, or mock"><i></i><span>Data status</span></button>}
+  <a class="btn btn-teal" href="https://app.refihub.io/stake/" target="_blank" rel="noopener">Stake SOL</a>
+</div></header>

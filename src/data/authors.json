@@ -1,0 +1,32 @@
+{
+  "christian": {
+    "name": "Christian",
+    "role": "Head of Business Onboarding & Legal",
+    "avatar": "TN16bdDiz1BwZRjxl1XcqRwsH54.webp",
+    "alt": "Christian, ReFi Hub co-founder"
+  },
+  "jeremy": {
+    "name": "Jeremy",
+    "role": "CFO",
+    "avatar": "GZUiCWjIUw8ZcJUiZ0K4NrHVH4.webp",
+    "alt": "Jeremy, ReFi Hub CFO"
+  },
+  "jimmy": {
+    "name": "Jimmy",
+    "role": "Head of Product",
+    "avatar": "TojQ4nhU3bSEunq6v5ckXMrHww.webp",
+    "alt": "Jimmy, ReFi Hub co-founder"
+  },
+  "avery": {
+    "name": "Avery",
+    "role": "CEO",
+    "avatar": "YKMWPL4TinbiRUmAIQbp9fTevc.webp",
+    "alt": "Avery, ReFi Hub co-founder"
+  },
+  "adolfo": {
+    "name": "Adolfo",
+    "role": "Head of User Acquisition",
+    "avatar": "DEvqu8HF990yTPamfZFsZve3XI.webp",
+    "alt": "Adolfo, ReFi Hub co-founder"
+  }
+}

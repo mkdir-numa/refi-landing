@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Reveal from '../../components/Reveal.astro';
+import Words from '../../components/Words.astro';
+import { getPosts, CATEGORIES } from '../../lib/blog';
+import heroImg from '../../assets/Pi6e520j5mkEn8u3vQltvZiAKBY.webp';
+import '../../styles/blog.css';
+
+const posts = await getPosts();
+const description = 'Operational updates from live energy assets, investment guides, and analysis from the ReFi Hub team.';
+---
+<Base title="Reports & articles | ReFi Hub" description={description} bodyClass="blog" jsonLd={{
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'ReFi Hub reports and articles',
+  url: new URL('/blog', Astro.site).href,
+  publisher: { '@type': 'Organization', name: 'ReFi Hub', url: Astro.site?.href },
+}}>
+<main>
+  <section class="bhero">
+    <Image src={heroImg} alt="" widths={[800, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="bwrap">
+      <Words class="d1" text="Infrastructure insights, investor updates, and platform guides" />
+      <p class="lead" data-reveal style="--i:4">{description}</p>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="Filter posts by category">
+    <div class="bwrap" role="tablist">
+      <button role="tab" aria-selected="true" data-filter="all">All</button>
+      {Object.entries(CATEGORIES).map(([id, label]) => <button role="tab" aria-selected="false" data-filter={id}>{label}</button>)}
+    </div>
+  </nav>
+
+  <section class="bwrap bgrid">
+    <div class="pgrid" id="posts">
+      {posts.map((post, i) => <PostCard post={post} index={i} />)}
+    </div>
+  </section>
+</main>
+<Reveal />
+<script>
+  // Category tabs: filter client-side, keep the choice in ?c= so links like /blog?c=asset-updates work.
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+  const cards = [...document.querySelectorAll<HTMLElement>('#posts .pcard')];
+  function apply(filter: string, push: boolean) {
+    if (!tabs.some((t) => t.dataset.filter === filter)) filter = 'all';
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.filter === filter)));
+    let n = 0;
+    cards.forEach((c) => {
+      const show = filter === 'all' || c.dataset.category === filter;
+      c.hidden = !show;
+      if (show) { c.style.setProperty('--i', String(n++ % 3)); }
+    });
+    if (push) {
+      const url = new URL(location.href);
+      filter === 'all' ? url.searchParams.delete('c') : url.searchParams.set('c', filter);
+      history.replaceState(null, '', url);
+    }
+  }
+  tabs.forEach((t) => t.addEventListener('click', () => apply(t.dataset.filter!, true)));
+  // ?c= on the real site; a bare #asset-updates also works where query strings are stripped.
+  apply(new URLSearchParams(location.search).get('c') ?? (location.hash.slice(1) || 'all'), false);
+</script>
+</Base>

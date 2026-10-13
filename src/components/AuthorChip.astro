@@ -1,0 +1,10 @@
+---
+import { Image } from 'astro:assets';
+import { getAuthor } from '../lib/blog';
+interface Props { id: string }
+const a = getAuthor(Astro.props.id);
+---
+<div class="author">
+  {a.avatar && <Image src={a.avatar} alt="" width={96} height={96} />}
+  <p class="n"><b>{a.name}</b>{a.role}</p>
+</div>
