@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
 import { getPosts, CATEGORIES } from '../lib/blog';
+import { u } from '../lib/url';
 
 export async function GET(context) {
   const posts = await getPosts();
@@ -11,7 +12,7 @@ export async function GET(context) {
       title: p.data.title,
       description: p.data.description,
       pubDate: p.data.date,
-      link: `/blog/${p.id}`,
+      link: u(`/blog/${p.id}`),
       categories: [CATEGORIES[p.data.category]],
     })),
   });

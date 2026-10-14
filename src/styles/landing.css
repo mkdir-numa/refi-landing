@@ -6,7 +6,7 @@ body.prov-on .strip{display:block}
 
 /* hero */
 .hero{position:relative;min-height:clamp(460px,64vh,650px);display:flex;align-items:flex-end;overflow:hidden;background:var(--dark)}
-.hero .bg{position:absolute;inset:0;background-image:url("/hero-solar.jpg");background-size:cover;background-position:center 58%}
+.hero .bg{position:absolute;inset:0;background-size:cover;background-position:center 58%}
 .hero .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,10,.34) 0%,rgba(12,11,10,.18) 34%,rgba(12,11,10,.72) 100%)}
 .hero .wrap{position:relative;padding-top:88px;padding-bottom:64px;width:100%}
 .hero-in{display:flex;flex-direction:column;gap:22px;align-items:flex-start;max-width:52ch}

@@ -17,7 +17,8 @@ interface Props {
 const { title, description, image, type = 'website', jsonLd, home = false, bodyClass } = Astro.props;
 // build.format 'file' reports /blog.html here; the public URL is /blog.
 const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
-const ogImage = new URL(image ?? '/hero-solar.jpg', Astro.site);
+const ogImage = new URL(image ?? u('/hero-solar.jpg'), Astro.site);
+import { u } from '../lib/url';
 ---
 <!doctype html>
 <html lang="en">
@@ -35,8 +36,8 @@ const ogImage = new URL(image ?? '/hero-solar.jpg', Astro.site);
 <meta property="og:image" content={ogImage}>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@refihub">
-<link rel="alternate" type="application/rss+xml" title="ReFi Hub reports and articles" href="/rss.xml">
-<link rel="sitemap" href="/sitemap-index.xml">
+<link rel="alternate" type="application/rss+xml" title="ReFi Hub reports and articles" href={u('/rss.xml')}>
+<link rel="sitemap" href={u('/sitemap-index.xml')}>
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

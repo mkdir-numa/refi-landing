@@ -10,12 +10,13 @@ import '../../styles/blog.css';
 
 const posts = await getPosts();
 const description = 'Operational updates from live energy assets, investment guides, and analysis from the ReFi Hub team.';
+import { u } from '../../lib/url';
 ---
 <Base title="Reports & articles | ReFi Hub" description={description} bodyClass="blog" jsonLd={{
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'ReFi Hub reports and articles',
-  url: new URL('/blog', Astro.site).href,
+  url: new URL(u('/blog'), Astro.site).href,
   publisher: { '@type': 'Organization', name: 'ReFi Hub', url: Astro.site?.href },
 }}>
 <main>

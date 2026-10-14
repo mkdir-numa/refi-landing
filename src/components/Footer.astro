@@ -1,14 +1,15 @@
 ---
 import Logo from './Logo.astro';
+import { u } from '../lib/url';
 ---
 <footer><div class="wrap">
-  <a class="flogo" href="/" aria-label="ReFi Hub home"><Logo /></a>
+  <a class="flogo" href={u('/')} aria-label="ReFi Hub home"><Logo /></a>
   <p class="ftag">Energy finance starts here.</p>
   <a class="fmail" href="mailto:info@refihub.io"><span aria-hidden="true">@</span> info@refihub.io</a>
   <nav class="fcols" aria-label="Footer">
-    <div><b>Company</b><a href="/">Home</a><a href="https://app.refihub.io/">App</a><a href="https://www.refihub.io/volt">Volt</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/why-refi-hub-exists">About</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/what-refi-hub-does">How it works</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/transparency-and-reporting">Reporting</a></div>
+    <div><b>Company</b><a href={u('/')}>Home</a><a href="https://app.refihub.io/">App</a><a href="https://www.refihub.io/volt">Volt</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/why-refi-hub-exists">About</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/what-refi-hub-does">How it works</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/transparency-and-reporting">Reporting</a></div>
     <div><b>Live assets</b><a href="https://app.refihub.io/investments/8/">Solar infrastructure</a><a href="https://app.refihub.io/investments/7/">EV charging assets</a><a href="https://app.refihub.io/energy-assets">View all assets</a></div>
-    <div><b>Resources</b><a href="/blog?c=asset-updates">Investor reports</a><a href="https://refihub-images.s3.eu-central-1.amazonaws.com/Singapore+Solar+Market+Overview.pdf">Singapore market study</a><a href="/blog">Articles</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/where-returns-come-from">Documentation</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/asset-selection-and-due-diligence">Due diligence framework</a><a href="https://resources.refihub.io/blog/kyc-faqs">KYC verification FAQs</a></div>
+    <div><b>Resources</b><a href={u('/blog?c=asset-updates')}>Investor reports</a><a href="https://refihub-images.s3.eu-central-1.amazonaws.com/Singapore+Solar+Market+Overview.pdf">Singapore market study</a><a href={u('/blog')}>Articles</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/where-returns-come-from">Documentation</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/asset-selection-and-due-diligence">Due diligence framework</a><a href="https://resources.refihub.io/blog/kyc-faqs">KYC verification FAQs</a></div>
   </nav>
   <div class="fsoc">
     <a href="https://x.com/refihub" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>

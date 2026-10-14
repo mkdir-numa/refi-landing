@@ -26,11 +26,12 @@ const tocHeadings = headings
 const tocDepth = Math.min(...tocHeadings.map((h) => h.depth));
 const toc = tocHeadings.filter((h) => h.depth === tocDepth);
 
-const url = new URL(`/blog/${post.id}`, Astro.site).href;
+const url = new URL(u(`/blog/${post.id}`), Astro.site).href;
 const og = await getImage({ src: cover, width: 1200, format: 'jpg' });
 const a = getAuthor(author);
 const iso = date.toISOString().slice(0, 10);
 const enc = encodeURIComponent;
+import { u } from '../../lib/url';
 ---
 <Base
   title={`${title} | ReFi Hub`}
@@ -61,7 +62,7 @@ const enc = encodeURIComponent;
       <div class="bwrap">
         <div class="head">
           <div class="meta" data-reveal>
-            <a class="pill" href={`/blog?c=${category}`} style="text-decoration:none;color:inherit">{CATEGORIES[category]}</a>
+            <a class="pill" href={u(`/blog?c=${category}`)} style="text-decoration:none;color:inherit">{CATEGORIES[category]}</a>
             <span aria-hidden="true">•</span>
             <time datetime={iso}>{formatDate(date)}</time>
             <span aria-hidden="true">•</span>
@@ -106,7 +107,7 @@ const enc = encodeURIComponent;
     <div class="bwrap">
       <div class="head" data-reveal>
         <h2>Looking for more? Dive into our other articles, updates, and strategies</h2>
-        <a class="btn-black" href="/blog">Browse all articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn-black" href={u('/blog')}>Browse all articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
       <div class="pgrid">{others.map((p, i) => <PostCard post={p} index={i} />)}</div>
     </div>

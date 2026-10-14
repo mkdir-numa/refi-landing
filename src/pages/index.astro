@@ -3,10 +3,12 @@ import Base from '../layouts/Base.astro';
 import PostCard from '../components/PostCard.astro';
 import Reveal from '../components/Reveal.astro';
 import { getPosts } from '../lib/blog';
+import { u } from '../lib/url';
 import '../styles/landing.css';
 import '../styles/blog.css';
 
 const latest = (await getPosts()).slice(0, 4);
+const pics = Object.fromEntries(['flp2', 'flp', 'surya', 'vox', 'crn', 'exodos'].map((id) => [id, u(`/assets/${id}.jpg`)]));
 ---
 <Base title="ReFi Hub · Solar and EV charging, paid in USDC" description="We finance operating solar and EV charging in Brazil, India and Singapore. Their power sales pay investors in USDC. Stake SOL with us and part of our fees funds the next ones." home>
 <Fragment slot="before-nav">
@@ -63,12 +65,12 @@ const latest = (await getPosts()).slice(0, 4);
   "community":{"v":"1,500","p":"verify"}
 }
 </script>
-<script type="application/json" id="PICS" is:inline>{"flp2": "/assets/flp2.jpg", "flp": "/assets/flp.jpg", "surya": "/assets/surya.jpg", "vox": "/assets/vox.jpg", "crn": "/assets/crn.jpg", "exodos": "/assets/exodos.jpg"}</script>
+<script type="application/json" id="PICS" is:inline set:html={JSON.stringify(pics)} />
 
 <main id="top">
 
 <section class="hero">
-  <div class="bg" role="img" aria-label="Sunlight across a solar panel array"></div>
+  <div class="bg" style={`background-image:url(${u('/hero-solar.jpg')})`} role="img" aria-label="Sunlight across a solar panel array"></div>
   <div class="veil"></div>
   <div class="wrap"><div class="hero-in">
     <h1>Solar and EV charging, paid in USDC.</h1>
@@ -108,11 +110,11 @@ const latest = (await getPosts()).slice(0, 4);
   </div>
   <div class="ops">
     <span class="ops-l">Run by our operating partners</span>
-    <button type="button" class="h-pg" data-a="flp2" aria-pressed="false" aria-label="PivotGreen, Singapore"><img src="/logos/pivotgreen.svg" alt="PivotGreen"></button>
-    <button type="button" class="h-dc" data-a="surya" aria-pressed="false" aria-label="DeCharge, India"><img src="/logos/decharge.svg" alt="DeCharge"></button>
-    <button type="button" class="h-ipe" data-a="exodos" aria-pressed="false" aria-label="IPE Assets, Brazil"><img src="/logos/ipe-assets.svg" alt="IPE Assets"></button>
-    <button type="button" class="h-tab" data-a="crn" aria-pressed="false" aria-label="Tab Energia, Brazil"><img src="/logos/tab-energia.svg" alt="Tab Energia"></button>
-    <button type="button" class="h-vox" data-a="vox" aria-pressed="false" aria-label="VOX, Rio de Janeiro"><img src="/logos/vox.svg" alt="VOX"></button>
+    <button type="button" class="h-pg" data-a="flp2" aria-pressed="false" aria-label="PivotGreen, Singapore"><img src={u('/logos/pivotgreen.svg')} alt="PivotGreen"></button>
+    <button type="button" class="h-dc" data-a="surya" aria-pressed="false" aria-label="DeCharge, India"><img src={u('/logos/decharge.svg')} alt="DeCharge"></button>
+    <button type="button" class="h-ipe" data-a="exodos" aria-pressed="false" aria-label="IPE Assets, Brazil"><img src={u('/logos/ipe-assets.svg')} alt="IPE Assets"></button>
+    <button type="button" class="h-tab" data-a="crn" aria-pressed="false" aria-label="Tab Energia, Brazil"><img src={u('/logos/tab-energia.svg')} alt="Tab Energia"></button>
+    <button type="button" class="h-vox" data-a="vox" aria-pressed="false" aria-label="VOX, Rio de Janeiro"><img src={u('/logos/vox.svg')} alt="VOX"></button>
   </div>
 </div></section>
 
@@ -137,7 +139,7 @@ const latest = (await getPosts()).slice(0, 4);
       <h2 class="h2">Every asset, reported on.</h2>
       <p class="lede">Monthly operating and payment reports from each asset, and how we pick them.</p>
     </div>
-    <a class="btn btn-out" href="/blog">All reports <span aria-hidden="true">→</span></a>
+    <a class="btn btn-out" href={u('/blog')}>All reports <span aria-hidden="true">→</span></a>
   </div>
   <div class="pgrid">
     {latest.map((post, i) => <PostCard post={post} index={i} />)}
