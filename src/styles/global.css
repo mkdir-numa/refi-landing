@@ -61,15 +61,20 @@ body.prov-on .pv{color:var(--ink2)}
 .nav .btn{padding:11px 20px;font-size:14px}
 @media (max-width:940px){.nav ul,.pv span{display:none}}
 
-/* footer */
-footer{background:var(--warm);border-top:1px solid var(--rule2);padding:64px 0 34px}
-.fgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:start}
-@media (max-width:800px){.fgrid{grid-template-columns:1fr;gap:34px}}
-.sub{display:flex;gap:9px;margin-top:16px;max-width:420px}
-.sub input{flex:1;min-width:0;font:400 15px var(--sans);color:var(--ink);background:var(--card);border:1px solid var(--rule2);border-radius:100px;padding:12px 18px}
-.sub input::placeholder{color:var(--faint)}
-.fcols{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.fcols b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:500}
-.fcols a{display:block;font-size:14px;color:var(--ink2);text-decoration:none;margin-bottom:7px}
-.fcols a:hover{color:var(--ink)}
-.legal{margin-top:44px;padding-top:18px;border-top:1px solid var(--rule2);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.05em}
+/* footer, same as refihub.io */
+footer{background:#000;color:#fff;padding:72px 0 30px}
+footer a{color:#fff;text-decoration:none}
+footer a:hover{opacity:.7}
+.flogo{display:block;height:34px}
+.flogo svg{height:34px;width:auto;display:block}
+.flogo svg path{fill:#fff}
+.ftag{font-size:21px;margin-top:34px;letter-spacing:-.005em}
+.fmail{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-size:16px}
+.fcols{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px}
+.fcols b{display:block;font-size:14px;font-weight:700;color:rgba(255,255,255,.72);margin-bottom:18px}
+.fcols a{display:block;font-size:15.5px;margin-bottom:11px}
+@media (max-width:700px){.fcols{grid-template-columns:1fr 1fr}}
+.fsoc{display:flex;gap:18px;margin-top:90px}
+.fsoc svg{width:18px;height:18px;display:block;fill:#fff}
+.legal{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.4);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13.5px;color:rgba(255,255,255,.8)}
+.legal span{display:flex;gap:22px}

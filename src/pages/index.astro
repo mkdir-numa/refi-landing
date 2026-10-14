@@ -8,7 +8,7 @@ import '../styles/blog.css';
 
 const latest = (await getPosts()).slice(0, 4);
 ---
-<Base title="ReFi Hub — on-chain energy assets" description="Operating solar and EV charging in Singapore, Brazil and India, distributing USDC from real electricity sales. Stake SOL with refiSOL." home>
+<Base title="ReFi Hub · Solar and EV charging, paid in USDC" description="We finance operating solar and EV charging in Brazil, India and Singapore. Their power sales pay investors in USDC. Stake SOL with us and part of our fees funds the next ones." home>
 <Fragment slot="before-nav">
 <div class="strip"><div class="wrap">
   <span>TEAM REVIEW</span>
@@ -21,58 +21,49 @@ const latest = (await getPosts()).slice(0, 4);
 <script type="application/json" id="DATA" is:inline>
 {
   "stats":[
-    {"v":27,"suffix":"","label":"Operating energy assets","sub":"Solar plants and EV chargers across three countries","p":"verify","live":true},
-    {"v":14,"prefix":"+","suffix":"%","label":"Realized IRR","sub":"On distributions actually paid, not modelled","p":"verify","live":false},
-    {"v":22,"suffix":"+","label":"Months of payments","sub":"Exodos 1 has paid every month since October 2024","p":"real","live":true},
-    {"v":39,"prefix":"$","unit":"K","label":"Delivered to investors","sub":"USDC paid out from real electricity sales","p":"verify","live":true},
-    {"v":481,"unit":"MWh","label":"Clean energy produced","sub":"Metered at the asset, solar plus EV dispensed","p":"verify","live":true},
-    {"v":9.2,"prefix":"$","unit":"M","label":"SOL staked in our impact validator","sub":"Roughly 140,000 SOL delegated","p":"verify","live":true}
+    {"v":27,"suffix":"","label":"Energy assets operating","sub":"Solar plants and EV chargers in three countries","p":"verify"},
+    {"v":14,"prefix":"+","suffix":"%","label":"Realized IRR","sub":"On payments made, not forecasts","p":"verify"},
+    {"v":22,"suffix":"+","label":"Months of payments","sub":"Exodos 1, since October 2024","p":"real"},
+    {"v":39,"prefix":"$","unit":"K","label":"Paid to investors","sub":"In USDC, from power sales","p":"verify"},
+    {"v":481,"unit":"MWh","label":"Clean energy produced","sub":"Metered at each asset","p":"verify"},
+    {"v":142.7,"unit":"K SOL","label":"Staked with our validator","sub":"Stakewiz, 13 Oct 2026","p":"real"}
   ],
   "assets":[
     {"id":"flp2","name":"FLP II","operator":"PivotGreen","place":"Singapore","lat":1.29,"lon":103.85,
      "type":"Rooftop solar","kind":"solar","kw":111.69,"yield":21.38,"raised":100000,"status":"distributing",
      "payments":5,"last":"Aug 2026","lastAmt":1797.25,"term":"25-year PPA","inv":9,
-     "note":"Second offering on a plant already distributing to Series 1 investors. Operational since September 2024, selling power under a 25-year agreement with Freight Links, a subsidiary of SGX-listed Vibrant Group. Paying about $1,780 a month since April 2026."},
+     "note":"Second raise on an operating rooftop plant in Singapore. About $1,780 a month since April 2026."},
     {"id":"flp","name":"FLP","operator":"PivotGreen","place":"Singapore","lat":1.29,"lon":103.85,
      "type":"Rooftop solar","kind":"solar","kw":66.9,"yield":13.98,"raised":59000,"status":"distributing",
      "payments":10,"last":"Aug 2026","lastAmt":null,"term":"Pays until 2049","inv":8,
-     "note":"The first Singapore asset and the longest contract in the portfolio. Recent output: 27.5 MWh in March 2026, 22.0 MWh in April, 20.0 MWh in May. No unplanned downtime logged, and every counterparty payment has cleared on schedule."},
+     "note":"Rooftop solar in Singapore, contracted to pay until 2049. Every payment on schedule."},
     {"id":"surya","name":"Surya","operator":"DeCharge","place":"India","lat":26.85,"lon":80.95,
      "type":"EV charging","kind":"ev","kw":345,"yield":12.8,"raised":149999.99,"status":"distributing",
      "payments":7,"last":"Aug 2026","lastAmt":899.96,"term":"Pays until 2028","inv":7,
-     "note":"19 fast chargers across 3 stations on high-traffic highways. Revenue is pay-per-use, so distributions move with traffic. There was no July 2026 payment: the payout cycle is shifting from a 16th-to-15th window to a standard calendar month, so July settled inside the August run."},
+     "note":"19 fast chargers on Indian highways. Paid per use, so payouts move with traffic. July 2026 was paid inside August after a billing change."},
     {"id":"vox","name":"EV Charging Stations","operator":"VOX","place":"Rio de Janeiro, Brazil","lat":-22.91,"lon":-43.17,
-     "type":"EV charging","kind":"ev","kw":112,"yield":9.3,"raised":49999.2,"status":"distributing",
+     "type":"EV charging","kind":"ev","kw":112,"yield":9.3,"raised":49999.2,"status":"maintenance",
      "payments":7,"last":"Apr 2026","lastAmt":354.73,"term":"Pays until 2030","inv":6,
-     "note":"Four EV fast chargers in Rio de Janeiro. The lowest yield in the portfolio: utilisation built slowly, from $134 in December 2025 to $355 in April 2026. Payments have not resumed since April, so this one is behind."},
+     "note":"Four fast chargers in Rio. Our weakest asset. No payment since April 2026."},
     {"id":"crn","name":"CRN","operator":"Tab Energia","place":"Brazil","lat":-19.9,"lon":-43.94,
      "type":"Ground-mounted solar","kind":"solar","kw":143.2,"yield":11.29,"raised":100000,"status":"maintenance",
      "payments":8,"last":"Mar 2026","lastAmt":941.0,"term":"Pays until 2055","inv":5,
-     "note":"Paid $941 a month, on time, from August 2025 to March 2026, then stopped. The power purchase agreement was being transferred into GEDISA's name, which completed on 27 April. The plant is operational and injecting into the grid, with the first billable generation in May. Payments are pending, not lost."},
+     "note":"Paid $941 a month until March 2026, then stopped while its power contract moved to GEDISA. The transfer closed on 27 April. Payments are pending."},
     {"id":"exodos","name":"Exodos 1","operator":"IPE Assets","place":"Brazil","lat":-23.55,"lon":-46.63,
      "type":"Solar","kind":"solar","kw":50.8,"yield":14.72,"raised":32499.93,"status":"distributing",
      "payments":22,"last":"Aug 2026","lastAmt":324.0,"term":"Pays until 2048","inv":4,
-     "note":"The first tokenized solar plant in Brazil, and the longest payment record here: 22 monthly distributions since October 2024. April 2026 was skipped and settled inside a $1,000 payment in May. June output recovered to 4,150 kWh, closing the gap to forecast from -37% to -13%."}
-  ],
-  "events":[
-    {"kind":"Distribution","amt":"1,797.25","unit":"USDC","who":"FLP II","sub":"PivotGreen · Singapore · rooftop solar","when":"Aug 2026","p":"real"},
-    {"kind":"Charging session","amt":"38.6","unit":"kWh","who":"Surya · Station 2, NH-27","sub":"about 214 km of range added","when":"4 min ago","p":"mock"},
-    {"kind":"Distribution","amt":"899.96","unit":"USDC","who":"Surya","sub":"DeCharge · India · 19 fast chargers","when":"Aug 2026","p":"real"},
-    {"kind":"Delegation","amt":"250","unit":"SOL","who":"ReFi Hub validator","sub":"new stake delegated","when":"1h ago","p":"mock"},
-    {"kind":"Distribution","amt":"324.00","unit":"USDC","who":"Exodos 1","sub":"IPE Assets · Brazil · payment 22 of 22","when":"Aug 2026","p":"real"},
-    {"kind":"Charging session","amt":"22.1","unit":"kWh","who":"VOX · Rio, Barra","sub":"about 123 km of range added","when":"11 min ago","p":"mock"},
-    {"kind":"Production","amt":"20.0","unit":"MWh","who":"FLP","sub":"PivotGreen · Singapore · May 2026 output","when":"May 2026","p":"real"},
-    {"kind":"Distribution","amt":"354.73","unit":"USDC","who":"EV Charging Stations","sub":"VOX · Rio de Janeiro","when":"Apr 2026","p":"real"}
+     "note":"Brazil's first tokenized solar plant. 22 payments since October 2024. April 2026 was paid late, in May."}
   ],
   "validator":{
-    "sol":{"v":"140K","u":"SOL","l":"Staked to our validator","p":"verify"},
-    "uptime":{"v":"98","u":"%","l":"Validator uptime","p":"verify"},
-    "fees":{"v":"30","u":"%","l":"Of fees to impact","p":"real"},
-    "value":{"v":"$9.2","u":"M","l":"Value staked","p":"verify"}
+    "sol":{"v":"142.7K","u":"SOL","l":"Staked","p":"real"},
+    "uptime":{"v":"99.95","u":"%","l":"Uptime, last 12 months","p":"real"},
+    "fees":{"v":"30","u":"%","l":"Of our fees to impact","p":"real"},
+    "value":{"v":"0","u":"%","l":"Skip rate","p":"real"}
   },
   "community":{"v":"1,500","p":"verify"}
 }
 </script>
+<script type="application/json" id="PICS" is:inline>{"flp2": "/assets/flp2.jpg", "flp": "/assets/flp.jpg", "surya": "/assets/surya.jpg", "vox": "/assets/vox.jpg", "crn": "/assets/crn.jpg", "exodos": "/assets/exodos.jpg"}</script>
 
 <main id="top">
 
@@ -80,43 +71,28 @@ const latest = (await getPosts()).slice(0, 4);
   <div class="bg" role="img" aria-label="Sunlight across a solar panel array"></div>
   <div class="veil"></div>
   <div class="wrap"><div class="hero-in">
-    <h1>On-chain energy assets.<em>Revenue from every kilowatt.</em></h1>
-    <p>Operating solar and EV charging in Singapore, Brazil and India, distributing USDC from real electricity sales.</p>
+    <h1>Solar and EV charging, paid in USDC.</h1>
+    <p>We finance operating energy assets in Brazil, India and Singapore. Their power sales pay investors. Stake SOL with us and part of our fees funds the next ones.</p>
     <div class="row">
-      <a class="btn btn-teal" href="https://app.refihub.io/stake/" target="_blank" rel="noopener">Stake SOL</a>
-      <a class="btn btn-light" href="#record">See what it produced</a>
+      <a class="btn btn-light" href="#record">See the record</a>
+      <a class="btn btn-light" href="#refisol">How staking works</a>
     </div>
   </div></div>
 </section>
 
 <section class="sec stats" id="record"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">Infrastructure investing platform</span>
     <h2 class="h2">We turn electricity into USDC.</h2>
-    <p class="lede">ReFi Hub finances real, operating energy infrastructure and distributes the cashflow generated when that energy is produced and used.</p>
+    <p class="lede">We finance energy assets that already run. When they sell power, investors get paid.</p>
   </div>
   <div class="grid6" id="grid6"></div>
-  <p class="honest">Distributions follow real-world usage, so they are uneven. Two assets are behind right now: CRN is pending a power purchase agreement transfer, and VOX has not paid since April. Both are on the map below with the full story.</p>
-</div></section>
-
-<section class="sec feed on-dark" id="live"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow pulse"><b></b>Live feed</span>
-    <h2 class="h2">Money moving, right now.</h2>
-    <p class="lede">Every distribution and charging session as it lands. The payments below are the real amounts from the asset pages on app.refihub.io.</p>
-  </div>
-  <div class="tape" id="tape"></div>
-  <div class="foot">
-    <span>Newest first · updates every few seconds</span>
-    <span><a href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener" style="color:inherit">Verify any of these on the asset pages →</a></span>
-  </div>
+  <p class="honest">Payments follow real use, so they are uneven. Two assets are behind: CRN is waiting on a contract transfer, and VOX has not paid since April.</p>
 </div></section>
 
 <section class="sec mapsec" id="map"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">Where the money is</span>
-    <h2 class="h2">Six assets. Three countries. One map.</h2>
-    <p class="lede">Every asset ReFi Hub financed, plotted where it operates. Click a marker for what it raised, what it has paid, and where it stands today.</p>
+    <h2 class="h2">Six assets. Three countries.</h2>
+    <p class="lede">Click an asset to see what it raised, what it has paid, and where it stands.</p>
   </div>
   <div class="mapwrap">
     <div>
@@ -124,39 +100,44 @@ const latest = (await getPosts()).slice(0, 4);
       <div class="legend">
         <span><i></i>Solar</span>
         <span><i class="sq"></i>EV charging</span>
-        <span><i class="am"></i>Payments pending</span>
-        <span style="color:var(--faint)">Markers sit at city level</span>
+        <span><i class="am"></i>Behind on payments</span>
+        <span style="color:var(--faint)">Markers grouped by country</span>
       </div>
     </div>
     <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+  <div class="ops">
+    <span class="ops-l">Run by our operating partners</span>
+    <button type="button" class="h-pg" data-a="flp2" aria-pressed="false" aria-label="PivotGreen, Singapore"><img src="/logos/pivotgreen.svg" alt="PivotGreen"></button>
+    <button type="button" class="h-dc" data-a="surya" aria-pressed="false" aria-label="DeCharge, India"><img src="/logos/decharge.svg" alt="DeCharge"></button>
+    <button type="button" class="h-ipe" data-a="exodos" aria-pressed="false" aria-label="IPE Assets, Brazil"><img src="/logos/ipe-assets.svg" alt="IPE Assets"></button>
+    <button type="button" class="h-tab" data-a="crn" aria-pressed="false" aria-label="Tab Energia, Brazil"><img src="/logos/tab-energia.svg" alt="Tab Energia"></button>
+    <button type="button" class="h-vox" data-a="vox" aria-pressed="false" aria-label="VOX, Rio de Janeiro"><img src="/logos/vox.svg" alt="VOX"></button>
   </div>
 </div></section>
 
 <section class="sec sol on-dark" id="refisol"><div class="wrap">
   <div class="grid">
     <div>
-      <span class="eyebrow" style="color:var(--on-dark2)">refiSOL</span>
-      <h2 style="margin-top:16px">Real-world yield, proven on-chain.<em>Stake SOL to make an impact.</em></h2>
-      <p class="say">refiSOL is an <b>LST token from our Solana validator</b>. 30% of our fees go to environmental restoration.</p>
-      <p class="say" style="margin-top:12px">Impact investing on Solana DeFi.</p>
+      <h2>Stake SOL. Fund coral reefs.</h2>
+      <p class="say">refiSOL is the <b>liquid staking token from our validator</b>. 30% of our fees fund coral reefs and clean energy.<span class="prov" data-p="verify">verify</span></p>
       <div class="row2">
-        <a class="btn btn-teal" href="https://app.refihub.io/stake/" target="_blank" rel="noopener">Stake SOL</a>
-        <a class="btn btn-light" href="https://app.refihub.io/stake/" target="_blank" rel="noopener">How refiSOL works</a>
+        <a class="btn btn-teal" href="https://mkdir-numa.github.io/reeefisol/" target="_blank" rel="noopener">Stake SOL</a>
+        <a class="btn btn-light" href="https://mkdir-numa.github.io/reeefisol/#faq-fees" target="_blank" rel="noopener">Fees and risks</a>
       </div>
     </div>
     <div class="vm" id="vm"></div>
   </div>
-  <p class="fine">Staking yield varies with network conditions. refiSOL stays liquid and can be swapped or redeemed, subject to market liquidity. Nothing here is a guarantee of return.</p>
+  <p class="fine">Data: <a href="https://stakewiz.com/validator/ReFiSbuMcV8PMYcpvm9RmHDhF9HR3qyxsHZgf359NUx" target="_blank" rel="noopener" style="color:inherit;text-underline-offset:3px">Stakewiz</a> and <a href="https://www.validators.app/validators/ReFiqMfGnc7tW8WQtFFcJRPZSDAWDBnAsdoFYF2QnfR?locale=en&amp;network=mainnet" target="_blank" rel="noopener" style="color:inherit;text-underline-offset:3px">validators.app</a>, 13 Oct 2026. Rewards vary. Downtime never touches your principal. refiSOL can trade below its SOL value.</p>
 </div></section>
 
 <section class="sec reports" id="reports"><div class="wrap">
   <div class="head">
     <div class="sec-head">
-      <span class="eyebrow">Reports &amp; updates</span>
       <h2 class="h2">Every asset, reported on.</h2>
-      <p class="lede">Monthly operating and distribution reports from the assets, plus the guides behind how we pick and structure them.</p>
+      <p class="lede">Monthly operating and payment reports from each asset, and how we pick them.</p>
     </div>
-    <a class="btn btn-out" href="/blog">View all posts <span aria-hidden="true">→</span></a>
+    <a class="btn btn-out" href="/blog">All reports <span aria-hidden="true">→</span></a>
   </div>
   <div class="pgrid">
     {latest.map((post, i) => <PostCard post={post} index={i} />)}
@@ -165,20 +146,19 @@ const latest = (await getPosts()).slice(0, 4);
 
 <section class="sec proof" id="proof"><div class="wrap">
   <div class="sec-head">
-    <span class="eyebrow">Backing and evidence</span>
-    <h2 class="h2">Proof of Work.</h2>
-    <p class="lede">The app, the documentation and the smart-contract audit are public. Every number on this page can be checked against them.</p>
+    <h2 class="h2">Building since 2021.</h2>
+    <p class="lede">Our app, docs and audit are public. Check any number on this page against them.</p>
   </div>
   <div class="bk">
     <div><b>Solana Foundation</b><small>Backer <span class="prov" data-p="verify">verify</span></small></div>
-    <div><b>Superteam UK</b><small>Incubator <span class="prov" data-p="verify">verify</span></small></div>
-    <div><b>Bonk</b><small>Advisory <span class="prov" data-p="verify">verify</span></small></div>
-    <div><b id="comm"></b><small>Investors, holders and Coral Tribe members <span class="prov" data-p="verify">verify</span></small></div>
+    <div><b><a href="https://superteamuk.org/" target="_blank" rel="noopener">Superteam UK</a> and <a href="https://superteam.ca/" target="_blank" rel="noopener">Superteam Canada</a></b><small>Incubator and ecosystem partners <span class="prov" data-p="verify">verify</span></small></div>
+    <div><b>Our own validator</b><small>refiSOL, live on Solana <span class="prov" data-p="verify">link to vote account</span></small></div>
+    <div><b id="comm"></b><small>Investors, holders and <a href="https://www.coraltribe.io/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Coral Tribe</a> members <span class="prov" data-p="verify">verify</span></small></div>
   </div>
   <div class="cards">
-    <a href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener"><b>The app</b><small>Live asset pages, monthly operating reports, full distribution history.</small><span class="go">app.refihub.io →</span></a>
-    <a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/where-returns-come-from" target="_blank" rel="noopener"><b>Documentation</b><small>Where returns come from, due diligence, risk and variability.</small><span class="go">refihub.gitbook.io →</span></a>
-    <a href="#proof"><b>Smart-contract audit</b><small>Independent audit by Solidproof. Link to be added before launch.</small><span class="go">Solidproof <span class="prov" data-p="verify">link</span></span></a>
+    <a href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener"><b>The app</b><small>Asset pages, monthly reports and every distribution.</small><span class="go">app.refihub.io →</span></a>
+    <a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/where-returns-come-from" target="_blank" rel="noopener"><b>Documentation</b><small>Where returns come from, how we pick assets, and the risks.</small><span class="go">refihub.gitbook.io →</span></a>
+    <a href="#proof"><b>Smart-contract audit</b><small>Independent audit by Solidproof.</small><span class="go">Solidproof <span class="prov" data-p="verify">link</span></span></a>
   </div>
 </div></section>
 
@@ -188,6 +168,7 @@ const latest = (await getPosts()).slice(0, 4);
 (function(){
 "use strict";
 var D = JSON.parse(document.getElementById('DATA').textContent);
+var PICS = JSON.parse(document.getElementById('PICS').textContent);
 var $ = function(s,r){ return (r||document).querySelector(s); };
 var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function prov(p){ return p ? '<span class="prov" data-p="'+p+'">'+p+'</span>' : ''; }
@@ -213,52 +194,38 @@ $('#grid6').innerHTML = D.stats.map(function(s){
     + '<span class="sub">'+esc(s.sub)+'</span></div>';
 }).join('');
 
+function countUp(el){
+  var n = el.querySelector('.n');
+  var to = parseFloat(el.dataset.to), pre = el.dataset.pre, suf = el.dataset.suf;
+  var dec = (to % 1 !== 0) ? 1 : 0, t0 = performance.now(), dur = 900;
+  function step(now){
+    var k = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - k, 3), cur = to * eased;
+    n.textContent = pre + (dec ? cur.toFixed(dec) : Math.round(cur).toLocaleString('en-US')) + suf;
+    if(k < 1) requestAnimationFrame(step);
+    else n.textContent = pre + (dec ? to.toFixed(dec) : to.toLocaleString('en-US')) + suf;
+  }
+  requestAnimationFrame(step);
+}
+/* cards reveal three at a time: each row of three waits until it scrolls into view */
 if(!reduced && 'IntersectionObserver' in window){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#grid6 .sc')), rows = [];
+  cards.forEach(function(c, i){ c.classList.add('hide'); (rows[Math.floor(i / 3)] = rows[Math.floor(i / 3)] || []).push(c); });
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(!e.isIntersecting) return;
       io.unobserve(e.target);
-      var el = e.target, n = el.querySelector('.n');
-      var to = parseFloat(el.dataset.to), pre = el.dataset.pre, suf = el.dataset.suf;
-      var dec = (to % 1 !== 0) ? 1 : 0, t0 = performance.now(), dur = 900;
-      function step(now){
-        var k = Math.min(1, (now - t0) / dur), eased = 1 - Math.pow(1 - k, 3), cur = to * eased;
-        n.textContent = pre + (dec ? cur.toFixed(dec) : Math.round(cur).toLocaleString('en-US')) + suf;
-        if(k < 1) requestAnimationFrame(step);
-        else n.textContent = pre + (dec ? to.toFixed(dec) : to.toLocaleString('en-US')) + suf;
-      }
-      requestAnimationFrame(step);
+      rows[e.target.dataset.row].forEach(function(c, j){
+        c.style.transitionDelay = (j * 90) + 'ms';
+        c.classList.remove('hide');
+        setTimeout(function(){ countUp(c.querySelector('.v')); }, j * 90);
+      });
     });
-  }, {threshold:.4});
-  Array.prototype.forEach.call(document.querySelectorAll('.sc .v'), function(el){ io.observe(el); });
-}
-
-/* ---------- live feed ---------- */
-var tape = $('#tape'), ei = 0;
-function sig(){
-  var a = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz', s = '';
-  for(var i = 0; i < 9; i++) s += a[Math.floor(Math.random() * a.length)];
-  return s;
-}
-function rowHtml(e){
-  return '<div class="row">'
-    + '<span class="kind">'+esc(e.kind)+prov(e.p)+'</span>'
-    + '<span class="amt">'+esc(e.amt)+'<span class="u">'+esc(e.unit)+'</span></span>'
-    + '<span class="who"><b>'+esc(e.who)+'</b>'+esc(e.sub)+'</span>'
-    + '<span class="when">'+esc(e.when)+' · <a href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener">tx '+sig()+'…</a></span>'
-    + '</div>';
-}
-for(var i = 0; i < 5; i++){ tape.insertAdjacentHTML('beforeend', rowHtml(D.events[ei++ % D.events.length])); }
-if(!reduced){
-  setInterval(function(){
-    tape.insertAdjacentHTML('afterbegin', rowHtml(D.events[ei++ % D.events.length]));
-    tape.firstElementChild.classList.add('new');
-    while(tape.children.length > 5) tape.lastElementChild.remove();
-  }, 5000);
+  }, {threshold:.35, rootMargin:'0px 0px -8% 0px'});
+  rows.forEach(function(r, i){ r[0].dataset.row = i; io.observe(r[0]); });
 }
 
 /* ---------- world map ---------- */
-var LON0 = -168, LON1 = 182, LAT0 = -56, LAT1 = 76;
+var LON0 = -110, LON1 = 150, LAT0 = -50, LAT1 = 62;
 var LAND = [
  [[-168,66],[-160,71],[-140,70],[-125,70],[-110,68],[-95,69],[-82,73],[-70,68],[-64,60],[-55,52],[-62,47],[-67,45],[-70,42],[-74,39],[-78,34],[-81,28],[-80,25],[-84,22],[-88,21],[-91,17],[-84,10],[-78,8],[-83,14],[-94,16],[-97,25],[-105,21],[-112,26],[-117,33],[-122,38],[-124,45],[-124,49],[-131,54],[-141,60],[-152,59],[-163,59]],
  [[-45,60],[-20,64],[-18,70],[-22,76],[-32,82],[-45,83],[-58,82],[-68,78],[-73,70],[-58,64]],
@@ -294,10 +261,10 @@ function drawMap(){
   cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, w, h);
-  var r = Math.max(1, w / 640);
+  var r = Math.max(1, w / 560);
   ctx.fillStyle = '#CFC7BE';
-  for(var lat = LAT1; lat >= LAT0; lat -= 2.2){
-    for(var lon = LON0; lon <= LON1; lon += 2.2){
+  for(var lat = LAT1; lat >= LAT0; lat -= 1.7){
+    for(var lon = LON0; lon <= LON1; lon += 1.7){
       if(!isLand(lon, lat)) continue;
       ctx.beginPath();
       ctx.arc(projX(lon) * w, projY(lat) * h, r, 0, 6.2832);
@@ -305,27 +272,21 @@ function drawMap(){
     }
   }
 }
-/* place markers, fanning out any that sit too close to read */
-var AR = 152 / 355;
+/* place markers; assets that sit too close to read fan out around their country,
+   and the fan is rotated and nudged until every marker lands on a land dot */
 D.assets.forEach(function(a){ a._x = projX(a.lon); a._y = projY(a.lat); });
 var clusters = [];
 D.assets.forEach(function(a){
   for(var i = 0; i < clusters.length; i++){
-    var c = clusters[i], dx = a._x - c.x, dy = (a._y - c.y) * AR;
-    if(Math.sqrt(dx * dx + dy * dy) < 0.030){ c.items.push(a); return; }
+    var c = clusters[i], dx = a._x - c.x, dy = (a._y - c.y) * 112 / 260;
+    if(Math.sqrt(dx * dx + dy * dy) < 0.03){ c.items.push(a); return; }
   }
-  clusters.push({x:a._x, y:a._y, items:[a]});
+  clusters.push({x:a._x, y:a._y, lon:a.lon, lat:a.lat, items:[a]});
 });
 clusters.forEach(function(c){
-  var n = c.items.length, R = 17;
-  c.items.forEach(function(a, i){
-    var ang = -Math.PI / 2 + i * 2 * Math.PI / n;
-    var ox = n > 1 ? Math.cos(ang) * R : 0;
-    var oy = n > 1 ? Math.sin(ang) * R : 0;
+  c.items.forEach(function(a){
     var b = document.createElement('button');
     b.className = 'pin' + (a.kind === 'ev' ? ' ev' : '') + (a.status === 'maintenance' ? ' maint' : '');
-    b.style.left = 'calc(' + (c.x * 100) + '% + ' + ox.toFixed(1) + 'px)';
-    b.style.top = 'calc(' + (c.y * 100) + '% + ' + oy.toFixed(1) + 'px)';
     b.setAttribute('aria-pressed', 'false');
     b.setAttribute('aria-label', a.name + ', ' + a.place);
     b.innerHTML = '<i></i><b>' + esc(a.name) + '</b>';
@@ -333,15 +294,50 @@ clusters.forEach(function(c){
     stage.appendChild(b);
     a._el = b;
   });
-  var lab = document.createElement('span');
-  lab.className = 'clab';
-  lab.textContent = c.items[0].place.split(', ').pop();
-  lab.style.left = (c.x * 100) + '%';
-  lab.style.top = 'calc(' + (c.y * 100) + '% + ' + (n > 1 ? R + 18 : 18) + 'px)';
-  stage.appendChild(lab);
+  c.lab = document.createElement('span');
+  c.lab.className = 'clab';
+  c.lab.textContent = c.items[0].place.split(', ').pop();
+  stage.appendChild(c.lab);
 });
+function layoutPins(){
+  var w = stage.clientWidth, h = stage.clientHeight;
+  if(!w || !h) return;
+  var pxLon = w / (LON1 - LON0), pxLat = h / (LAT1 - LAT0);
+  clusters.forEach(function(c){
+    var n = c.items.length, R = n > 2 ? 11 : n > 1 ? 8 : 0, best = null;
+    /* score every nudge and rotation that keeps all markers on land, and keep the one
+       where each marker stays closest to its own asset's real location */
+    for(var d = 0; d <= 40; d += 4){
+      for(var da = 0; da < (d ? 12 : 1); da++){
+        var sx = Math.cos(da * Math.PI / 6) * d, sy = Math.sin(da * Math.PI / 6) * d;
+        for(var rot = 0; rot < (n > 1 ? 360 : 1); rot += 15){
+          var pts = [], ok = true, score = 0;
+          for(var i = 0; i < n; i++){
+            var ang = (rot + i * 360 / n) * Math.PI / 180;
+            var px = sx + Math.cos(ang) * R, py = sy + Math.sin(ang) * R;
+            var lon = c.lon + px / pxLon, lat = c.lat - py / pxLat;
+            if(!isLand(lon, lat)){ ok = false; break; }
+            var a = c.items[i];
+            score += Math.hypot((lon - a.lon) * pxLon, (lat - a.lat) * pxLat);
+            pts.push([lon, lat]);
+          }
+          if(ok && (!best || score < best.score)) best = {pts:pts, score:score};
+        }
+      }
+    }
+    if(!best){ best = {pts:c.items.map(function(){ return [c.lon, c.lat]; }), sy:0}; }
+    c.items.forEach(function(a, i){
+      a._el.style.left = (projX(best.pts[i][0]) * 100) + '%';
+      a._el.style.top = (projY(best.pts[i][1]) * 100) + '%';
+    });
+    var maxY = Math.max.apply(null, best.pts.map(function(p){ return projY(p[1]); }));
+    c.lab.style.left = (projX(c.lon) * 100) + '%';
+    c.lab.style.top = 'calc(' + (maxY * 100) + '% + 14px)';
+  });
+}
 function select(id){
   var a = null;
+  Array.prototype.forEach.call(document.querySelectorAll('.ops button'), function(b){ b.setAttribute('aria-pressed', b.dataset.a === id ? 'true' : 'false'); });
   D.assets.forEach(function(x){
     x._el.setAttribute('aria-pressed', x.id === id ? 'true' : 'false');
     if(x.id === id) a = x;
@@ -349,8 +345,9 @@ function select(id){
   if(!a) return;
   var maint = a.status === 'maintenance';
   $('#panel').innerHTML =
-      '<div class="ph">'
-    + '<span class="badge' + (maint ? ' maint' : '') + '"><i></i>' + (maint ? 'Payments pending' : 'Distributing revenue') + '</span>'
+      (PICS[a.id] ? '<img class="pic" src="' + PICS[a.id] + '" alt="' + esc(a.name) + ', ' + esc(a.place) + '">' : '')
+    + '<div class="ph">'
+    + '<span class="badge' + (maint ? ' maint' : '') + '"><i></i>' + (maint ? 'Behind on payments' : 'Paying') + '</span>'
     + '<span class="nm">' + esc(a.name) + prov('real') + '</span>'
     + '<span class="op">' + esc(a.operator) + ' · ' + esc(a.place) + ' · ' + esc(a.type) + '</span>'
     + '</div>'
@@ -365,10 +362,12 @@ function select(id){
     + '<p class="note">' + esc(a.note) + '</p>'
     + '<a class="go" href="https://app.refihub.io/investments/' + a.inv + '/" target="_blank" rel="noopener">Open the asset page →</a>';
 }
+Array.prototype.forEach.call(document.querySelectorAll('.ops button'), function(b){ b.addEventListener('click', function(){ select(b.dataset.a); var pr = $('#panel').getBoundingClientRect(); if(pr.top < 70 || pr.top > window.innerHeight - 120) $('#panel').scrollIntoView({behavior:'smooth', block:'center'}); }); });
 select('flp2');
 drawMap();
+layoutPins();
 var rt;
-window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(drawMap, 150); });
+window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ drawMap(); layoutPins(); }, 150); });
 
 /* ---------- validator metrics ---------- */
 var V = D.validator;
@@ -378,8 +377,8 @@ $('#vm').innerHTML = ['sol','uptime','fees','value'].map(function(k){
        + '<span class="l">' + esc(m.l) + prov(m.p) + '</span></div>';
 }).join('');
 
-/* ---------- community ---------- */
-$('#comm').textContent = 'Over ' + D.community.v + ' community';
+/* ---------- community + subscribe ---------- */
+$('#comm').textContent = 'Over ' + D.community.v + ' members';
 })();
 </script>
 <Reveal />

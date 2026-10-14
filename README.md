@@ -10,10 +10,16 @@ npm run build      # static site in dist/
 npm run preview    # serve dist/ locally
 ```
 
-The landing page is `src/pages/index.astro`. It was converted from the single-file
-prototype `index.html` as of commit 72c3168. Its CSS is split into `src/styles/global.css`
-and `landing.css`, and the base64 hero photo is now `public/hero-solar.jpg`. `index.html`
-stays in the repo until any later prototype edits are merged into the Astro version.
+The landing page is `src/pages/index.astro`. It matches the single-file prototype
+`index.html` (October 2026 copy pass). Its CSS lives in `src/styles/global.css` and `landing.css`,
+asset photos in `public/assets/`, operator logos in `public/logos/`, and the hero photo in
+`public/hero-solar.jpg`. `index.html` is kept as the self-contained version for sharing as an
+artifact. Edit the Astro page first, then copy changes across.
+
+The copy follows the staking site's voice: short declarative lines, proof from third parties
+(Stakewiz, validators.app, the asset pages), costs and risks named plainly, sentence case, no em
+dashes, no italic titles. Stake buttons point to the staking site
+(https://mkdir-numa.github.io/reeefisol/ for now; swap in the final domain before launch).
 
 **Live prototype:** https://claude.ai/code/artifact/9b54fbab-1c28-4ac2-9ab2-cda0973ea600
 
@@ -31,12 +37,12 @@ hero, Inter for headings, Chivo Mono for labels.
 
 | Section | Job |
 |---|---|
-| Hero | The original headline and one action |
-| We turn electricity into USDC | Six live stat cards |
-| Live feed | Distributions and charging sessions as they land |
-| Six assets. Three countries. One map. | Interactive world map, click a marker for detail |
-| refiSOL | The staking pitch, kept short |
-| Proof of Work | Backers, community, links to the app, docs and audit |
+| Solar and EV charging, paid in USDC. | Hero: what we do and how it pays |
+| We turn electricity into USDC. | Six stat cards, plus the two assets that are behind |
+| Six assets. Three countries. | Interactive world map with asset detail, operator logo strip |
+| Stake SOL. Fund coral reefs. | refiSOL in one line, validator data from Stakewiz |
+| Every asset, reported on. | The four latest posts from `/blog` |
+| Building since 2021. | Backers, community, links to the app, docs and audit |
 
 ## Data and the "Data status" toggle
 
