@@ -29,20 +29,22 @@ Public asset listings are closed. Staking is now the only revenue, so the page h
 job: turn ReFi Hub's track record into SOL delegated to the validator via refiSOL. It is a
 proof-of-work page, not a marketplace.
 
-Visually it stays inside the existing refihub.io identity rather than introducing a new
-one. Same warm off-white ground, the original's own hero photograph, Merriweather for the
-hero, Inter for headings, Chivo Mono for labels.
+Visually it stays inside the refihub.io family and follows `docs/style-guide.md` (October
+2026): warm paper, ink bands, the original hero photograph, Merriweather for the hero,
+Inter 400 headings, Geist numbers with units in Chivo Mono, and the Daylight palette (sun,
+copper, grid). The dotted Sunfield and Daylight sweep artwork is drawn by
+`src/scripts/energy.js`. The visual specimen is `docs/style-guide/specimen.html`.
 
 ## Structure
 
 | Section | Job |
 |---|---|
-| Solar and EV charging, paid in USDC. | Hero: what we do and how it pays |
-| We turn electricity into USDC. | Six stat cards, plus the two assets that are behind |
+| We turn clean energy into USDC. | Hero: what we do and how it pays, one button (Check the numbers) |
+| Impact investing on Solana DeFi. | Staked SOL as the lead number, five stat tiles, and the two assets that are behind |
 | Six assets. Three countries. | Interactive world map with asset detail, operator logo strip |
 | Stake SOL. Fund coral reefs. | refiSOL in one line, validator data from Stakewiz |
 | Every asset, reported on. | The four latest posts from `/blog` |
-| Building since 2021. | Backers, community, links to the app, docs and audit |
+| Building on Solana since 2021. | Backers, community, links to the app, docs and audit |
 
 ## Data and the "Data status" toggle
 
@@ -50,14 +52,15 @@ Every figure on the page carries a provenance tag. Click **Data status** in the 
 reveal them.
 
 - **real** — pulled from the live asset pages at `app.refihub.io/investments/4..9`. All six
-  assets' raised amounts, yields, payment histories and operational notes.
+  assets' raised amounts, yields, payment histories and operational notes, plus $52.7K paid
+  to investors across 65 payments (every listed repayment, summed on 22 Oct 2026).
 - **verify** — supplied by the team and not yet confirmed: 27 operating assets, +14%
   realized IRR, 22+ months of payments, $39K delivered, 481 MWh produced, $9.2M staked,
   validator uptime, community size.
 - **mock** — invented for the prototype: EV charging sessions, the delegation event, and
   all transaction signatures.
 
-All landing-page content is driven by one `DATA` block near the top of `src/pages/index.astro`. Wiring real feeds
+All landing-page figures live in one `DATA` object at the top of `src/pages/index.astro` and are rendered on the server, so they show without JavaScript. Wiring real feeds
 later means replacing that block with a fetch; nothing else needs to change.
 
 ### Asset reference
