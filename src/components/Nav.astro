@@ -5,16 +5,35 @@ const { home = false } = Astro.props;
 const onBlog = Astro.url.pathname.startsWith(u('/blog'));
 import { u } from '../lib/url';
 ---
-<header class="nav"><div class="wrap">
+<header class="nav" id="nav"><div class="wrap">
   <a class="brand" href={u('/')} aria-label="ReFi Hub home"><Logo /></a>
-  <ul>
-    <li><a href={u('/#record')}>Record</a></li>
-    <li><a href={u('/#map')}>Assets</a></li>
-    <li><a href={u('/#refisol')}>refiSOL</a></li>
-    <li><a href={u('/blog')} aria-current={onBlog ? 'page' : undefined}>Reports</a></li>
-    <li><a href={u('/#proof')}>Since 2021</a></li>
-  </ul>
+  <nav class="nav-links" id="navLinks" aria-label="Main">
+    <ul>
+      <li><a href={u('/#record')}>Record</a></li>
+      <li><a href={u('/#map')}>Assets</a></li>
+      <li><a href={u('/#refisol')}>refiSOL</a></li>
+      <li><a href={u('/blog')} aria-current={onBlog ? 'page' : undefined}>Reports</a></li>
+      <li><a href={u('/#proof')}>Since 2021</a></li>
+    </ul>
+  </nav>
   <span class="sp"></span>
   {home && <button class="pv" id="pvBtn" aria-pressed="false" title="Show which numbers are real, to verify, or mock"><i></i><span>Data status</span></button>}
-  <a class="btn btn-teal" href="https://mkdir-numa.github.io/reeefisol/" target="_blank" rel="noopener">Stake SOL</a>
+  <a class="btn btn-stake" href="https://mkdir-numa.github.io/reeefisol/" target="_blank" rel="noopener">Stake SOL</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
 </div></header>
+<script>
+  // Hairline under the header once the page scrolls; the menu sheet on phones.
+  const nav = document.getElementById('nav')!;
+  const btn = document.getElementById('menuBtn')!;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 4);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  const setOpen = (open: boolean) => {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.textContent = open ? 'Close' : 'Menu';
+  };
+  btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+  document.querySelectorAll('#navLinks a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+</script>
