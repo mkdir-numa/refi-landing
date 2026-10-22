@@ -23,13 +23,12 @@
   --sun-100:#FAEFD6; --sun-300:#F5C76A; --sun-500:#E9A93A; --sun-700:#8A5A00;
   --copper-100:#F7E3D7; --copper-500:#C4673A; --copper-700:#8F3F1C;
   --grid-100:#E7ECF4; --grid-500:#7489AD; --grid-700:#415371; --grid-900:#1C2638;
-  --volt-100:#EEF6D2; --volt-300:#C9E66B; --volt-500:#A3C93A; --volt-700:#3D5A14;
 
   /* status and the staking-site doorway */
   --pay:#2E6B47; --pay-100:#E2F0E6; --behind:#8A4F16; --behind-100:#F6E6D6;
   --sea-900:#0D3A42; --mint:#8FD3C8;
 
-  /* roles, set A "Daylight" */
+  /* roles: Daylight, the chosen accent set */
   --k:var(--sun-700); --k-ink:var(--sun-300);
   --pulse:var(--sun-500); --pulse-ink:var(--sun-300);
   --a2:var(--copper-500); --tint:var(--sun-100);
@@ -58,13 +57,6 @@
   --head-gap:clamp(32px,4vw,56px);
   --maxw:1200px; --narrow:720px; --gutter:clamp(16px,4vw,40px);
   --r:18px; --r-sm:10px; --r-lg:28px;
-}
-/* set B "Current" */
-:root[data-accent="current"]{
-  --k:var(--grid-700); --k-ink:var(--volt-300);
-  --pulse:var(--volt-500); --pulse-ink:var(--volt-300);
-  --a2:var(--sun-500); --tint:var(--volt-100);
-  --link-line:var(--volt-500);
 }
 
 *{box-sizing:border-box}
@@ -220,7 +212,6 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
 .frame{border:1px solid var(--rule-cool);border-radius:var(--r);overflow:hidden;background:var(--paper);margin-bottom:var(--s-8)}
 .frame .sec{padding:clamp(40px,6vw,88px) 0}
 .decision{display:inline-flex;align-items:center;gap:8px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--sun-700);background:var(--sun-100);border-radius:999px;padding:6px 10px}
-:root[data-accent="current"] .decision{color:var(--volt-700);background:var(--volt-100)}
 .note{font-size:14px;color:var(--muted);max-width:72ch}
 .gap-6{margin-top:var(--s-6)} .gap-8{margin-top:var(--s-8)}
 
@@ -285,7 +276,6 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
 .heroA .wrap{position:relative;width:100%}
 .heroA .in{padding:96px 0 clamp(40px,5vw,64px);max-width:640px;display:flex;flex-direction:column;gap:var(--s-5)}
 .heroA .kicker{color:var(--sun-300);margin:0;text-shadow:0 1px 10px rgba(0,0,0,.7)}
-:root[data-accent="current"] .heroA .kicker{color:var(--volt-300)}
 .heroA .display{color:#fff;text-shadow:0 2px 26px rgba(0,0,0,.3)}
 .heroA .lead{color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.4)}
 .readout{position:relative;background:rgba(15,14,12,.66);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.12)}
@@ -410,10 +400,6 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
 <header class="bar"><div class="wrap">
   <b>ReFi Hub style guide</b><span class="label">Specimen · draft 22 Oct 2026</span>
   <span class="sp"></span>
-  <div class="seg" role="group" aria-label="Accent set">
-    <button type="button" data-accent="daylight" aria-pressed="true">A · Daylight</button>
-    <button type="button" data-accent="current" aria-pressed="false">B · Current</button>
-  </div>
   <div class="seg" role="group" aria-label="Motion">
     <button type="button" id="motionBtn" aria-pressed="false">Pause motion</button>
   </div>
@@ -494,15 +480,13 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
     <p class="kicker"><span>03</span><i></i>Colour</p>
     <h2 class="h2">The staking site's paper and ink. Our own sun and grid.</h2>
     <p class="lead">Neutrals carry over unchanged, so the two sites read as one family. Sun gold is the shared thread: the pulse colour on both. The rest of the accents are ReFi Hub's own.</p>
-    <p class="gap-6"><span class="decision">Decision · accent set</span></p>
-    <p class="note" style="margin-top:12px">Switch between the two sets with the toggle at the top of the page. Every component, layout and motif below follows it. Recommendation: <b>A · Daylight</b>.</p>
+    <p class="gap-6"><span class="decision">Decided · Daylight</span></p>
+    <p class="note" style="margin-top:12px">Sun, copper and grid, chosen on 22 October 2026. An EV-led set with a volt green was considered and dropped; the Markdown guide records it.</p>
   </div>
   <h3 class="label ramp-h">Neutrals, carried over</h3>
   <div class="sw-grid" id="swNeutral"></div>
-  <h3 class="label ramp-h">Set A · Daylight: sun, copper, grid</h3>
+  <h3 class="label ramp-h">Daylight: sun, copper, grid</h3>
   <div class="sw-grid" id="swA"></div>
-  <h3 class="label ramp-h">Set B · Current: volt, with grid and sun</h3>
-  <div class="sw-grid" id="swB"></div>
   <h3 class="label ramp-h">Status and the Stake doorway</h3>
   <div class="sw-grid" id="swS"></div>
 
@@ -857,7 +841,7 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
       <tr><th>Geometry</th><td>Curves, fronds, petals</td><td>Straight runs, right angles, rows of cells, cable sags</td></tr>
       <tr><th>Movement</th><td>Drift, sway, breathe</td><td>Travel and fill: pulses along a line, a sweep, a meter filling</td></tr>
       <tr><th>Rhythm</th><td>Irregular, natural</td><td>Regular and periodic, like a meter</td></tr>
-      <tr><th>Colour</th><td>Sea lines, coral and gold</td><td>Grid-slate dots, sun or volt pulses, copper for faults</td></tr>
+      <tr><th>Colour</th><td>Sea lines, coral and gold</td><td>Grid-slate dots, sun pulses, copper for faults</td></tr>
       <tr><th>Meaning</th><td>Corals planted</td><td>Electricity produced, carried and paid out</td></tr>
     </tbody>
   </table></div>
@@ -968,7 +952,6 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
   var SW = {
     swNeutral:[['Paper','#FBFAF9','Page'],['Sand','#F2ECE8','Alternate band'],['Card','#FFFFFF','Cards'],['Rule','#EDEDED','Hairlines'],['Rule cool','#E2E8F0','Card borders'],['Text','#222222','Body'],['Muted','#6A645E','Leads (new)'],['Label','#78716C','Mono labels (new)'],['Ink','#0F0E0C','Bands, footer, headings'],['Ink 2','#1A1917','Tiles on ink'],['On ink','#E9E5DF','Text on ink'],['On ink muted','#A8A29E','Secondary on ink']],
     swA:[['Sun 100','#FAEFD6','Tint'],['Sun 300','#F5C76A','Kicker on ink'],['Sun 500','#E9A93A','Pulses, solar'],['Sun 700','#8A5A00','Kicker on paper'],['Copper 100','#F7E3D7','Behind tint'],['Copper 500','#C4673A','Behind marks'],['Copper 700','#8F3F1C','Behind text'],['Grid 100','#E7ECF4','EV tint'],['Grid 500','#7489AD','Motif dots, EV'],['Grid 700','#415371','refihub.io slate'],['Grid 900','#1C2638','Deep panel']],
-    swB:[['Volt 100','#EEF6D2','Charge tint'],['Volt 300','#C9E66B','Kicker on ink'],['Volt 500','#A3C93A','Pulses, charge'],['Volt 700','#3D5A14','Text accent'],['Grid 700','#415371','Kicker on paper'],['Sun 500','#E9A93A','Solar']],
     swS:[['Paying','#2E6B47','on #E2F0E6'],['Behind','#8A4F16','on #F6E6D6'],['Stake on paper','#0D3A42','Staking sea 900'],['Stake on ink','#8FD3C8','Staking mint']]
   };
   Object.keys(SW).forEach(function(id){
@@ -989,12 +972,10 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
     ['#6A645E','#F2ECE8','Muted on sand',4.5],
     ['#78716C','#FBFAF9','Label on paper',4.5],
     ['#78716C','#FFFFFF','Label on card',4.5],
-    ['#8A5A00','#FBFAF9','Sun 700 kicker on paper (A)',4.5],
-    ['#8A5A00','#F2ECE8','Sun 700 kicker on sand (A)',4.5],
-    ['#415371','#FBFAF9','Grid 700 kicker on paper (B)',4.5],
-    ['#3D5A14','#FBFAF9','Volt 700 on paper (B)',4.5],
-    ['#F5C76A','#0F0E0C','Sun 300 kicker on ink (A)',4.5],
-    ['#C9E66B','#0F0E0C','Volt 300 kicker on ink (B)',4.5],
+    ['#8A5A00','#FBFAF9','Sun 700 kicker on paper',4.5],
+    ['#8A5A00','#F2ECE8','Sun 700 kicker on sand',4.5],
+    ['#415371','#FBFAF9','Grid 700 on paper',4.5],
+    ['#F5C76A','#0F0E0C','Sun 300 kicker on ink',4.5],
     ['#E9E5DF','#0F0E0C','Text on ink',4.5],
     ['#A8A29E','#1A1917','Muted on ink tile',4.5],
     ['#2E6B47','#E2F0E6','Paying badge',4.5],
@@ -1298,13 +1279,6 @@ a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
   mb.addEventListener('click', function(){
     paused = !paused; mb.setAttribute('aria-pressed', paused ? 'true' : 'false'); mb.textContent = paused ? 'Play motion' : 'Pause motion';
     kick();
-  });
-  document.querySelectorAll('[data-accent]').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.documentElement.dataset.accent = b.dataset.accent;
-      document.querySelectorAll('[data-accent]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      stages.forEach(function(s){ s.pal = palette(s.dark); if(s.ctx && (paused || s.still)) s.frame(2.4); });
-    });
   });
 })();
 </script>

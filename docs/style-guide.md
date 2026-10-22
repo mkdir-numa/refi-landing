@@ -2,9 +2,11 @@
 
 Draft for review, 22 October 2026. Nothing on the site has changed yet. This guide is the plan for the next design pass on the Astro site in this repo.
 
-**See it, don't just read it.** The specimen page shows every rule below, with the motif sketches animated. To open it, run the `landing-static` preview (or `python3 -m http.server 4178` in this folder) and go to http://localhost:4178/docs/style-guide/specimen.html. You can also open the file directly in a browser. The toggle at the top switches between the two accent sets.
+**See it, don't just read it.** The specimen page shows every rule below, with the motif sketches animated. To open it, run the `landing-static` preview (or `python3 -m http.server 4178` in this folder) and go to http://localhost:4178/docs/style-guide/specimen.html. You can also open the file directly in a browser.
 
-Decisions for you are marked **Decision**. Each one has a recommendation, but the call is yours.
+Decisions still open are marked **Decision**. Each one has a recommendation, but the call is yours.
+
+**Decided:** accent set A, Daylight (22 October 2026).
 
 ---
 
@@ -141,9 +143,7 @@ These come from the refihub.io tokens (`reference/refihub-tokens.css`) and match
 
 The staking site's accents are sea, coral, leaf and sun. ReFi Hub keeps **sun** as the shared thread (the golden pulse appears on both sites) and adds its own set.
 
-**Decision: which accent set?** Both pass contrast. The specimen page toggles between them.
-
-**Set A, Daylight (recommended).** Solar-led and warm. It sits naturally on the warm paper, it is clearly not the staking site's sea and coral, and copper gives the "behind on payments" state a colour that belongs to the palette.
+**Decided: Daylight.** Solar-led and warm. It sits naturally on the warm paper, it is clearly not the staking site's sea and coral, and copper gives the "behind on payments" state a colour that belongs to the palette.
 
 | Token | Hex | Use |
 |---|---|---|
@@ -159,17 +159,9 @@ The staking site's accents are sea, coral, leaf and sun. ReFi Hub keeps **sun** 
 | `--grid-700` | `#415371` | refihub.io's own slate. EV text, secondary accent (7.5:1) |
 | `--grid-900` | `#1C2638` | Deep panels, alternative dark band |
 
-**Set B, Current.** EV-led and cooler. Slate grid becomes the main accent, with an electric "volt" green for charge. More tech, less warm. The risk is that volt green sits close to crypto-brand green.
+**Considered, not chosen: Current.** An EV-led, cooler set with slate grid as the main accent and an electric "volt" green (`#A3C93A`, text `#3D5A14`, on ink `#C9E66B`). It was dropped because volt green sits close to crypto-brand green and reads less warm on the paper. Recorded here in case it is wanted later; don't use it on the site.
 
-| Token | Hex | Use |
-|---|---|---|
-| `--volt-100` | `#EEF6D2` | Charge tint |
-| `--volt-300` | `#C9E66B` | Kickers and pulses on ink (13.8:1) |
-| `--volt-500` | `#A3C93A` | Pulses, charge fills. Not for text on paper |
-| `--volt-700` | `#3D5A14` | Text accents on paper (7.5:1) |
-| plus `--grid-*` and `--sun-*` as in set A | | Kickers use `--grid-700` on paper |
-
-### Status colours (both sets)
+### Status colours
 
 | State | Text | Tint | Shape |
 |---|---|---|---|
@@ -400,7 +392,7 @@ The staking site's stipple is **organic**: round dots, polyps, fronds, plankton 
 | Geometry | Curves, fronds, petals | Straight runs, right angles, rows of cells, cable sags |
 | Movement | Drift, sway, breathe | **Travel and fill**: pulses along a line, a sweep across a field, a meter filling |
 | Rhythm | Irregular, natural | Regular, periodic, like a clock or a meter |
-| Colour | Sea lines, coral and gold accents | Grid-slate dots, sun or volt pulses, copper for faults |
+| Colour | Sea lines, coral and gold accents | Grid-slate dots, sun pulses, copper for faults |
 | Pointer | Polyps open, dots scatter | Dots light up near the pointer, like a panel catching light |
 | Meaning | Corals planted | Electricity produced, carried and paid out |
 
@@ -416,7 +408,7 @@ Recommendation: **Grid lines** as the lead motif, **Daylight sweep** as the sect
 
 ### Building it
 
-- One script, `src/scripts/energy.js` (or a small Astro component), mounted as `<canvas data-energy="lines" aria-hidden="true">`, with the options the staking script already uses: `data-dark`, `data-seed`, and a palette that follows the accent set.
+- One script, `src/scripts/energy.js` (or a small Astro component), mounted as `<canvas data-energy="lines" aria-hidden="true">`, with the options the staking script already uses: `data-dark`, `data-seed`, and the Daylight palette.
 - Reuse the staking script's engineering: device-pixel-ratio scaling, a ResizeObserver redraw, an IntersectionObserver that stops drawing when the canvas is off screen, and a pause when the tab is hidden.
 - The same seed always draws the same picture, so a variation we like can be locked in.
 - The existing world map should share the same square-dot drawing code.
