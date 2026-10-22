@@ -120,13 +120,3 @@ body.blog{background:var(--b-bg)}
 .btn-black:hover{opacity:.82}
 .btn-black svg{width:18px;height:18px;transition:transform .25s}
 .btn-black:hover svg{transform:translateX(3px)}
-
-/* homepage "Reports" section sits on white like the Framer page */
-.reports{background:var(--b-bg);border-top:1px solid var(--rule)}
-.reports .head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:52px}
-.reports .pgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
-.reports .pcard{min-height:560px}
-.reports .pcard .img{height:240px}
-.reports .pcard h3{font-size:22px}
-@media (max-width:1100px){.reports .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:680px){.reports .pgrid{grid-template-columns:1fr}.reports .pcard{min-height:0}}
