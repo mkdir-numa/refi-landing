@@ -179,7 +179,7 @@ Every "Stake SOL" button leads to the staking site. It should wear the **staking
 - On paper: `#0D3A42` (sea-900) background, white text.
 - On ink: `#8FD3C8` (mint) background, `#0D3A42` text (7.2:1).
 
-That makes it the only sea-coloured thing on ReFi Hub. The refiSOL band is the one place where the staking site's palette may appear, because it is the doorway between the two sites.
+The staked SOL figure in the record section sits in a box of the same sea-900, for the same reason: it is about staking. Apart from those, nothing on ReFi Hub is sea-coloured. The refiSOL band is the one place where the staking site's palette may appear, because it is the doorway between the two sites.
 
 ### Proportions
 

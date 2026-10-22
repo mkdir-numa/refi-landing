@@ -26,6 +26,14 @@ canvas.bg-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;display
 .record .sec-head{margin-bottom:0}
 .record .sec-head .h2{max-width:12ch}
 .lead-num{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s-3);margin-top:var(--s-7)}
+/* the staked SOL figure sits in the Stake button's sea green: anything about staking wears the staking site's colour */
+.lead-num.stake{width:fit-content;max-width:100%;background:var(--sea-900);border-radius:var(--r);padding:clamp(22px,2.6vw,30px) clamp(24px,3vw,36px)}
+.lead-num.stake .label{color:var(--mint)}
+.lead-num.stake .num{color:#fff}
+.lead-num.stake .num .u{color:var(--mint)}
+.lead-num.stake .src{color:#B9D6D3}
+.lead-num.stake .src::before{background:var(--mint)}
+.lead-num.stake .prov[data-p="real"]{color:var(--green-l);border-color:var(--green-l)}
 .record .meter{background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 /* five tiles: three across, then two wider */
 .meters.five{grid-template-columns:repeat(6,minmax(0,1fr))}
