@@ -126,3 +126,6 @@ canvas.bg-art{position:absolute;inset:0;width:100%;height:100%;z-index:0;display
 .proof .rows{margin-bottom:var(--s-8)}
 .proof .row-item a{text-decoration:none}
 .proof .row-item a:hover{text-decoration:underline;text-underline-offset:3px}
+/* links inside the grey description text: a quiet underline so they read as links */
+.proof .row-item p a{color:var(--text);text-decoration:underline;text-decoration-color:rgba(15,14,12,.25);text-underline-offset:3px}
+.proof .row-item p a:hover{text-decoration-color:currentColor}
