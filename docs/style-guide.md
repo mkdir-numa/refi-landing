@@ -6,7 +6,7 @@ Draft for review, 22 October 2026. Nothing on the site has changed yet. This gui
 
 Decisions still open are marked **Decision**. Each one has a recommendation, but the call is yours.
 
-**Decided:** accent set A, Daylight (22 October 2026).
+**Decided (22 October 2026):** accent set A, Daylight. Hero A, the solar photo with a readout strip.
 
 ---
 
@@ -343,10 +343,20 @@ Each pattern is drawn in the specimen with the real copy.
 
 ### Hero: "Solar and EV charging, paid in USDC."
 
-**Decision: photo or motif?**
+**Decided: the photo with a readout strip.** The solar photo stays, as the team chose when it kept the look of refihub.io. The photo sets the scene; the readouts give proof before the first scroll.
 
-- **Hero A, photo with a readout strip (recommended).** Keep the solar photo, which the team chose to keep from refihub.io. Add a kicker ("ReFi Hub ── Since 2021"), keep the Merriweather h1, and run a **readout strip** along the bottom of the hero: three meter readouts on a thin ink bar (for example "6 assets", "3 countries", "$491,499 raised"). The photo sets the scene and the readouts give proof before the first scroll.
-- **Hero B, paper with motif.** Like the staking site: Merriweather h1 and lead on paper at left, the animated energy motif at right, meter tiles under both. The photo moves into the map panel. This is closer to the staking site, so it's more family and less difference.
+- **Kicker** above the h1: "ReFi Hub ── Since 2021", in `--sun-300` with a soft text shadow so it reads over the photo.
+- **h1** in `--t-display` Merriweather 300, white. **Lead** in `--t-lead`, white at 90%. Both keep the current soft text shadow.
+- **Buttons**: primary (white on the photo) "See the record", ghost "How staking works".
+- **Veil**: a top-to-bottom gradient from ink at 50% to 22% (at 40% height) to 74% at the bottom, so the kicker at the top and the strip at the bottom both stay readable.
+- **Readout strip** along the bottom edge, full width, inside the hero:
+  - Background ink `#0F0E0C` at 66% with a 12px backdrop blur, and a 1px top hairline in white at 12%.
+  - Three readouts in the 1200px container, each a mono `--t-label` in `--on-ink-muted` above a Geist 300 number at clamp(26px, 3vw, 36px) in white, units in mono. Use figures from the asset pages: **6** assets, **3** countries, **$491K** raised. Swap in confirmed figures from the page's `DATA` block when they exist; never a "verify" or "mock" number.
+  - A source line at the right ("From app.refihub.io"), which drops to its own row below 860px.
+  - Padding 20px top and bottom. On a phone the three readouts stay in one row, with numbers down to 22px.
+- **Height**: clamp(520px, 62vh, 640px), content aligned to the bottom.
+
+**Considered, not chosen: paper with the motif.** A staking-site-style hero, with the h1 on paper and the energy motif beside it. It was dropped to keep the photo and to give ReFi Hub more difference from the staking site. The motif goes in the refiSOL band, record section and closing card instead.
 
 ### 01 Record: "We turn electricity into USDC."
 
@@ -400,8 +410,8 @@ The staking site's stipple is **organic**: round dots, polyps, fronds, plankton 
 
 **Decision: which direction leads?** All three are animated in the specimen, light and dark.
 
-1. **Sunfield.** A halftone sun: square dots in a disc, larger towards the centre, with dotted rays. Below it, rows of solar panels drawn as dot cells, with a band of light sliding across them as the sun "breathes". Best for the hero (option B), the closing card and small spots. It is the most literal and the most immediately "solar".
-2. **Grid lines (recommended as the lead).** The business model as a drawing: six asset nodes (solar as dot panels, EV chargers as dot bars that fill like a battery) joined by dotted power lines with a gentle sag, all running to one payout node. Golden pulses travel from each asset to the node, and the node flashes when a pulse arrives. It tells "electricity becomes USDC" without words, it can later be driven by real data (one pulse per payment, the six real assets), and it is the clearest sibling of the staking site's "Current" expression while looking nothing like coral. Use it in the refiSOL band, in the record section, and as hero art for option B.
+1. **Sunfield.** A halftone sun: square dots in a disc, larger towards the centre, with dotted rays. Below it, rows of solar panels drawn as dot cells, with a band of light sliding across them as the sun "breathes". Best for the closing card and small spots. It is the most literal and the most immediately "solar".
+2. **Grid lines (recommended as the lead).** The business model as a drawing: six asset nodes (solar as dot panels, EV chargers as dot bars that fill like a battery) joined by dotted power lines with a gentle sag, all running to one payout node. Golden pulses travel from each asset to the node, and the node flashes when a pulse arrives. It tells "electricity becomes USDC" without words, it can later be driven by real data (one pulse per payment, the six real assets), and it is the clearest sibling of the staking site's "Current" expression while looking nothing like coral. Use it in the refiSOL band, and in the record section.
 3. **Daylight sweep.** A field of square dots, like an LED panel or a solar array seen from above. A soft diagonal band of light sweeps across every few seconds, and the dots in it grow and turn gold. It is a background texture, ReFi Hub's version of "plankton". Use it behind a whole section (record, or since 2021) at low contrast, with cards in frosted white on top.
 
 Recommendation: **Grid lines** as the lead motif, **Daylight sweep** as the section background, and **Sunfield** kept for one or two small spots. That mirrors how the staking site uses reef, plankton and plate.
@@ -489,5 +499,5 @@ When this guide is approved, apply it to the site in this order. Each step is sa
 3. **Containers and rhythm.** One 1200px container, section padding and head gaps from the tokens, alternate bands.
 4. **Components.** Meter grid for the record, ledger rows for since 2021, buttons and the Stake doorway colour, the phone menu.
 5. **Layouts.** Record split, reports featured and list, refiSOL lead number.
-6. **Motif.** Build the chosen direction as `energy.js`, put it in the refiSOL band first, then the hero or record section.
+6. **Motif.** Build the chosen direction as `energy.js`, put it in the refiSOL band first, then the record section.
 7. **Blog.** Line the blog up with the same container, kicker and type tokens.
