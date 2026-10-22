@@ -6,7 +6,7 @@ Draft for review, 22 October 2026. Nothing on the site has changed yet. This gui
 
 Decisions still open are marked **Decision**. Each one has a recommendation, but the call is yours.
 
-**Decided (22 October 2026):** accent set A, Daylight. Hero A, the solar photo with a readout strip.
+**Decided (22 October 2026):** accent set A, Daylight. Hero A, the solar photo with a readout strip. Sunfield as the lead motif.
 
 ---
 
@@ -374,7 +374,7 @@ Keep the map plate and the side panel. They are the best part of the page. Chang
 
 ### 03 refiSOL: "Stake SOL. Fund coral reefs."
 
-The ink band and the doorway to the staking site. A 7/5 split: copy and the two buttons on the left (Stake in mint), and on the right a **lead number** (142.7K SOL staked) above a 2 by 2 hairline meter grid on `--ink-2`. Behind it, the "Grid lines" motif in its dark version, with pulses flowing towards the validator node, at about 40% opacity and masked away from the text. This is the only band where the staking site's mint appears.
+The ink band and the doorway to the staking site. A 7/5 split: copy and the two buttons on the left (Stake in mint), and on the right a **lead number** (142.7K SOL staked) above a 2 by 2 hairline meter grid on `--ink-2`. Behind it, the Sunfield motif in its dark version: the sun cropped into the top right corner, the panel rows along the bottom, at about 40% opacity and masked away from the text. This is the only band where the staking site's mint appears.
 
 ### 04 Reports: "Every asset, reported on."
 
@@ -406,19 +406,22 @@ The staking site's stipple is **organic**: round dots, polyps, fronds, plankton 
 | Pointer | Polyps open, dots scatter | Dots light up near the pointer, like a panel catching light |
 | Meaning | Corals planted | Electricity produced, carried and paid out |
 
-### Three directions
+### Three directions, and the decision
 
-**Decision: which direction leads?** All three are animated in the specimen, light and dark.
+**Decided: Sunfield leads.** All three are animated in the specimen, light and dark.
 
-1. **Sunfield.** A halftone sun: square dots in a disc, larger towards the centre, with dotted rays. Below it, rows of solar panels drawn as dot cells, with a band of light sliding across them as the sun "breathes". Best for the closing card and small spots. It is the most literal and the most immediately "solar".
-2. **Grid lines (recommended as the lead).** The business model as a drawing: six asset nodes (solar as dot panels, EV chargers as dot bars that fill like a battery) joined by dotted power lines with a gentle sag, all running to one payout node. Golden pulses travel from each asset to the node, and the node flashes when a pulse arrives. It tells "electricity becomes USDC" without words, it can later be driven by real data (one pulse per payment, the six real assets), and it is the clearest sibling of the staking site's "Current" expression while looking nothing like coral. Use it in the refiSOL band, and in the record section.
-3. **Daylight sweep.** A field of square dots, like an LED panel or a solar array seen from above. A soft diagonal band of light sweeps across every few seconds, and the dots in it grow and turn gold. It is a background texture, ReFi Hub's version of "plankton". Use it behind a whole section (record, or since 2021) at low contrast, with cards in frosted white on top.
+1. **Sunfield (the lead).** A halftone sun: square dots in a disc, larger towards the centre, with dotted rays that carry a slow wave outwards. Below it, rows of solar panels drawn as dot cells, with a band of light sliding across them as the sun "breathes". It is the most literal and the most immediately "solar", and it says what ReFi Hub finances at a glance. It is ReFi Hub's equivalent of the staking site's reef bloom.
+   - **Where:** the refiSOL band (dark version, sun cropped into the top right corner), the closing card, and small spots such as an empty state, the 404 page or link-preview images.
+   - **Composition:** the sun sits towards one side and high, never centred behind text. The panel rows run along the bottom edge. In a wide band the sun is cropped into the top right corner, so only a quarter of it shows, and its rays fall towards the content.
+   - **Later:** the disc can grow with total capacity (830 kW today), and the light across the panels can follow the time of day.
+2. **Daylight sweep (supporting, section background).** A field of square dots grouped into panels, like a solar array seen from above. A soft diagonal band of light sweeps across every few seconds, and the dots in it grow and turn gold. It shares Sunfield's panel rows, so the two read as one system. It is ReFi Hub's version of "plankton". Use it behind a whole section (record, or since 2021) at low contrast, with cards in frosted white on top.
+3. **Grid lines (parked, not rejected).** The business model as a drawing: six asset nodes joined by sagging power lines to one payout node, with golden pulses travelling along them. It is kept in the specimen for a later "how it works" diagram, where showing money flowing from assets to investors is the point. It is not used on the landing page.
 
-Recommendation: **Grid lines** as the lead motif, **Daylight sweep** as the section background, and **Sunfield** kept for one or two small spots. That mirrors how the staking site uses reef, plankton and plate.
+Together this mirrors how the staking site uses reef (lead), plankton (background) and plate (occasional).
 
 ### Building it
 
-- One script, `src/scripts/energy.js` (or a small Astro component), mounted as `<canvas data-energy="lines" aria-hidden="true">`, with the options the staking script already uses: `data-dark`, `data-seed`, and the Daylight palette.
+- One script, `src/scripts/energy.js` (or a small Astro component), mounted as `<canvas data-energy="sun" aria-hidden="true">`, with the options the staking script already uses: `data-dark`, `data-seed`, and the Daylight palette.
 - Reuse the staking script's engineering: device-pixel-ratio scaling, a ResizeObserver redraw, an IntersectionObserver that stops drawing when the canvas is off screen, and a pause when the tab is hidden.
 - The same seed always draws the same picture, so a variation we like can be locked in.
 - The existing world map should share the same square-dot drawing code.
@@ -499,5 +502,5 @@ When this guide is approved, apply it to the site in this order. Each step is sa
 3. **Containers and rhythm.** One 1200px container, section padding and head gaps from the tokens, alternate bands.
 4. **Components.** Meter grid for the record, ledger rows for since 2021, buttons and the Stake doorway colour, the phone menu.
 5. **Layouts.** Record split, reports featured and list, refiSOL lead number.
-6. **Motif.** Build the chosen direction as `energy.js`, put it in the refiSOL band first, then the record section.
+6. **Motif.** Build Sunfield and Daylight sweep as `energy.js`. Put Sunfield in the refiSOL band first, then the closing card, then Daylight sweep behind the record section.
 7. **Blog.** Line the blog up with the same container, kicker and type tokens.
