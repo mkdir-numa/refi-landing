@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReFi Hub style guide · specimen</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Inter:wght@400;500;700&family=Chivo+Mono:wght@400;500&family=Geist:wght@200;300;400&display=swap">
+<style>
+/* ReFi Hub style guide specimen. Every rule in docs/style-guide.md, drawn.
+   Draft, 22 October 2026. Not published with the site (docs/ is outside src/ and public/). */
+
+:root{
+  color-scheme:light;
+  /* neutrals: carried over from refihub.io and the staking site */
+  --paper:#FBFAF9; --sand:#F2ECE8; --card:#FFFFFF; --rule:#EDEDED; --rule-cool:#E2E8F0;
+  --text:#222222; --heading:#0F0E0C; --muted:#6A645E; --label:#78716C;
+  --ink:#0F0E0C; --ink-2:#1A1917; --ink-rule:#2A2825; --on-ink:#E9E5DF; --on-ink-muted:#A8A29E;
+
+  /* energy accents */
+  --sun-100:#FAEFD6; --sun-300:#F5C76A; --sun-500:#E9A93A; --sun-700:#8A5A00;
+  --copper-100:#F7E3D7; --copper-500:#C4673A; --copper-700:#8F3F1C;
+  --grid-100:#E7ECF4; --grid-500:#7489AD; --grid-700:#415371; --grid-900:#1C2638;
+  --volt-100:#EEF6D2; --volt-300:#C9E66B; --volt-500:#A3C93A; --volt-700:#3D5A14;
+
+  /* status and the staking-site doorway */
+  --pay:#2E6B47; --pay-100:#E2F0E6; --behind:#8A4F16; --behind-100:#F6E6D6;
+  --sea-900:#0D3A42; --mint:#8FD3C8;
+
+  /* roles, set A "Daylight" */
+  --k:var(--sun-700); --k-ink:var(--sun-300);
+  --pulse:var(--sun-500); --pulse-ink:var(--sun-300);
+  --a2:var(--copper-500); --tint:var(--sun-100);
+  --link-line:var(--sun-500);
+  --focus:var(--grid-700);
+
+  /* type */
+  --display:"Merriweather",Georgia,serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --num:"Geist","Inter",system-ui,sans-serif;
+  --mono:"Chivo Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --t-display:clamp(40px,6vw,76px);
+  --t-statement:clamp(26px,3vw,36px);
+  --t-h2:clamp(32px,4.2vw,56px);
+  --t-h3:clamp(20px,2vw,26px);
+  --t-lead:clamp(18px,1.6vw,21px);
+  --n-xl:clamp(72px,10vw,136px);
+  --n-l:clamp(52px,5.4vw,76px);
+  --n-m:clamp(30px,4vw,52px);
+  --n-s:22px;
+
+  /* space */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px;
+  --section:clamp(64px,9vw,120px);
+  --section-tight:clamp(48px,6vw,72px);
+  --head-gap:clamp(32px,4vw,56px);
+  --maxw:1200px; --narrow:720px; --gutter:clamp(16px,4vw,40px);
+  --r:18px; --r-sm:10px; --r-lg:28px;
+}
+/* set B "Current" */
+:root[data-accent="current"]{
+  --k:var(--grid-700); --k-ink:var(--volt-300);
+  --pulse:var(--volt-500); --pulse-ink:var(--volt-300);
+  --a2:var(--sun-500); --tint:var(--volt-100);
+  --link-line:var(--volt-500);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--text);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+p{margin:0}
+h1,h2,h3,h4{margin:0;color:var(--heading);font-weight:400;text-wrap:balance}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+.band-ink :focus-visible{outline-color:var(--k-ink)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.narrow{max-width:var(--narrow)}
+.sec{padding:var(--section) 0}
+.band-sand{background:var(--sand)}
+.band-ink{background:var(--ink);color:var(--on-ink)}
+.band-ink h1,.band-ink h2,.band-ink h3,.band-ink .num{color:#fff}
+
+/* ---------- type ---------- */
+.display{font-family:var(--display);font-weight:300;font-size:var(--t-display);line-height:1.06;letter-spacing:-.015em}
+.statement{font-family:var(--display);font-weight:300;font-size:var(--t-statement);line-height:1.2;letter-spacing:-.01em}
+.h2{font-size:var(--t-h2);line-height:1.06;letter-spacing:-.04em}
+.h3{font-size:var(--t-h3);line-height:1.2;letter-spacing:-.02em}
+.h4{font-size:17px;line-height:1.35;letter-spacing:-.01em;font-weight:500}
+.lead{font-size:var(--t-lead);line-height:1.5;letter-spacing:-.005em;color:var(--muted);max-width:56ch;text-wrap:pretty}
+.band-ink .lead{color:var(--on-ink-muted)}
+.body{font-size:16px;line-height:1.6;max-width:62ch}
+.small{font-size:14px;line-height:1.55}
+.fine{font-size:13px;line-height:1.5;color:var(--muted)}
+.band-ink .fine{color:var(--on-ink-muted)}
+.label{font:400 11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--label)}
+.band-ink .label{color:var(--on-ink-muted)}
+.muted{color:var(--muted)}
+
+/* numbered kicker: 01 ── The record */
+.kicker{display:flex;align-items:center;gap:10px;font:400 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--k);margin:0 0 var(--s-4)}
+.kicker i{width:24px;height:1px;background:currentColor;flex:none}
+.band-ink .kicker{color:var(--k-ink)}
+
+.sec-head{max-width:720px;margin-bottom:var(--head-gap)}
+.sec-head .h2{margin-bottom:var(--s-5)}
+.sec-head.row{max-width:none;display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s-5);flex-wrap:wrap}
+.sec-head.row > div{max-width:720px}
+
+/* numbers: Geist with the unit in mono */
+.num{font-family:var(--num);font-variant-numeric:tabular-nums;font-feature-settings:"ss03","cv03","cv04","cv09","cv11";color:var(--heading);line-height:1;white-space:nowrap}
+.num .u{font-family:var(--mono);font-weight:400;font-size:max(11px,.32em);letter-spacing:.06em;text-transform:uppercase;color:var(--label);margin-left:.4em}
+.band-ink .num .u{color:var(--on-ink-muted)}
+.num.xl{font-weight:200;font-size:var(--n-xl);letter-spacing:-.045em}
+.num.l{font-weight:300;font-size:var(--n-l);letter-spacing:-.045em}
+.num.m{font-weight:300;font-size:var(--n-m);letter-spacing:-.03em}
+.num.s{font-weight:400;font-size:var(--n-s);letter-spacing:-.015em}
+
+/* ---------- buttons ---------- */
+.btns{display:flex;flex-wrap:wrap;gap:var(--s-3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:999px;padding:14px 26px;font:500 15px/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .18s ease-out,border-color .18s ease-out,color .18s ease-out,transform .15s ease-out}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:#2a2825}
+.btn-ghost{background:transparent;border-color:rgba(15,14,12,.25);color:var(--heading)}
+.btn-ghost:hover{border-color:var(--heading)}
+.btn-stake{background:var(--sea-900);color:#fff}
+.btn-stake:hover{background:#155a63}
+.band-ink .btn-primary,.on-photo .btn-primary{background:#fff;color:var(--ink)}
+.band-ink .btn-primary:hover,.on-photo .btn-primary:hover{background:var(--sand)}
+.band-ink .btn-ghost,.on-photo .btn-ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.band-ink .btn-ghost:hover,.on-photo .btn-ghost:hover{border-color:#fff}
+.band-ink .btn-stake,.on-photo .btn-stake{background:var(--mint);color:var(--sea-900)}
+.band-ink .btn-stake:hover,.on-photo .btn-stake:hover{background:#b5e4dc}
+.lnk{font:400 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--heading);text-decoration:underline;text-decoration-color:var(--link-line);text-decoration-thickness:1px;text-underline-offset:5px;transition:text-decoration-color .18s}
+.lnk:hover{text-decoration-color:currentColor}
+.band-ink .lnk{color:#fff;text-decoration-color:var(--k-ink)}
+
+/* ---------- meter tiles in a hairline grid ---------- */
+.meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--rule-cool);border:1px solid var(--rule-cool);border-radius:var(--r);overflow:hidden}
+.meters.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.meter{background:var(--card);padding:clamp(18px,2.4vw,28px);display:flex;flex-direction:column;gap:var(--s-2);min-width:0}
+.meter .num{margin:var(--s-2) 0 2px}
+.meter .sub{font-size:14px;line-height:1.45;color:var(--muted)}
+.band-ink .meters{background:var(--ink-rule);border-color:var(--ink-rule)}
+.band-ink .meter{background:var(--ink-2)}
+.band-ink .meter .sub{color:var(--on-ink-muted)}
+@media (max-width:860px){.meters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* source line with status dot */
+.src{display:inline-flex;align-items:center;gap:8px;font-size:13px;line-height:1.4;color:var(--muted)}
+.src::before{content:"";width:6px;height:6px;border-radius:50%;background:#B3ADA6;flex:none}
+.src.live::before{background:var(--pulse);box-shadow:0 0 0 3px color-mix(in srgb,var(--pulse) 25%,transparent);animation:blip 2.6s ease-in-out infinite}
+.band-ink .src{color:var(--on-ink-muted)}
+@keyframes blip{50%{opacity:.35}}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-4)}
+@media (max-width:860px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--rule-cool);border-radius:var(--r);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:var(--s-3);min-width:0;text-decoration:none;color:inherit}
+a.card{transition:border-color .18s ease-out,transform .18s ease-out}
+a.card:hover{border-color:var(--heading);transform:translateY(-2px)}
+.card p{color:var(--muted);font-size:14px;line-height:1.55}
+.card .lnk{margin-top:auto;padding-top:var(--s-3);align-self:flex-start}
+.band-ink .card{background:var(--ink-2);border-color:var(--ink-rule)}
+
+/* ---------- ledger rows ---------- */
+.rows{border-bottom:1px solid var(--rule)}
+.row-item{display:grid;grid-template-columns:minmax(160px,1fr) minmax(0,1.6fr) minmax(110px,auto);gap:var(--s-3) clamp(24px,4vw,48px);align-items:baseline;padding:clamp(24px,3vw,40px) 0;border-top:1px solid var(--rule)}
+.row-item .h3{font-size:clamp(19px,1.8vw,22px)}
+.row-item p{color:var(--muted);max-width:52ch}
+.row-item .num{text-align:right}
+@media (max-width:760px){.row-item{grid-template-columns:1fr;gap:6px}.row-item .num{text-align:left;order:-1}}
+.band-sand .rows,.band-sand .row-item{border-color:#E3DCD5}
+
+/* ---------- lists ---------- */
+.sq-list{list-style:none;margin:0;padding:0}
+.sq-list li{position:relative;padding:12px 0 12px 22px;border-top:1px solid var(--rule)}
+.sq-list li::before{content:"";position:absolute;left:2px;top:21px;width:6px;height:6px;background:var(--pulse)}
+.steps{list-style:none;margin:0;padding:0;max-width:640px}
+.steps li{display:grid;grid-template-columns:72px 1fr;gap:var(--s-5);position:relative;padding-bottom:var(--s-6)}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:"";position:absolute;left:20px;top:58px;bottom:6px;width:1px;background:var(--rule-cool)}
+.steps li:last-child::before{display:none}
+.steps .num{font-weight:200;font-size:48px;letter-spacing:-.04em;color:var(--pulse)}
+.steps li:nth-child(2) .num{color:var(--a2)}
+.steps li:nth-child(3) .num{color:var(--grid-500)}
+.steps .h4{margin:8px 0 4px}
+.steps p{color:var(--muted);font-size:15px}
+
+/* ---------- badges and notice ---------- */
+.badge{display:inline-flex;align-items:center;gap:7px;font:400 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.pay{background:var(--pay-100);color:var(--pay)}
+.badge.behind{background:var(--behind-100);color:var(--behind)}
+.badge.solar{background:var(--sun-100);color:var(--sun-700)}
+.badge.ev{background:var(--grid-100);color:var(--grid-700)}
+.badge.ev::before{border-radius:1px}
+.notice{display:flex;gap:12px;align-items:baseline;font-size:14px;line-height:1.55;color:var(--muted);max-width:68ch;padding-top:var(--s-4);border-top:1px solid var(--rule);margin-top:var(--s-6)}
+.notice::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--copper-500);flex:none;transform:translateY(-1px)}
+
+/* ---------- specimen chrome (not part of the system) ---------- */
+.bar{position:sticky;top:0;z-index:50;background:rgba(251,250,249,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;align-items:center;gap:var(--s-4);min-height:60px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.bar b{font-weight:500;font-size:15px;color:var(--heading)}
+@media (max-width:640px){.bar{position:static}}
+.bar .sp{flex:1}
+.seg{display:inline-flex;border:1px solid var(--rule-cool);border-radius:999px;padding:3px;background:var(--card)}
+.seg button{appearance:none;border:0;background:none;font:400 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:9px 12px;min-height:36px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:var(--s-6)}
+.toc a{font:400 12px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.toc a:hover{color:var(--heading)}
+.cap{display:flex;justify-content:space-between;gap:var(--s-4);flex-wrap:wrap;align-items:baseline;margin:0 0 var(--s-3)}
+.cap .label b{color:var(--heading);font-weight:500}
+.frame{border:1px solid var(--rule-cool);border-radius:var(--r);overflow:hidden;background:var(--paper);margin-bottom:var(--s-8)}
+.frame .sec{padding:clamp(40px,6vw,88px) 0}
+.decision{display:inline-flex;align-items:center;gap:8px;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--sun-700);background:var(--sun-100);border-radius:999px;padding:6px 10px}
+:root[data-accent="current"] .decision{color:var(--volt-700);background:var(--volt-100)}
+.note{font-size:14px;color:var(--muted);max-width:72ch}
+.gap-6{margin-top:var(--s-6)} .gap-8{margin-top:var(--s-8)}
+
+/* before / after */
+.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4)}
+@media (max-width:860px){.ba{grid-template-columns:1fr}}
+.ba > div{background:var(--card);border:1px solid var(--rule-cool);border-radius:var(--r);padding:clamp(24px,4vw,48px);min-width:0}
+.old-h2{font-family:var(--sans);font-weight:700;font-size:clamp(30px,4vw,50px);line-height:1.08;letter-spacing:-.022em;color:#141313;margin:20px 0 16px}
+.old-lede{font-size:17px;color:#767676;line-height:1.6}
+
+/* type scale table */
+.scale{border-top:1px solid var(--rule)}
+.scale > div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--s-3) var(--s-6);padding:var(--s-5) 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.scale .spec{display:flex;flex-direction:column;gap:4px}
+.scale .spec code{font:400 12px/1.4 var(--mono);color:var(--heading)}
+.scale .sample{min-width:0;overflow-wrap:anywhere}
+@media (max-width:760px){.scale > div{grid-template-columns:1fr}}
+
+/* swatches */
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s-3)}
+.sw{border:1px solid var(--rule-cool);border-radius:var(--r-sm);overflow:hidden;background:var(--card);min-width:0}
+.sw i{display:block;height:64px}
+.sw div{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.sw b{font:500 13px/1.3 var(--sans);color:var(--heading)}
+.sw code{font:400 11px/1.4 var(--mono);color:var(--label)}
+.sw span{font-size:12px;color:var(--muted);line-height:1.4}
+.ramp-h{margin:var(--s-7) 0 var(--s-4)}
+
+/* contrast table */
+.cr{width:100%;border-collapse:collapse;font-size:14px}
+.cr th{font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--label);text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--rule)}
+.cr td{padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);vertical-align:middle}
+.cr .pv{display:inline-block;padding:4px 10px;border-radius:6px;font-weight:500}
+.cr .ok{font:400 12px var(--mono);color:var(--pay)}
+.cr .no{font:400 12px var(--mono);color:var(--behind)}
+.tbl-wrap{overflow-x:auto}
+
+/* spacing */
+.space{display:flex;flex-direction:column;gap:10px}
+.space div{display:grid;grid-template-columns:70px 50px 1fr;gap:12px;align-items:center;font:400 12px var(--mono);color:var(--muted)}
+.space i{display:block;height:12px;background:var(--pulse);border-radius:2px}
+.rhythm{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:var(--s-5)}
+.rhythm i{height:80px;background:color-mix(in srgb,var(--grid-500) 14%,transparent);border-left:1px solid color-mix(in srgb,var(--grid-500) 40%,transparent);border-right:1px solid color-mix(in srgb,var(--grid-500) 40%,transparent)}
+@media (max-width:760px){.rhythm{gap:12px}.rhythm i:nth-child(n+7){display:none}.rhythm{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.bands{display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;border:1px solid var(--rule-cool)}
+.bands div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.bands .p{background:var(--paper);color:var(--label)} .bands .s{background:var(--sand);color:var(--label)} .bands .k{background:var(--ink);color:var(--on-ink-muted)}
+.bands .h{background:#2a2825 center 58%/cover url(../../public/hero-solar.jpg);color:#fff;min-height:64px}
+
+/* component board */
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4)}
+@media (max-width:860px){.board{grid-template-columns:1fr}}
+.tile{background:var(--card);border:1px solid var(--rule-cool);border-radius:var(--r);padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:var(--s-5);min-width:0}
+.tile.ink{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.tile .label:first-child{margin-bottom:-8px}
+.tile.span2{grid-column:1/-1}
+
+/* ---------- layout mocks ---------- */
+/* hero A: photo with a readout strip */
+.heroA{position:relative;min-height:clamp(520px,62vh,640px);display:flex;flex-direction:column;justify-content:flex-end;background:#151412 url(../../public/hero-solar.jpg) center 58%/cover;color:#fff;overflow:hidden}
+.heroA::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,14,12,.5) 0%,rgba(15,14,12,.22) 40%,rgba(15,14,12,.74) 100%)}
+.heroA .wrap{position:relative;width:100%}
+.heroA .in{padding:96px 0 clamp(40px,5vw,64px);max-width:640px;display:flex;flex-direction:column;gap:var(--s-5)}
+.heroA .kicker{color:var(--sun-300);margin:0;text-shadow:0 1px 10px rgba(0,0,0,.7)}
+:root[data-accent="current"] .heroA .kicker{color:var(--volt-300)}
+.heroA .display{color:#fff;text-shadow:0 2px 26px rgba(0,0,0,.3)}
+.heroA .lead{color:rgba(255,255,255,.9);text-shadow:0 1px 14px rgba(0,0,0,.4)}
+.readout{position:relative;background:rgba(15,14,12,.66);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.12)}
+.readout .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:var(--s-5);padding-top:20px;padding-bottom:20px;align-items:end}
+.readout .num{color:#fff;font-weight:300;font-size:clamp(26px,3vw,36px);letter-spacing:-.03em}
+.readout .num .u{color:var(--on-ink-muted)}
+.readout .label{color:var(--on-ink-muted);margin-bottom:8px}
+.readout .src{color:var(--on-ink-muted)}
+@media (max-width:860px){.readout .wrap{grid-template-columns:repeat(3,minmax(0,1fr))}.readout .src{grid-column:1/-1}}
+@media (max-width:420px){.readout .num{font-size:22px}}
+
+/* hero B and splits */
+.split{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,72px);align-items:center}
+.split.rev{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.split.r48{grid-template-columns:minmax(0,4fr) minmax(0,8fr);align-items:start}
+@media (max-width:860px){.split,.split.rev,.split.r48{grid-template-columns:1fr}}
+.heroB .display{margin-bottom:var(--s-5)}
+.heroB .lead{margin-bottom:var(--s-6)}
+.art{width:100%;display:block}
+.heroB .art{height:clamp(280px,34vw,440px)}
+@media (max-width:860px){.heroB .art{order:-1;height:240px}}
+
+/* record */
+.lead-num{display:flex;flex-direction:column;gap:var(--s-3);margin-top:var(--s-6)}
+
+/* refiSOL band */
+.sol{position:relative;overflow:hidden;isolation:isolate}
+.sol > canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.4;-webkit-mask-image:linear-gradient(90deg,transparent 20%,#000 75%);mask-image:linear-gradient(90deg,transparent 20%,#000 75%)}
+.sol .say{color:var(--on-ink-muted);font-size:17px;max-width:44ch;margin:var(--s-5) 0 var(--s-6)}
+.sol .say b{color:#fff;font-weight:500}
+.sol-right{display:flex;flex-direction:column;gap:var(--s-5)}
+.sol .meters{grid-template-columns:repeat(3,minmax(0,1fr))}
+.sol .meter .num{font-size:clamp(24px,2.4vw,30px)}
+@media (max-width:860px){.sol > canvas{opacity:.3;-webkit-mask-image:none;mask-image:none}}
+@media (max-width:420px){.sol .meters{grid-template-columns:1fr}}
+
+/* reports: featured and list */
+.feat{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:860px){.feat{grid-template-columns:1fr}}
+.feat-card{display:flex;flex-direction:column;gap:var(--s-4);text-decoration:none;color:inherit}
+.feat-card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--r);background:var(--sand)}
+.feat-card:hover .h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.feat-list{display:flex;flex-direction:column;border-bottom:1px solid var(--rule)}
+.feat-list a{display:flex;flex-direction:column;gap:8px;padding:var(--s-5) 0;border-top:1px solid var(--rule);text-decoration:none;color:inherit}
+.feat-list a:first-child{border-top:0;padding-top:0}
+.feat-list .h4{font-weight:400;font-size:19px;letter-spacing:-.015em}
+.feat-list a:hover .h4{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+/* asset panel */
+.panel{background:var(--card);border:1px solid var(--rule-cool);border-radius:var(--r);overflow:hidden;max-width:420px}
+.panel img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.panel .in{padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:var(--s-4)}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4) var(--s-3);margin:0;padding-top:var(--s-4);border-top:1px solid var(--rule)}
+.kv div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.kv dd{margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:10px 20px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:9px;height:9px;border-radius:50%;background:var(--pulse)}
+.legend i.ev{border-radius:1px;background:var(--grid-500)}
+.legend i.bh{background:var(--copper-500)}
+
+/* closing card */
+.closing{position:relative;overflow:hidden;isolation:isolate;background:var(--ink);color:var(--on-ink);border-radius:var(--r-lg);padding:clamp(36px,6vw,72px)}
+.closing canvas{position:absolute;right:0;top:0;width:min(520px,60%);height:100%;z-index:-1;opacity:.85;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+.closing .statement{color:#fff;max-width:18ch;margin-bottom:var(--s-6)}
+@media (max-width:640px){.closing canvas{width:100%;opacity:.35}}
+
+/* motif board */
+.motif{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,48px);padding:clamp(32px,4vw,48px) 0;border-top:1px solid var(--rule)}
+@media (max-width:860px){.motif{grid-template-columns:1fr}}
+.motif .h3{margin:var(--s-3) 0}
+.motif .body{color:var(--muted);font-size:15px}
+.motif dl{margin:var(--s-5) 0 0;display:grid;gap:10px}
+.motif dl div{display:grid;grid-template-columns:84px 1fr;gap:12px;font-size:14px}
+.motif dd{margin:0;color:var(--text)}
+.canv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-3)}
+@media (max-width:640px){.canv{grid-template-columns:1fr}}
+.canv > div{border-radius:var(--r);overflow:hidden;border:1px solid var(--rule-cool);background:var(--paper)}
+.canv > div.dk{background:var(--ink);border-color:var(--ink)}
+.canv > div.wide{grid-column:1/-1}
+.canv canvas{display:block;width:100%;height:300px}
+.canv .wide canvas{height:220px}
+
+/* compare reef vs energy */
+.vs{width:100%;border-collapse:collapse;font-size:15px}
+.vs th,.vs td{text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.vs thead th{font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--label)}
+.vs tbody th{font-weight:500;color:var(--heading);width:22%}
+.vs td{color:var(--muted)}
+.vs td:last-child{color:var(--heading)}
+
+/* do and don't */
+.dd{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-4)}
+@media (max-width:760px){.dd{grid-template-columns:1fr}}
+.dd > div{background:var(--card);border:1px solid var(--rule-cool);border-radius:var(--r);padding:clamp(22px,3vw,32px)}
+.dd ul{list-style:none;margin:var(--s-4) 0 0;padding:0}
+.dd li{padding:10px 0 10px 24px;border-top:1px solid var(--rule);position:relative;font-size:15px}
+.dd li::before{position:absolute;left:0;top:10px;font:500 13px var(--mono)}
+.dd .do li::before{content:"+";color:var(--pay)}
+.dd .dont li::before{content:"×";color:var(--behind)}
+
+/* motion table */
+.mt{width:100%;border-collapse:collapse;font-size:15px}
+.mt th,.mt td{text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid var(--rule)}
+.mt thead th{font:400 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--label)}
+.mt td:first-child{color:var(--heading)}
+.mt td{color:var(--muted)}
+
+/* footer sample */
+.foot{background:var(--ink);color:var(--on-ink);padding:clamp(48px,6vw,80px) 0 32px}
+.foot .statement{color:#fff;margin:var(--s-5) 0 var(--s-7);max-width:16ch}
+.foot-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-5);padding:var(--s-6) 0;border-top:1px solid var(--ink-rule)}
+.foot-cols a{display:block;color:var(--on-ink);text-decoration:none;font-size:15px;padding:5px 0}
+.foot-cols a:hover{color:#fff;text-decoration:underline}
+.foot-cols .label{margin-bottom:var(--s-3)}
+@media (max-width:640px){.foot-cols{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<header class="bar"><div class="wrap">
+  <b>ReFi Hub style guide</b><span class="label">Specimen · draft 22 Oct 2026</span>
+  <span class="sp"></span>
+  <div class="seg" role="group" aria-label="Accent set">
+    <button type="button" data-accent="daylight" aria-pressed="true">A · Daylight</button>
+    <button type="button" data-accent="current" aria-pressed="false">B · Current</button>
+  </div>
+  <div class="seg" role="group" aria-label="Motion">
+    <button type="button" id="motionBtn" aria-pressed="false">Pause motion</button>
+  </div>
+</div></header>
+
+<main>
+
+<!-- ============ intro, set as Hero B ============ -->
+<section class="sec heroB"><div class="wrap split">
+  <div>
+    <p class="kicker"><span>00</span><i></i>Style guide</p>
+    <h1 class="display">Sunlight, power lines and meters.</h1>
+    <p class="lead">The ReFi Hub site, in the staking site's family: same paper, ink and typefaces, with its own energy colours and a dotted motif drawn from solar panels and the grid. The rules are in <code>docs/style-guide.md</code>. This page shows them.</p>
+    <div class="btns"><a class="btn btn-primary" href="#layouts">See the layouts</a><a class="btn btn-ghost" href="#motif">See the motifs</a></div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#why">01 Why</a><a href="#type">02 Type</a><a href="#colour">03 Colour</a><a href="#space">04 Space</a><a href="#components">05 Components</a><a href="#layouts">06 Layouts</a><a href="#motif">07 Motif</a><a href="#motion">08 Motion</a><a href="#rules">09 Do and don't</a>
+    </nav>
+  </div>
+  <canvas class="art" data-energy="lines" data-seed="3" aria-hidden="true"></canvas>
+</div></section>
+
+<!-- ============ 01 why ============ -->
+<section class="sec band-sand" id="why"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>01</span><i></i>The biggest change</p>
+    <h2 class="h2">Lighter headings, numbered openings.</h2>
+    <p class="lead">The same heading, today and proposed. Weight comes down from 700 to 400, tracking tightens, and a numbered mono kicker gives each section a place in the page.</p>
+  </div>
+  <div class="ba">
+    <div>
+      <p class="label">Today</p>
+      <h3 class="old-h2">We turn electricity into USDC.</h3>
+      <p class="old-lede">We finance energy assets that already run. When they sell power, investors get paid.</p>
+    </div>
+    <div>
+      <p class="label" style="margin-bottom:20px">Proposed</p>
+      <p class="kicker"><span>01</span><i></i>The record</p>
+      <h3 class="h2" style="margin-bottom:24px">We turn electricity into USDC.</h3>
+      <p class="lead">We finance energy assets that already run. When they sell power, investors get paid.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 02 type ============ -->
+<section class="sec" id="type"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>02</span><i></i>Typography</p>
+    <h2 class="h2">Four typefaces, one job each.</h2>
+    <p class="lead">Merriweather for the one emotional line. Inter for headings and reading. Geist for every number. Chivo Mono for labels. Contrast comes from size, not weight.</p>
+  </div>
+  <div class="scale">
+    <div><div class="spec"><code>--t-display</code><span class="label">Merriweather 300 · 40→76 · 1.06 · -.015em</span></div><div class="sample display">Solar and EV charging, paid in USDC.</div></div>
+    <div><div class="spec"><code>--t-statement</code><span class="label">Merriweather 300 · 26→36 · 1.2</span></div><div class="sample statement">Energy finance starts here.</div></div>
+    <div><div class="spec"><code>--t-h2</code><span class="label">Inter 400 · 32→56 · 1.06 · -.04em</span></div><div class="sample h2">Six assets. Three countries.</div></div>
+    <div><div class="spec"><code>--t-h3</code><span class="label">Inter 400 · 20→26 · 1.2 · -.02em</span></div><div class="sample h3">FLP II, rooftop solar in Singapore</div></div>
+    <div><div class="spec"><code>--t-h4</code><span class="label">Inter 500 · 17 · 1.35</span></div><div class="sample h4">Smart-contract audit</div></div>
+    <div><div class="spec"><code>--t-lead</code><span class="label">Inter 400 · 18→21 · 1.5 · muted</span></div><div class="sample lead">Click an asset to see what it raised, what it has paid, and where it stands.</div></div>
+    <div><div class="spec"><code>--t-body</code><span class="label">Inter 400 · 16 · 1.6 · 62ch</span></div><div class="sample body">Paid $941 a month until March 2026, then stopped while its power contract moved to GEDISA. The transfer closed on 27 April. Payments are pending.</div></div>
+    <div><div class="spec"><code>--t-small</code><span class="label">Inter 400 · 14 · 1.55</span></div><div class="sample small">Asset pages, monthly reports and every distribution.</div></div>
+    <div><div class="spec"><code>--t-fine</code><span class="label">Inter 400 · 13 · 1.5</span></div><div class="sample fine">Data: Stakewiz and validators.app, 13 Oct 2026. Rewards vary. refiSOL can trade below its SOL value.</div></div>
+    <div><div class="spec"><code>--t-kicker</code><span class="label">Chivo Mono 400 · 12 · .08em · accent</span></div><div class="sample"><p class="kicker" style="margin:0"><span>03</span><i></i>refiSOL</p></div></div>
+    <div><div class="spec"><code>--t-label</code><span class="label">Chivo Mono 400 · 11 · .08em · label grey</span></div><div class="sample label">Payments to date</div></div>
+  </div>
+
+  <h3 class="h3 gap-8" style="margin-bottom:var(--s-5)">Numbers are readouts</h3>
+  <p class="note" style="margin-bottom:var(--s-5)">Geist with its alternates on and tabular figures. The unit follows in mono at a third of the size, like a meter display. This is ReFi Hub's typographic signature; the staking site's is the serif statement.</p>
+  <div class="scale">
+    <div><div class="spec"><code>--n-xl</code><span class="label">Geist 200 · 72→136 · one per page</span></div><div class="sample num xl">$491,499</div></div>
+    <div><div class="spec"><code>--n-l</code><span class="label">Geist 300 · 52→76 · one per band</span></div><div class="sample num l">142.7<span class="u">K SOL</span></div></div>
+    <div><div class="spec"><code>--n-m</code><span class="label">Geist 300 · 30→52 · meter tiles</span></div><div class="sample num m">830<span class="u">kW</span></div></div>
+    <div><div class="spec"><code>--n-s</code><span class="label">Geist 400 · 22 · panels, tables</span></div><div class="sample num s">21.38<span class="u">%</span></div></div>
+  </div>
+</div></section>
+
+<!-- ============ 03 colour ============ -->
+<section class="sec band-sand" id="colour"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>03</span><i></i>Colour</p>
+    <h2 class="h2">The staking site's paper and ink. Our own sun and grid.</h2>
+    <p class="lead">Neutrals carry over unchanged, so the two sites read as one family. Sun gold is the shared thread: the pulse colour on both. The rest of the accents are ReFi Hub's own.</p>
+    <p class="gap-6"><span class="decision">Decision · accent set</span></p>
+    <p class="note" style="margin-top:12px">Switch between the two sets with the toggle at the top of the page. Every component, layout and motif below follows it. Recommendation: <b>A · Daylight</b>.</p>
+  </div>
+  <h3 class="label ramp-h">Neutrals, carried over</h3>
+  <div class="sw-grid" id="swNeutral"></div>
+  <h3 class="label ramp-h">Set A · Daylight: sun, copper, grid</h3>
+  <div class="sw-grid" id="swA"></div>
+  <h3 class="label ramp-h">Set B · Current: volt, with grid and sun</h3>
+  <div class="sw-grid" id="swB"></div>
+  <h3 class="label ramp-h">Status and the Stake doorway</h3>
+  <div class="sw-grid" id="swS"></div>
+
+  <h3 class="label ramp-h">Every text pairing, checked</h3>
+  <div class="tbl-wrap"><table class="cr" id="crTable"><thead><tr><th>Sample</th><th>Use</th><th>Ratio</th><th>Pass</th></tr></thead><tbody></tbody></table></div>
+  <p class="note" style="margin-top:var(--s-4)">Ratios are worked out live on this page (WCAG 2). Body text needs 4.5:1, large text and interface edges 3:1. Today's faint grey <code>#A29B95</code> on paper is 2.6:1 and is kept only for non-text marks.</p>
+</div></section>
+
+<!-- ============ 04 space ============ -->
+<section class="sec" id="space"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>04</span><i></i>Spacing and grid</p>
+    <h2 class="h2">One container. One rhythm.</h2>
+    <p class="lead">A 4px base, a short scale, 64 to 120px between sections, and a single 1200px container so the left edge never jumps.</p>
+  </div>
+  <div class="split rev" style="align-items:start">
+    <div>
+      <p class="label" style="margin-bottom:var(--s-4)">Scale</p>
+      <div class="space" id="spaceScale"></div>
+    </div>
+    <div>
+      <p class="label" style="margin-bottom:var(--s-4)">Section order on the landing page</p>
+      <div class="bands">
+        <div class="h"><span>Hero</span><span>Photo</span></div>
+        <div class="p"><span>01 Record</span><span>Paper</span></div>
+        <div class="s"><span>02 Assets</span><span>Sand</span></div>
+        <div class="k"><span>03 refiSOL</span><span>Ink</span></div>
+        <div class="p"><span>04 Reports</span><span>Paper</span></div>
+        <div class="s"><span>05 Since 2021</span><span>Sand</span></div>
+        <div class="k"><span>Footer</span><span>Ink</span></div>
+      </div>
+      <p class="note" style="margin-top:var(--s-4)">No two neighbours share a background. An ink band about every third section. Section padding <code>clamp(64px, 9vw, 120px)</code>; head to content <code>clamp(32px, 4vw, 56px)</code>.</p>
+    </div>
+  </div>
+  <p class="label gap-8">12 columns · 24px gap · 1200px max · gutter clamp(16px, 4vw, 40px)</p>
+  <div class="rhythm" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="note" style="margin-top:var(--s-4)">Common splits: 7/5 for copy beside art or a readout, 4/8 for a lead number beside tiles, 5/7 for a head beside a list. Radii: 18px for cards and images, 10px for small chips and inputs, 28px for the closing card only, and the pill for buttons.</p>
+</div></section>
+
+<!-- ============ 05 components ============ -->
+<section class="sec band-sand" id="components"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>05</span><i></i>Components</p>
+    <h2 class="h2">Few parts, used the same way everywhere.</h2>
+  </div>
+  <div class="board">
+    <div class="tile">
+      <p class="label">Buttons · on paper</p>
+      <div class="btns"><a class="btn btn-primary" href="#components">See the record</a><a class="btn btn-ghost" href="#components">How staking works</a></div>
+      <div class="btns"><a class="btn btn-stake" href="#components">Stake SOL</a><a class="lnk" href="#components" style="align-self:center">All reports →</a></div>
+      <p class="fine">The Stake button wears the staking site's sea, because it leads there. Nothing else on ReFi Hub is sea-coloured.</p>
+    </div>
+    <div class="tile ink band-ink">
+      <p class="label">Buttons · on ink</p>
+      <div class="btns"><a class="btn btn-stake" href="#components">Stake SOL</a><a class="btn btn-ghost" href="#components">Fees and risks</a></div>
+      <div class="btns"><a class="btn btn-primary" href="#components">Open the app</a><a class="lnk" href="#components" style="align-self:center">Stakewiz →</a></div>
+      <p class="fine">Pill, Inter 500 15px, at least 44px tall. Lift 1px on hover. No shadows.</p>
+    </div>
+
+    <div class="tile span2">
+      <p class="label">Meter tiles in a hairline grid · replaces the six stat cards</p>
+      <div class="meters">
+        <div class="meter"><span class="label">Assets financed</span><span class="num m">6</span><span class="sub">Solar plants and EV chargers</span></div>
+        <div class="meter"><span class="label">Countries</span><span class="num m">3</span><span class="sub">Brazil, India and Singapore</span></div>
+        <div class="meter"><span class="label">Capacity</span><span class="num m">830<span class="u">kW</span></span><span class="sub">Across all six assets</span></div>
+        <div class="meter"><span class="label">Longest record</span><span class="num m">22<span class="u">payments</span></span><span class="sub">Exodos 1, since October 2024</span></div>
+        <div class="meter"><span class="label">Operating partners</span><span class="num m">5</span><span class="sub">PivotGreen, DeCharge, IPE, Tab, VOX</span></div>
+        <div class="meter"><span class="label">Staked with us</span><span class="num m">142.7<span class="u">K SOL</span></span><span class="src live">Stakewiz, 13 Oct 2026</span></div>
+      </div>
+      <p class="fine">One frame, 1px gaps, no shadows. Two columns on a phone, never one long stack. Figures here come from the asset pages and are only layout filler.</p>
+    </div>
+
+    <div class="tile">
+      <p class="label">Kickers</p>
+      <p class="kicker" style="margin:0"><span>01</span><i></i>The record</p>
+      <p class="kicker" style="margin:0"><span>02</span><i></i>Assets</p>
+      <p class="kicker" style="margin:0">Asset updates</p>
+      <p class="fine">Numbered on the landing page, a category on the blog. A <code>&lt;p&gt;</code>, never a heading.</p>
+    </div>
+    <div class="tile">
+      <p class="label">Badges, legend, source lines</p>
+      <div class="btns"><span class="badge pay">Paying</span><span class="badge behind">Behind on payments</span></div>
+      <div class="btns"><span class="badge solar">Solar</span><span class="badge ev">EV charging</span></div>
+      <div class="legend"><span class="label"><i></i>Solar</span><span class="label"><i class="ev"></i>EV charging</span><span class="label"><i class="bh"></i>Behind</span></div>
+      <span class="src live">Live from Stakewiz · 13 Oct 2026</span>
+      <span class="src">Saved from app.refihub.io · Aug 2026</span>
+    </div>
+
+    <div class="tile">
+      <p class="label">Card</p>
+      <a class="card" href="#components"><span class="h3">The app</span><p>Asset pages, monthly reports and every distribution.</p><span class="lnk">app.refihub.io →</span></a>
+    </div>
+    <div class="tile">
+      <p class="label">Asset panel</p>
+      <div class="panel" style="max-width:none;border:0">
+        <div class="in" style="padding:0">
+          <span class="badge behind" style="align-self:flex-start">Behind on payments</span>
+          <div><span class="h3">CRN</span><p class="small muted" style="margin-top:4px">Tab Energia · Brazil · Ground-mounted solar</p></div>
+          <dl class="kv">
+            <div><dt class="label">Raised</dt><dd class="num s">$100,000</dd></div>
+            <div><dt class="label">Avg yield paid</dt><dd class="num s">11.29<span class="u">%</span></dd></div>
+            <div><dt class="label">Payments to date</dt><dd class="num s">8</dd></div>
+            <div><dt class="label">Capacity</dt><dd class="num s">143.2<span class="u">kW</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile span2">
+      <p class="label">Ledger rows</p>
+      <div class="rows">
+        <div class="row-item"><span class="h3">Paid from power sales</span><p>Each asset sells electricity or charging sessions. That income pays investors in USDC every month.</p><span class="num m">22<span class="u">months</span></span></div>
+        <div class="row-item"><span class="h3">Reported every month</span><p>Operating and payment reports for every asset, including the months that went wrong.</p><span class="num m">22<span class="u">reports</span></span></div>
+      </div>
+    </div>
+
+    <div class="tile">
+      <p class="label">Lists</p>
+      <ul class="sq-list">
+        <li>Square bullets in the pulse colour</li>
+        <li>Round dots belong to the reef</li>
+        <li>Hairline between items</li>
+      </ul>
+    </div>
+    <div class="tile">
+      <p class="label">Steps</p>
+      <ol class="steps">
+        <li><span class="num">1</span><div><p class="h4">An asset runs</p><p>A plant or charger sells power.</p></div></li>
+        <li><span class="num">2</span><div><p class="h4">The operator reports</p><p>Metered output and income, monthly.</p></div></li>
+        <li><span class="num">3</span><div><p class="h4">Investors are paid</p><p>In USDC, on Solana.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="tile span2">
+      <p class="label">Notice · for the honest note</p>
+      <p class="notice" style="margin-top:0">Payments follow real use, so they are uneven. Two assets are behind: CRN is waiting on a contract transfer, and VOX has not paid since April.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 06 layouts ============ -->
+<section class="sec" id="layouts"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>06</span><i></i>Layout patterns</p>
+    <h2 class="h2">The landing page, section by section.</h2>
+    <p class="lead">Real copy, the new parts. Each frame below is one section of today's page as it would look after this pass.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cap"><p class="label"><b>Hero A</b> · photo with a readout strip · recommended</p><span class="decision">Decision · hero</span></div>
+</div>
+<div class="wrap"><div class="frame">
+  <section class="heroA on-photo">
+    <div class="wrap"><div class="in">
+      <p class="kicker"><span>ReFi Hub</span><i></i>Since 2021</p>
+      <h1 class="display">Solar and EV charging, paid in USDC.</h1>
+      <p class="lead">We finance operating energy assets in Brazil, India and Singapore. Their power sales pay investors. Stake SOL with us and part of our fees funds the next ones.</p>
+      <div class="btns"><a class="btn btn-primary" href="#layouts">See the record</a><a class="btn btn-ghost" href="#layouts">How staking works</a></div>
+    </div></div>
+    <div class="readout"><div class="wrap">
+      <div><p class="label">Assets</p><span class="num">6</span></div>
+      <div><p class="label">Countries</p><span class="num">3</span></div>
+      <div><p class="label">Raised</p><span class="num">$491<span class="u">K</span></span></div>
+      <span class="src">From app.refihub.io</span>
+    </div></div>
+  </section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>Hero B</b> · paper with the motif, like the staking site</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec heroB"><div class="wrap split">
+    <div>
+      <p class="kicker"><span>ReFi Hub</span><i></i>Since 2021</p>
+      <h1 class="display">Solar and EV charging, paid in USDC.</h1>
+      <p class="lead">We finance operating energy assets in Brazil, India and Singapore. Their power sales pay investors.</p>
+      <div class="btns"><a class="btn btn-primary" href="#layouts">See the record</a><a class="btn btn-ghost" href="#layouts">How staking works</a></div>
+    </div>
+    <canvas class="art" data-energy="sun" data-seed="5" aria-hidden="true"></canvas>
+  </div></section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>01 Record</b> · lead number beside a meter grid, notice below</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec"><div class="wrap split r48">
+    <div>
+      <p class="kicker"><span>01</span><i></i>The record</p>
+      <h2 class="h2" style="margin-bottom:var(--s-5)">We turn electricity into USDC.</h2>
+      <p class="lead">We finance energy assets that already run. When they sell power, investors get paid.</p>
+      <div class="lead-num">
+        <span class="label">Raised across six assets</span>
+        <span class="num l">$491,499</span>
+        <span class="src">Asset pages, Aug 2026</span>
+      </div>
+    </div>
+    <div>
+      <div class="meters">
+        <div class="meter"><span class="label">Countries</span><span class="num m">3</span><span class="sub">Brazil, India, Singapore</span></div>
+        <div class="meter"><span class="label">Capacity</span><span class="num m">830<span class="u">kW</span></span><span class="sub">Solar and EV charging</span></div>
+        <div class="meter"><span class="label">Best yield paid</span><span class="num m">21.38<span class="u">%</span></span><span class="sub">FLP II, Singapore</span></div>
+        <div class="meter"><span class="label">Longest record</span><span class="num m">22</span><span class="sub">Payments, Exodos 1</span></div>
+        <div class="meter"><span class="label">Partners</span><span class="num m">5</span><span class="sub">Local operators</span></div>
+        <div class="meter"><span class="label">Staked</span><span class="num m">142.7<span class="u">K</span></span><span class="src live">Stakewiz</span></div>
+      </div>
+      <p class="notice">Payments follow real use, so they are uneven. Two assets are behind: CRN is waiting on a contract transfer, and VOX has not paid since April.</p>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>02 Assets</b> · keep the map and panel, restyle the parts</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec band-sand"><div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span>02</span><i></i>Assets</p>
+      <h2 class="h2" style="margin-bottom:var(--s-5)">Six assets. Three countries.</h2>
+      <p class="lead">Click an asset to see what it raised, what it has paid, and where it stands.</p>
+    </div>
+    <div class="split" style="align-items:start">
+      <div>
+        <canvas class="art" data-energy="map" data-still style="aspect-ratio:260/112;height:auto;border-radius:var(--r);background:var(--card);border:1px solid var(--rule-cool)" aria-hidden="true"></canvas>
+        <div class="legend" style="margin-top:var(--s-3)"><span class="label"><i></i>Solar</span><span class="label"><i class="ev"></i>EV charging</span><span class="label"><i class="bh"></i>Behind on payments</span></div>
+        <p class="note" style="margin-top:var(--s-4)">Today's map, redrawn: square land dots on a grid, solar as sun circles, EV charging as slate squares, assets behind on payments in copper. Pins, labels and the click-to-select panel stay as they are.</p>
+      </div>
+      <div class="panel">
+        <img src="../../public/assets/flp2.jpg" alt="FLP II rooftop solar, Singapore">
+        <div class="in">
+          <span class="badge pay" style="align-self:flex-start">Paying</span>
+          <div><span class="h3">FLP II</span><p class="small muted" style="margin-top:4px">PivotGreen · Singapore · Rooftop solar</p></div>
+          <dl class="kv">
+            <div><dt class="label">Raised</dt><dd class="num s">$100,000</dd></div>
+            <div><dt class="label">Avg yield paid</dt><dd class="num s">21.38<span class="u">%</span></dd></div>
+            <div><dt class="label">Payments</dt><dd class="num s">5</dd></div>
+            <div><dt class="label">Capacity</dt><dd class="num s">111.69<span class="u">kW</span></dd></div>
+          </dl>
+          <p class="small" style="padding-top:var(--s-4);border-top:1px solid var(--rule)">Second raise on an operating rooftop plant in Singapore. About $1,780 a month since April 2026.</p>
+          <a class="lnk" href="#layouts" style="align-self:flex-start">Open the asset page →</a>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>03 refiSOL</b> · ink band, the doorway to the staking site</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec band-ink sol">
+    <canvas data-energy="lines" data-dark data-seed="8" aria-hidden="true"></canvas>
+    <div class="wrap split">
+      <div>
+        <p class="kicker"><span>03</span><i></i>refiSOL</p>
+        <h2 class="h2">Stake SOL. Fund coral reefs.</h2>
+        <p class="say">refiSOL is the <b>liquid staking token from our validator</b>. 30% of our fees fund coral reefs and clean energy.</p>
+        <div class="btns"><a class="btn btn-stake" href="#layouts">Stake SOL</a><a class="btn btn-ghost" href="#layouts">Fees and risks</a></div>
+      </div>
+      <div class="sol-right">
+        <div><p class="label" style="margin-bottom:12px">Staked with our validator</p><span class="num l">142.7<span class="u">K SOL</span></span></div>
+        <div class="meters">
+          <div class="meter"><span class="label">Uptime</span><span class="num m">99.95<span class="u">%</span></span></div>
+          <div class="meter"><span class="label">Skip rate</span><span class="num m">0<span class="u">%</span></span></div>
+          <div class="meter"><span class="label">Fees to impact</span><span class="num m">30<span class="u">%</span></span></div>
+        </div>
+        <span class="src live">Stakewiz and validators.app · 13 Oct 2026</span>
+      </div>
+    </div>
+  </section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>04 Reports</b> · one featured, three as rows · about half today's height</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec"><div class="wrap">
+    <div class="sec-head row">
+      <div>
+        <p class="kicker"><span>04</span><i></i>Reports</p>
+        <h2 class="h2" style="margin-bottom:var(--s-5)">Every asset, reported on.</h2>
+        <p class="lead">Monthly operating and payment reports from each asset, and how we pick them.</p>
+      </div>
+      <a class="lnk" href="#layouts">All reports →</a>
+    </div>
+    <div class="feat">
+      <a class="feat-card" href="#layouts">
+        <img src="../../src/assets/blog/investor-faq-flp-ii-solar-installation/vk58jnalrLY2bxGFJrbWxYSc.webp" alt="">
+        <div class="meta"><span class="label">10 Mar 2026</span><span class="badge solar">Asset updates</span></div>
+        <span class="h3">Investor FAQ — FLP II Solar Installation</span>
+      </a>
+      <div class="feat-list">
+        <a href="#layouts"><span class="label">23 Feb 2026 · Asset updates</span><span class="h4">Project Surya — February Operating &amp; Distribution Report</span></a>
+        <a href="#layouts"><span class="label">10 Feb 2026 · Resources</span><span class="h4">Business Due Diligence Framework</span></a>
+        <a href="#layouts"><span class="label">5 Feb 2026 · Resources</span><span class="h4">Understanding Returns and IRR</span></a>
+      </div>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>05 Since 2021</b> · ledger rows, then three link cards</p></div></div>
+<div class="wrap"><div class="frame">
+  <section class="sec band-sand"><div class="wrap">
+    <div class="sec-head">
+      <p class="kicker"><span>05</span><i></i>Since 2021</p>
+      <h2 class="h2" style="margin-bottom:var(--s-5)">Building since 2021.</h2>
+      <p class="lead">Our app, docs and audit are public. Check any number on this page against them.</p>
+    </div>
+    <div class="rows">
+      <div class="row-item"><span class="h3">Solana Foundation</span><p>Backer</p><span class="num s"></span></div>
+      <div class="row-item"><span class="h3">Superteam UK and Canada</span><p>Incubator and ecosystem partners</p><span class="num s"></span></div>
+      <div class="row-item"><span class="h3">Our own validator</span><p>refiSOL, live on Solana</p><span class="num m">142.7<span class="u">K SOL</span></span></div>
+      <div class="row-item"><span class="h3">Community</span><p>Investors, holders and Coral Tribe members</p><span class="num m">1,500<span class="u">+</span></span></div>
+    </div>
+    <div class="cards gap-8">
+      <a class="card" href="#layouts"><span class="h3">The app</span><p>Asset pages, monthly reports and every distribution.</p><span class="lnk">app.refihub.io →</span></a>
+      <a class="card" href="#layouts"><span class="h3">Documentation</span><p>Where returns come from, how we pick assets, and the risks.</p><span class="lnk">refihub.gitbook.io →</span></a>
+      <a class="card" href="#layouts"><span class="h3">Smart-contract audit</span><p>Independent audit by Solidproof.</p><span class="lnk">Solidproof →</span></a>
+    </div>
+  </div></section>
+</div></div>
+
+<div class="wrap"><div class="cap"><p class="label"><b>Closing card and footer</b> · optional closing card</p></div></div>
+<div class="wrap"><div class="frame" style="background:var(--paper)">
+  <section class="sec"><div class="wrap">
+    <div class="closing">
+      <canvas data-energy="sun" data-dark data-seed="9" aria-hidden="true"></canvas>
+      <p class="kicker" style="color:var(--k-ink)"><span>06</span><i></i>Next</p>
+      <p class="statement">Real energy, reported every month.</p>
+      <div class="btns band-ink" style="background:none"><a class="btn btn-stake" href="#layouts">Stake SOL</a><a class="btn btn-ghost" href="#layouts">Read the reports</a></div>
+    </div>
+  </div></section>
+  <footer class="foot"><div class="wrap">
+    <p class="label">The ReFi Hub logo, in white</p>
+    <p class="statement">Energy finance starts here.</p>
+    <div class="foot-cols">
+      <div><p class="label">Company</p><a href="#layouts">Home</a><a href="#layouts">App</a><a href="#layouts">About</a></div>
+      <div><p class="label">Live assets</p><a href="#layouts">Solar infrastructure</a><a href="#layouts">EV charging assets</a></div>
+      <div><p class="label">Resources</p><a href="#layouts">Investor reports</a><a href="#layouts">Documentation</a></div>
+    </div>
+    <p class="fine">© 2026 ReFi Hub LTD. One black for bands and footer: #0F0E0C.</p>
+  </div></footer>
+</div></div>
+</section>
+
+<!-- ============ 07 motif ============ -->
+<section class="sec band-sand" id="motif"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>07</span><i></i>Artwork and motif</p>
+    <h2 class="h2">The same print technique, drawn from the grid.</h2>
+    <p class="lead">The staking site's stipple is organic: round dots, polyps, drifting plankton. ReFi Hub's is infrastructure: square dots on a grid, straight runs and cable sags, light that travels and fills. Move your pointer over a drawing.</p>
+    <p class="gap-6"><span class="decision">Decision · lead motif</span></p>
+    <p class="note" style="margin-top:12px">Recommendation: <b>Grid lines</b> as the lead, <b>Daylight sweep</b> as the section background, <b>Sunfield</b> for one or two small spots.</p>
+  </div>
+
+  <div class="tbl-wrap"><table class="vs">
+    <thead><tr><th></th><th>Staking site · reef</th><th>ReFi Hub · energy</th></tr></thead>
+    <tbody>
+      <tr><th>Dot</th><td>Round</td><td>Square, aligned to a grid</td></tr>
+      <tr><th>Geometry</th><td>Curves, fronds, petals</td><td>Straight runs, right angles, rows of cells, cable sags</td></tr>
+      <tr><th>Movement</th><td>Drift, sway, breathe</td><td>Travel and fill: pulses along a line, a sweep, a meter filling</td></tr>
+      <tr><th>Rhythm</th><td>Irregular, natural</td><td>Regular and periodic, like a meter</td></tr>
+      <tr><th>Colour</th><td>Sea lines, coral and gold</td><td>Grid-slate dots, sun or volt pulses, copper for faults</td></tr>
+      <tr><th>Meaning</th><td>Corals planted</td><td>Electricity produced, carried and paid out</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="motif gap-8">
+    <div>
+      <p class="kicker" style="margin:0"><span>A</span><i></i>Grid lines · recommended lead</p>
+      <h3 class="h3">The business model, drawn.</h3>
+      <p class="body">Six asset nodes, solar panels in dots and EV chargers as dot bars that fill like a battery, joined by sagging power lines to one payout node. Pulses travel from each asset to the node, which flashes as each one lands. The two assets that are behind send pulses less often, in copper.</p>
+      <dl><div><dt class="label">Use</dt><dd>refiSOL band, record section, Hero B</dd></div><div><dt class="label">Later</dt><dd>One pulse per real payment</dd></div></dl>
+    </div>
+    <div class="canv">
+      <div><canvas data-energy="lines" data-seed="3" aria-hidden="true"></canvas></div>
+      <div class="dk"><canvas data-energy="lines" data-dark data-seed="3" aria-hidden="true"></canvas></div>
+    </div>
+  </div>
+
+  <div class="motif">
+    <div>
+      <p class="kicker" style="margin:0"><span>B</span><i></i>Daylight sweep</p>
+      <h3 class="h3">A solar array from above.</h3>
+      <p class="body">A field of square dots, grouped into panels by thin gutters. A soft band of light crosses it every few seconds, and the dots it touches grow and turn gold. ReFi Hub's version of the staking site's plankton.</p>
+      <dl><div><dt class="label">Use</dt><dd>Behind a whole section, with frosted cards on top</dd></div><div><dt class="label">Later</dt><dd>Sweep speed from the day's output</dd></div></dl>
+    </div>
+    <div class="canv">
+      <div class="wide"><canvas data-energy="sweep" data-seed="4" aria-hidden="true"></canvas></div>
+      <div class="wide dk"><canvas data-energy="sweep" data-dark data-seed="4" aria-hidden="true"></canvas></div>
+    </div>
+  </div>
+
+  <div class="motif">
+    <div>
+      <p class="kicker" style="margin:0"><span>C</span><i></i>Sunfield</p>
+      <h3 class="h3">A halftone sun over panel rows.</h3>
+      <p class="body">A disc of square dots, largest at the centre, with dotted rays that carry a slow wave outwards. Below, rows of panels in dots, with light sliding across them. The most literal and the most immediately solar.</p>
+      <dl><div><dt class="label">Use</dt><dd>Hero B, the closing card, small spots</dd></div><div><dt class="label">Later</dt><dd>Disc size from capacity</dd></div></dl>
+    </div>
+    <div class="canv">
+      <div><canvas data-energy="sun" data-seed="5" aria-hidden="true"></canvas></div>
+      <div class="dk"><canvas data-energy="sun" data-dark data-seed="5" aria-hidden="true"></canvas></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ 08 motion ============ -->
+<section class="sec" id="motion"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>08</span><i></i>Motion and accessibility</p>
+    <h2 class="h2">Calm, and never in the way.</h2>
+    <p class="lead">One moving thing per screen. Content is never hidden waiting for an animation. With reduced motion turned on, every drawing shows one still frame and numbers appear at their final value.</p>
+  </div>
+  <div class="tbl-wrap"><table class="mt">
+    <thead><tr><th>Thing</th><th>Duration</th><th>Easing</th></tr></thead>
+    <tbody>
+      <tr><td>Hover and press</td><td>150 to 200ms</td><td>ease-out</td></tr>
+      <tr><td>Fade-up on scroll</td><td>600ms, 14px rise, 80ms stagger</td><td>cubic-bezier(.2,.7,.2,1)</td></tr>
+      <tr><td>Number count-up</td><td>900ms, once</td><td>ease-out cubic</td></tr>
+      <tr><td>Motif pulses</td><td>3 to 6s per cycle</td><td>linear</td></tr>
+      <tr><td>Motif sweep</td><td>8 to 12s per cycle</td><td>linear</td></tr>
+      <tr><td>Live dot</td><td>2.6s</td><td>sine</td></tr>
+    </tbody>
+  </table></div>
+  <div class="cards gap-8">
+    <div class="card"><span class="h4">Contrast</span><p>4.5:1 for body text, 3:1 for large text and edges. Nothing under 11px.</p></div>
+    <div class="card"><span class="h4">Status</span><p>Always a word and a shape as well as a colour. Solar is a circle, EV charging a square.</p></div>
+    <div class="card"><span class="h4">Artwork</span><p>Every canvas is decorative and hidden from screen readers. It pauses off screen and in background tabs.</p></div>
+  </div>
+</div></section>
+
+<!-- ============ 09 do and don't ============ -->
+<section class="sec band-sand" id="rules"><div class="wrap">
+  <div class="sec-head">
+    <p class="kicker"><span>09</span><i></i>Do and don't</p>
+    <h2 class="h2">The short version.</h2>
+  </div>
+  <div class="dd">
+    <div class="do"><span class="label">Do</span><ul>
+      <li>Set section headings in Inter 400, tracked -.04em</li>
+      <li>Open every section with a numbered mono kicker</li>
+      <li>Make one number the hero of each band, with its source</li>
+      <li>Put units in mono after Geist numbers</li>
+      <li>Keep one container, 1200px, and one card radius, 18px</li>
+      <li>Use one black, #0F0E0C, for bands and the footer</li>
+      <li>Draw the motif in square dots on a grid</li>
+      <li>Name a problem plainly in a calm notice</li>
+      <li>Keep content visible without JavaScript</li>
+    </ul></div>
+    <div class="dont"><span class="label">Don't</span><ul>
+      <li>Set anything in Inter 700, or bold a heading</li>
+      <li>Open six sections the same way</li>
+      <li>Show six numbers at equal weight</li>
+      <li>Invent in-between sizes like 13.5px or 9.5px</li>
+      <li>Let sections change width, or mix radii</li>
+      <li>Mix #000, #151412 and #141313</li>
+      <li>Use round drifting dots (that is the reef)</li>
+      <li>Bring sea or coral in, except the Stake button and the refiSOL band</li>
+      <li>Hide cards until they scroll into view</li>
+    </ul></div>
+  </div>
+</div></section>
+
+</main>
+
+<script>
+/* ---------- swatches, contrast and spacing scale ---------- */
+(function(){
+  'use strict';
+  var SW = {
+    swNeutral:[['Paper','#FBFAF9','Page'],['Sand','#F2ECE8','Alternate band'],['Card','#FFFFFF','Cards'],['Rule','#EDEDED','Hairlines'],['Rule cool','#E2E8F0','Card borders'],['Text','#222222','Body'],['Muted','#6A645E','Leads (new)'],['Label','#78716C','Mono labels (new)'],['Ink','#0F0E0C','Bands, footer, headings'],['Ink 2','#1A1917','Tiles on ink'],['On ink','#E9E5DF','Text on ink'],['On ink muted','#A8A29E','Secondary on ink']],
+    swA:[['Sun 100','#FAEFD6','Tint'],['Sun 300','#F5C76A','Kicker on ink'],['Sun 500','#E9A93A','Pulses, solar'],['Sun 700','#8A5A00','Kicker on paper'],['Copper 100','#F7E3D7','Behind tint'],['Copper 500','#C4673A','Behind marks'],['Copper 700','#8F3F1C','Behind text'],['Grid 100','#E7ECF4','EV tint'],['Grid 500','#7489AD','Motif dots, EV'],['Grid 700','#415371','refihub.io slate'],['Grid 900','#1C2638','Deep panel']],
+    swB:[['Volt 100','#EEF6D2','Charge tint'],['Volt 300','#C9E66B','Kicker on ink'],['Volt 500','#A3C93A','Pulses, charge'],['Volt 700','#3D5A14','Text accent'],['Grid 700','#415371','Kicker on paper'],['Sun 500','#E9A93A','Solar']],
+    swS:[['Paying','#2E6B47','on #E2F0E6'],['Behind','#8A4F16','on #F6E6D6'],['Stake on paper','#0D3A42','Staking sea 900'],['Stake on ink','#8FD3C8','Staking mint']]
+  };
+  Object.keys(SW).forEach(function(id){
+    document.getElementById(id).innerHTML = SW[id].map(function(s){
+      return '<div class="sw"><i style="background:'+s[1]+'"></i><div><b>'+s[0]+'</b><code>'+s[1]+'</code><span>'+s[2]+'</span></div></div>';
+    }).join('');
+  });
+
+  function lum(h){
+    h = h.replace('#','');
+    var c = [0,2,4].map(function(i){ var v = parseInt(h.substr(i,2),16)/255; return v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); });
+    return 0.2126*c[0] + 0.7152*c[1] + 0.0722*c[2];
+  }
+  function ratio(a,b){ var x = lum(a), y = lum(b); return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); }
+  var PAIRS = [
+    ['#222222','#FBFAF9','Body text on paper',4.5],
+    ['#6A645E','#FBFAF9','Muted on paper',4.5],
+    ['#6A645E','#F2ECE8','Muted on sand',4.5],
+    ['#78716C','#FBFAF9','Label on paper',4.5],
+    ['#78716C','#FFFFFF','Label on card',4.5],
+    ['#8A5A00','#FBFAF9','Sun 700 kicker on paper (A)',4.5],
+    ['#8A5A00','#F2ECE8','Sun 700 kicker on sand (A)',4.5],
+    ['#415371','#FBFAF9','Grid 700 kicker on paper (B)',4.5],
+    ['#3D5A14','#FBFAF9','Volt 700 on paper (B)',4.5],
+    ['#F5C76A','#0F0E0C','Sun 300 kicker on ink (A)',4.5],
+    ['#C9E66B','#0F0E0C','Volt 300 kicker on ink (B)',4.5],
+    ['#E9E5DF','#0F0E0C','Text on ink',4.5],
+    ['#A8A29E','#1A1917','Muted on ink tile',4.5],
+    ['#2E6B47','#E2F0E6','Paying badge',4.5],
+    ['#8A4F16','#F6E6D6','Behind badge',4.5],
+    ['#FFFFFF','#0D3A42','Stake button on paper',4.5],
+    ['#0D3A42','#8FD3C8','Stake button on ink',4.5],
+    ['#A29B95','#FBFAF9','Today: faint grey on paper',4.5],
+    ['#767676','#F2ECE8','Today: muted on sand',4.5]
+  ];
+  document.querySelector('#crTable tbody').innerHTML = PAIRS.map(function(p){
+    var r = ratio(p[0],p[1]), ok = r >= p[3];
+    return '<tr><td><span class="pv" style="color:'+p[0]+';background:'+p[1]+'">Aa 123</span></td><td>'+p[2]+'</td><td class="num" style="font-size:15px">'+r.toFixed(2)+':1</td><td class="'+(ok?'ok':'no')+'">'+(ok?'Pass':'Fail')+'</td></tr>';
+  }).join('');
+
+  document.getElementById('spaceScale').innerHTML = [4,8,12,16,24,32,48,64,96,128].map(function(v,i){
+    return '<div><span>--s-'+(i+1)+'</span><span>'+v+'px</span><i style="width:'+v+'px"></i></div>';
+  }).join('');
+})();
+
+/* ---------- energy motifs: square dots, straight runs, travelling light ----------
+   Three expressions for review: lines (grid lines), sweep (daylight sweep), sun (sunfield).
+   <canvas data-energy="lines|sweep|sun" [data-dark] [data-seed] [data-still]> */
+(function(){
+  'use strict';
+  var TAU = Math.PI * 2;
+  var REDUCE = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var paused = REDUCE, stages = [], rafOn = false;
+
+  function rng(seed){ var a = seed >>> 0; return function(){ a = (a + 0x6D2B79F5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function sq(ctx, x, y, r){ ctx.rect(x - r, y - r, r * 2, r * 2); }
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function palette(dark){
+    return dark
+      ? { dot:'#9AA9C4', dim:'rgba(154,169,196,.22)', pulse:css('--pulse-ink'), a2:css('--copper-500'), node:'#E9E5DF' }
+      : { dot:'#7489AD', dim:'rgba(116,137,173,.22)', pulse:css('--pulse'), a2:css('--copper-500'), node:'#0F0E0C' };
+  }
+  // 0..1 closeness to the pointer
+  function near(x, y, m, rad){ if(m.on < 0.01) return 0; var dx = x - m.x, dy = y - m.y, d = Math.sqrt(dx*dx + dy*dy); return d < rad ? (1 - d / rad) * m.on : 0; }
+
+  var EXPR = {};
+
+  /* the existing world map, redrawn in square dots: land from the landing page's outline,
+     solar assets as sun circles, EV charging as grid squares, assets behind in copper */
+  var LAND = [
+   [[-168,66],[-160,71],[-140,70],[-125,70],[-110,68],[-95,69],[-82,73],[-70,68],[-64,60],[-55,52],[-62,47],[-67,45],[-70,42],[-74,39],[-78,34],[-81,28],[-80,25],[-84,22],[-88,21],[-91,17],[-84,10],[-78,8],[-83,14],[-94,16],[-97,25],[-105,21],[-112,26],[-117,33],[-122,38],[-124,45],[-124,49],[-131,54],[-141,60],[-152,59],[-163,59]],
+   [[-45,60],[-20,64],[-18,70],[-22,76],[-32,82],[-45,83],[-58,82],[-68,78],[-73,70],[-58,64]],
+   [[-81,8],[-76,11],[-70,12],[-62,10],[-52,5],[-50,1],[-44,-2],[-38,-4],[-35,-6],[-37,-11],[-39,-16],[-42,-22],[-48,-26],[-52,-32],[-58,-35],[-62,-39],[-65,-43],[-69,-52],[-75,-53],[-74,-45],[-73,-38],[-71,-30],[-70,-22],[-71,-18],[-75,-14],[-78,-8],[-81,-5],[-80,-2],[-78,1],[-77,4]],
+   [[-17,15],[-17,21],[-13,28],[-6,33],[3,36],[10,37],[19,31],[25,32],[33,31],[35,27],[37,22],[39,15],[43,11],[48,12],[51,11],[48,4],[42,-1],[40,-8],[36,-15],[34,-20],[32,-26],[27,-33],[19,-35],[16,-29],[13,-23],[12,-16],[9,-6],[9,2],[5,5],[-2,5],[-8,4],[-13,8]],
+   [[-10,36],[-9,43],[-4,48],[0,50],[3,51],[8,54],[9,57],[13,55],[19,55],[24,60],[21,66],[26,70],[31,70],[41,68],[55,70],[68,73],[78,73],[90,76],[105,78],[115,74],[128,73],[140,72],[155,70],[165,68],[170,60],[162,60],[155,55],[143,52],[135,48],[131,43],[127,40],[122,38],[120,34],[122,30],[118,24],[110,21],[108,15],[105,10],[103,1],[100,3],[98,8],[99,13],[95,16],[93,20],[89,22],[85,20],[80,13],[77,8],[73,15],[70,21],[67,24],[62,25],[58,22],[50,29],[48,30],[43,39],[36,36],[30,36],[26,40],[20,42],[14,42],[8,44],[3,43],[-2,36]],
+   [[95,6],[100,1],[104,-2],[106,-6],[112,-8],[118,-9],[125,-9],[131,-8],[141,-9],[141,-3],[134,-1],[128,1],[120,0],[117,4],[110,2],[103,2],[98,4]],
+   [[113,-22],[114,-26],[115,-32],[118,-35],[124,-33],[129,-32],[134,-33],[138,-35],[141,-38],[147,-39],[150,-37],[153,-30],[153,-25],[148,-20],[145,-15],[142,-11],[137,-12],[132,-11],[129,-15],[125,-17],[122,-18],[117,-21]],
+   [[166,-46],[168,-47],[173,-42],[175,-37],[178,-38],[174,-41],[171,-44]],
+   [[130,31],[132,34],[136,35],[140,36],[142,40],[141,45],[145,44],[140,41],[138,37],[135,34],[131,33]],
+   [[-6,50],[-3,54],[-3,58],[-5,58],[-6,55],[-5,51]],
+   [[43,-16],[47,-15],[50,-18],[48,-25],[45,-25],[43,-21]]
+  ];
+  function inPoly(lon, lat, poly){ var hit = false; for(var i = 0, j = poly.length - 1; i < poly.length; j = i++){ var xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1]; if(((yi > lat) !== (yj > lat)) && (lon < (xj - xi) * (lat - yi) / (yj - yi) + xi)) hit = !hit; } return hit; }
+  function isLand(lon, lat){ for(var i = 0; i < LAND.length; i++) if(inPoly(lon, lat, LAND[i])) return true; return false; }
+  var PINS = [[103.85,1.29,'solar',0],[104.6,1.9,'solar',0],[80.95,26.85,'ev',0],[-43.17,-22.91,'ev',1],[-43.94,-19.9,'solar',1],[-46.63,-23.55,'solar',0]];
+  EXPR.map = {
+    build: function(w, h){
+      var L0 = -110, L1 = 150, A0 = -50, A1 = 62, pad = 16, W = w - pad * 2, H = h - pad * 2, p = [];
+      var step = 260 / Math.max(80, Math.round(W / 6.5));
+      for(var lat = A1; lat >= A0; lat -= step) for(var lon = L0; lon <= L1; lon += step) if(isLand(lon, lat)) p.push(pad + (lon - L0) / (L1 - L0) * W, pad + (A1 - lat) / (A1 - A0) * H);
+      var pins = PINS.map(function(q){ return [pad + (q[0] - L0) / (L1 - L0) * W, pad + (A1 - q[1]) / (A1 - A0) * H, q[2], q[3]]; });
+      return { p:p, pins:pins, r:Math.max(1, W / 420) };
+    },
+    draw: function(ctx, S, t, m, pal){
+      ctx.fillStyle = '#CFC7BE'; ctx.beginPath();
+      for(var i = 0; i < S.p.length; i += 2) sq(ctx, S.p[i], S.p[i+1], S.r);
+      ctx.fill();
+      S.pins.forEach(function(q){
+        ctx.fillStyle = q[3] ? pal.a2 : (q[2] === 'ev' ? '#415371' : pal.pulse);
+        ctx.beginPath();
+        if(q[2] === 'ev') ctx.rect(q[0] - 5, q[1] - 5, 10, 10); else ctx.arc(q[0], q[1], 5.5, 0, TAU);
+        ctx.fill();
+      });
+    }
+  };
+
+  /* A · grid lines: assets → pylons → payout node */
+  EXPR.lines = {
+    build: function(w, h, R){
+      var g = Math.max(6, Math.min(w, h) / 46), S = { g:g, lines:[], assets:[], pylons:[] };
+      var hub = { x:w * 0.86, y:h * 0.5, flash:0 };
+      S.hub = hub;
+      var kinds = ['solar','solar','ev','ev','solar','solar'], behind = [false,false,false,true,true,false];
+      var px = w * 0.56;
+      for(var i = 0; i < 6; i++){
+        var fy = (i + 0.5) / 6, ax = w * (0.08 + (i % 2) * 0.13 + R() * 0.05), ay = h * (0.1 + fy * 0.8);
+        var a = { x:ax, y:ay, kind:kinds[i], behind:behind[i], off:R() };
+        S.assets.push(a);
+        var py = h * (0.3 + fy * 0.4);
+        S.pylons.push({ x:px, y:py });
+        var pts = [];
+        function seg(x0, y0, x1, y1, sag){
+          var len = Math.hypot(x1 - x0, y1 - y0), n = Math.max(2, Math.round(len / g));
+          for(var k = 0; k < n; k++){ var t = k / n; pts.push(x0 + (x1 - x0) * t, y0 + (y1 - y0) * t + Math.sin(Math.PI * t) * sag); }
+        }
+        seg(ax + g * 2.2, ay, px, py - g * 2, Math.abs(py - ay) * 0.08 + g * 1.2);
+        seg(px, py - g * 2, hub.x - g * 3, hub.y, g * 1.4);
+        S.lines.push({ p:pts, a:a, speed:0.13 + R() * 0.06, off:R(), last:0 });
+      }
+      return S;
+    },
+    draw: function(ctx, S, t, m, pal){
+      var g = S.g, ds = g * 0.16;
+      // lines
+      ctx.fillStyle = pal.dot;
+      for(var l = 0; l < S.lines.length; l++){
+        var L = S.lines[l], p = L.p;
+        ctx.globalAlpha = 0.42; ctx.beginPath();
+        for(var k = 0; k < p.length; k += 2){ var nr = near(p[k], p[k+1], m, 90); sq(ctx, p[k], p[k+1] - nr * 6, ds * (1 + nr * 1.4)); }
+        ctx.fill();
+      }
+      // pylons: a short T of dots
+      ctx.globalAlpha = 0.6; ctx.beginPath();
+      S.pylons.forEach(function(P){ for(var j = 0; j < 4; j++) sq(ctx, P.x, P.y - g * 2 + j * g * 0.7, ds * 1.2); sq(ctx, P.x - g * 0.7, P.y - g * 2, ds * 1.2); sq(ctx, P.x + g * 0.7, P.y - g * 2, ds * 1.2); });
+      ctx.fill();
+      // assets
+      S.assets.forEach(function(a){
+        var nr = near(a.x, a.y, m, 70);
+        if(a.kind === 'solar'){
+          ctx.fillStyle = a.behind ? pal.a2 : pal.dot; ctx.globalAlpha = 0.85; ctx.beginPath();
+          for(var r = 0; r < 3; r++) for(var c = 0; c < 4; c++) sq(ctx, a.x - g * 1.1 + c * g * 0.72, a.y - g * 0.7 + r * g * 0.72, ds * 1.7 * (1 + nr * 0.5));
+          ctx.fill();
+        } else {
+          var lvl = Math.floor(((t * 0.22 + a.off) % 1) * 7);
+          for(var b = 0; b < 6; b++){
+            ctx.fillStyle = b < lvl && !a.behind ? pal.pulse : (a.behind ? pal.a2 : pal.dot);
+            ctx.globalAlpha = b < lvl && !a.behind ? 1 : 0.55;
+            ctx.beginPath(); sq(ctx, a.x - g * 0.4, a.y + g * 1.6 - b * g * 0.62, ds * 1.6); sq(ctx, a.x + g * 0.4, a.y + g * 1.6 - b * g * 0.62, ds * 1.6); ctx.fill();
+          }
+        }
+      });
+      // pulses
+      for(var q = 0; q < S.lines.length; q++){
+        var Q = S.lines[q], pp = Q.p, n = pp.length / 2;
+        var cyc = t * Q.speed + Q.off, ph = cyc % 1, round = Math.floor(cyc);
+        if(Q.a.behind && round % 3) { Q.last = ph; continue; }
+        if(ph < Q.last && !REDUCE) S.hub.flash = 1;
+        Q.last = ph;
+        var head = ph * n;
+        ctx.fillStyle = Q.a.behind ? pal.a2 : pal.pulse;
+        for(var tl = 0; tl < 6; tl++){
+          var idx = Math.floor(head) - tl; if(idx < 0 || idx >= n) continue;
+          ctx.globalAlpha = 1 - tl / 6; ctx.beginPath(); sq(ctx, pp[idx * 2], pp[idx * 2 + 1], ds * (2.4 - tl * 0.25)); ctx.fill();
+        }
+      }
+      // payout node: square ring that flashes as pulses land
+      var H = S.hub; H.flash *= 0.94;
+      ctx.fillStyle = pal.node; ctx.globalAlpha = 0.9; ctx.beginPath();
+      for(var i = -2; i <= 2; i++) for(var j = -2; j <= 2; j++){ if(Math.abs(i) === 2 || Math.abs(j) === 2) sq(ctx, H.x + i * g * 0.7, H.y + j * g * 0.7, ds * 1.6); }
+      ctx.fill();
+      ctx.fillStyle = pal.pulse; ctx.globalAlpha = 0.35 + H.flash * 0.65; ctx.beginPath(); sq(ctx, H.x, H.y, g * (0.42 + H.flash * 0.3)); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  };
+
+  /* B · daylight sweep: a dot-matrix array with a band of light crossing it */
+  EXPR.sweep = {
+    build: function(w, h, R){
+      var g = w < 500 ? 9 : 11, p = [];
+      var cols = Math.ceil(w / g) + 1, rows = Math.ceil(h / g) + 1;
+      for(var r = 0; r < rows; r++) for(var c = 0; c < cols; c++){
+        if(c % 8 === 7 || r % 5 === 4) continue; // gutters between panels
+        p.push(c * g + g * 0.5, r * g + g * 0.5);
+      }
+      return { g:g, p:p, w:w, h:h, off:R() };
+    },
+    draw: function(ctx, S, t, m, pal){
+      var p = S.p, g = S.g, base = g * 0.13, span = S.w + S.h * 0.6;
+      var c = ((t * 0.085 + S.off) % 1.5) - 0.25;
+      var buckets = [[],[],[]];
+      ctx.fillStyle = pal.dot; ctx.globalAlpha = 0.28; ctx.beginPath();
+      for(var i = 0; i < p.length; i += 2){
+        var u = (p[i] + p[i+1] * 0.6) / span, k = Math.max(0, 1 - Math.abs(u - c) / 0.11);
+        k = Math.max(k, near(p[i], p[i+1], m, 80));
+        if(k > 0.05) buckets[k < 0.4 ? 0 : k < 0.75 ? 1 : 2].push(p[i], p[i+1], k);
+        else sq(ctx, p[i], p[i+1], base);
+      }
+      ctx.fill();
+      ctx.fillStyle = pal.pulse;
+      for(var b = 0; b < 3; b++){
+        ctx.globalAlpha = [0.45, 0.75, 1][b]; ctx.beginPath();
+        for(var j = 0; j < buckets[b].length; j += 3) sq(ctx, buckets[b][j], buckets[b][j+1], base * (1 + buckets[b][j+2] * 1.6));
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+  };
+
+  /* C · sunfield: halftone sun with dotted rays over rows of panels */
+  EXPR.sun = {
+    build: function(w, h, R){
+      var u = Math.min(w, h), g = Math.max(6, u / 40), S = { g:g, disc:[], rays:[], panels:[] };
+      var cx = w * 0.62, cy = h * 0.36, r = u * 0.2;
+      S.c = [cx, cy]; S.r = r;
+      for(var y = -r; y <= r; y += g) for(var x = -r; x <= r; x += g){ var d = Math.hypot(x, y); if(d <= r) S.disc.push(cx + x, cy + y, 1 - d / r); }
+      var n = 18;
+      for(var i = 0; i < n; i++){
+        var a = i / n * TAU + 0.08, pts = [], len = u * (0.16 + (i % 2) * 0.08);
+        for(var s = r * 1.25; s < r * 1.25 + len; s += g * 0.9){ var yy = cy + Math.sin(a) * s; if(yy > h * 0.62) break; pts.push(cx + Math.cos(a) * s, yy); }
+        S.rays.push(pts);
+      }
+      var pw = g * 6, ph = g * 3, top = h * 0.68;
+      for(var row = 0; row < 3; row++){
+        var y0 = top + row * (ph + g * 1.4), shift = row * g * 1.5;
+        for(var x0 = -pw + shift; x0 < w; x0 += pw + g){
+          for(var yy2 = 0; yy2 < ph; yy2 += g * 0.75) for(var xx = 0; xx < pw; xx += g * 0.75) S.panels.push(x0 + xx, y0 + yy2);
+        }
+      }
+      S.w = w;
+      return S;
+    },
+    draw: function(ctx, S, t, m, pal){
+      var g = S.g, i;
+      // disc: dots largest at the centre, breathing slowly
+      ctx.fillStyle = pal.pulse; ctx.globalAlpha = 0.95; ctx.beginPath();
+      for(i = 0; i < S.disc.length; i += 3){
+        var k = S.disc[i+2], nr = near(S.disc[i], S.disc[i+1], m, 90);
+        sq(ctx, S.disc[i], S.disc[i+1], g * 0.42 * (0.2 + 0.8 * k) * (1 + 0.06 * Math.sin(t * 0.9 + k * 4) + nr * 0.5));
+      }
+      ctx.fill();
+      // rays: a wave travels outwards
+      for(var r = 0; r < S.rays.length; r++){
+        var R = S.rays[r];
+        for(var j = 0; j < R.length; j += 2){
+          var ph = ((j / 2) / 8 - t * 0.45 + r * 0.13) % 1; if(ph < 0) ph += 1;
+          var lit = ph < 0.2 ? 1 - ph / 0.2 : 0;
+          ctx.fillStyle = lit ? pal.pulse : pal.dot; ctx.globalAlpha = lit ? 0.4 + lit * 0.6 : 0.4;
+          ctx.beginPath(); sq(ctx, R[j], R[j+1], g * 0.11 * (1 + lit)); ctx.fill();
+        }
+      }
+      // panels: light slides across
+      var sx = (((t * 0.07) % 1.3) - 0.15) * S.w, p = S.panels;
+      ctx.fillStyle = pal.dot; ctx.globalAlpha = 0.45; ctx.beginPath();
+      var lit2 = [];
+      for(i = 0; i < p.length; i += 2){
+        var kk = Math.max(0, 1 - Math.abs(p[i] - sx) / (g * 7)); kk = Math.max(kk, near(p[i], p[i+1], m, 70));
+        if(kk > 0.08) lit2.push(p[i], p[i+1], kk); else sq(ctx, p[i], p[i+1], g * 0.1);
+      }
+      ctx.fill();
+      ctx.fillStyle = pal.pulse;
+      for(i = 0; i < lit2.length; i += 3){ ctx.globalAlpha = 0.35 + lit2[i+2] * 0.65; ctx.beginPath(); sq(ctx, lit2[i], lit2[i+1], g * 0.1 * (1 + lit2[i+2] * 1.2)); ctx.fill(); }
+      ctx.globalAlpha = 1;
+    }
+  };
+
+  /* ---------- stage: sizing, visibility, pointer ---------- */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.target.__st) e.target.__st.visible = e.isIntersecting; }); kick(); }, { rootMargin:'100px' }) : null;
+  var rt, ro = 'ResizeObserver' in window ? new ResizeObserver(function(es){ clearTimeout(rt); rt = setTimeout(function(){ es.forEach(function(e){ var s = e.target.__st; if(s && (Math.round(e.contentRect.width) !== Math.round(s.w) || Math.round(e.contentRect.height) !== Math.round(s.h))) s.setup(); }); kick(); }, 150); }) : null;
+
+  function Stage(cv){
+    this.cv = cv; this.key = cv.dataset.energy; this.dark = cv.hasAttribute('data-dark');
+    this.still = cv.hasAttribute('data-still'); this.seed = +cv.dataset.seed || 7;
+    this.m = { x:0, y:0, tx:0, ty:0, on:0, ton:0 }; this.visible = !io; this.w = 0; this.h = 0;
+    cv.__st = this; if(io) io.observe(cv); if(ro) ro.observe(cv);
+    this.setup();
+  }
+  Stage.prototype.setup = function(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), w = this.cv.clientWidth, h = this.cv.clientHeight;
+    if(!w || !h){ this.ctx = null; return; }
+    this.cv.width = Math.round(w * dpr); this.cv.height = Math.round(h * dpr);
+    this.ctx = this.cv.getContext('2d'); this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.w = w; this.h = h; this.pal = palette(this.dark);
+    this.S = EXPR[this.key].build(w, h, rng(this.seed * 7919 + this.key.length));
+    this.frame(REDUCE || this.still ? 2.4 : 1.5);
+  };
+  Stage.prototype.frame = function(t){
+    var m = this.m; m.x += (m.tx - m.x) * 0.2; m.y += (m.ty - m.y) * 0.2; m.on += (m.ton - m.on) * 0.08;
+    this.ctx.clearRect(0, 0, this.w, this.h);
+    EXPR[this.key].draw(this.ctx, this.S, t, m, this.pal);
+  };
+
+  function loop(now){
+    var t = now / 1000, any = false;
+    stages.forEach(function(s){ if(s.visible && s.ctx && !s.still){ s.frame(t); any = true; } });
+    if(!paused && any && !document.hidden) requestAnimationFrame(loop); else rafOn = false;
+  }
+  function kick(){ if(!paused && !rafOn){ rafOn = true; requestAnimationFrame(loop); } }
+  document.addEventListener('visibilitychange', kick);
+
+  if(!REDUCE){
+    window.addEventListener('pointermove', function(e){
+      stages.forEach(function(s){
+        var r = s.cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top, m = s.m;
+        var inside = x > -20 && y > -20 && x < r.width + 20 && y < r.height + 20;
+        if(inside && m.on < 0.02){ m.x = x; m.y = y; }
+        m.tx = x; m.ty = y; m.ton = inside ? 1 : 0;
+      });
+    }, { passive:true });
+  }
+
+  document.querySelectorAll('canvas[data-energy]').forEach(function(cv){ if(EXPR[cv.dataset.energy]) stages.push(new Stage(cv)); });
+  kick();
+
+  /* ---------- specimen controls ---------- */
+  var mb = document.getElementById('motionBtn');
+  if(REDUCE){ mb.textContent = 'Reduced motion is on'; mb.disabled = true; }
+  mb.addEventListener('click', function(){
+    paused = !paused; mb.setAttribute('aria-pressed', paused ? 'true' : 'false'); mb.textContent = paused ? 'Play motion' : 'Pause motion';
+    kick();
+  });
+  document.querySelectorAll('[data-accent]').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.documentElement.dataset.accent = b.dataset.accent;
+      document.querySelectorAll('[data-accent]').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      stages.forEach(function(s){ s.pal = palette(s.dark); if(s.ctx && (paused || s.still)) s.frame(2.4); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
