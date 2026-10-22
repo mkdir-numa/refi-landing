@@ -39,12 +39,12 @@ copper, grid). The dotted Sunfield and Daylight sweep artwork is drawn by
 
 | Section | Job |
 |---|---|
-| We turn clean energy into USDC. | Hero: what we do and how it pays, with a readout strip (staked SOL, assets, raised) |
+| We turn clean energy into USDC. | Hero: what we do and how it pays, one button (Check the numbers) |
 | Impact investing on Solana DeFi. | Staked SOL as the lead number, five stat tiles, and the two assets that are behind |
 | Six assets. Three countries. | Interactive world map with asset detail, operator logo strip |
 | Stake SOL. Fund coral reefs. | refiSOL in one line, validator data from Stakewiz |
 | Every asset, reported on. | The four latest posts from `/blog` |
-| Building since 2021. | Backers, community, links to the app, docs and audit |
+| Building on Solana since 2021. | Backers, community, links to the app, docs and audit |
 
 ## Data and the "Data status" toggle
 
@@ -52,7 +52,8 @@ Every figure on the page carries a provenance tag. Click **Data status** in the 
 reveal them.
 
 - **real** — pulled from the live asset pages at `app.refihub.io/investments/4..9`. All six
-  assets' raised amounts, yields, payment histories and operational notes.
+  assets' raised amounts, yields, payment histories and operational notes, plus $52.7K paid
+  to investors across 65 payments (every listed repayment, summed on 22 Oct 2026).
 - **verify** — supplied by the team and not yet confirmed: 27 operating assets, +14%
   realized IRR, 22+ months of payments, $39K delivered, 481 MWh produced, $9.2M staked,
   validator uptime, community size.

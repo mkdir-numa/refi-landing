@@ -14,25 +14,26 @@ const pics = Object.fromEntries(['flp2', 'flp', 'surya', 'vox', 'crn', 'exodos']
 /* All landing-page figures live here. p = provenance: real, verify or mock (see README). */
 const DATA = {
   staked: { v: '190.8', u: 'K SOL', label: 'Staked with our validator', src: 'Stakewiz, 22 Oct 2026', p: 'real' },
+  /* paid and payments: every repayment listed on app.refihub.io/investments/4..9, summed on 22 Oct 2026 */
   stats: [
     { v: 27, label: 'Energy assets operating', sub: 'Solar plants and EV chargers in three countries', p: 'verify' },
     { v: 14, prefix: '+', suffix: '%', label: 'Realized IRR', sub: 'On payments made, not forecasts', p: 'verify' },
-    { v: 22, suffix: '+', label: 'Months of payments', sub: 'Exodos 1, since October 2024', p: 'real' },
-    { v: 39, prefix: '$', unit: 'K', label: 'Paid to investors', sub: 'In USDC, from power sales', p: 'verify' },
+    { v: 65, label: 'Payments made', sub: 'Across all six assets, since October 2024', p: 'real' },
+    { v: 52.7, prefix: '$', unit: 'K', label: 'Paid to investors', sub: 'In USDC, from energy sales', p: 'real' },
     { v: 481, unit: 'MWh', label: 'Clean energy produced', sub: 'Metered at each asset', p: 'verify' },
   ],
   assets: [
     { id: 'flp2', name: 'FLP II', operator: 'PivotGreen', place: 'Singapore', lat: 1.29, lon: 103.85,
-      type: 'Rooftop solar', kind: 'solar', kw: 111.69, yield: 21.38, raised: 100000, status: 'distributing',
-      payments: 5, last: 'Aug 2026', lastAmt: 1797.25, term: '25-year PPA', inv: 9,
+      type: 'Rooftop solar', kind: 'solar', kw: 111.69, yield: 21.42, raised: 100000, status: 'distributing',
+      payments: 7, last: 'Oct 2026', lastAmt: 1793.75, term: 'Pays until 2035', inv: 9,
       note: 'Second raise on an operating rooftop plant in Singapore. About $1,780 a month since April 2026.' },
     { id: 'flp', name: 'FLP', operator: 'PivotGreen', place: 'Singapore', lat: 1.29, lon: 103.85,
-      type: 'Rooftop solar', kind: 'solar', kw: 66.9, yield: 13.98, raised: 59000, status: 'distributing',
-      payments: 10, last: 'Aug 2026', lastAmt: null, term: 'Pays until 2049', inv: 8,
+      type: 'Rooftop solar', kind: 'solar', kw: 66.9, yield: 14.03, raised: 59000, status: 'distributing',
+      payments: 12, last: 'Oct 2026', lastAmt: 702.23, term: 'Pays until 2049', inv: 8,
       note: 'Rooftop solar in Singapore, contracted to pay until 2049. Every payment on schedule.' },
     { id: 'surya', name: 'Surya', operator: 'DeCharge', place: 'India', lat: 26.85, lon: 80.95,
-      type: 'EV charging', kind: 'ev', kw: 345, yield: 12.8, raised: 149999.99, status: 'distributing',
-      payments: 7, last: 'Aug 2026', lastAmt: 899.96, term: 'Pays until 2028', inv: 7,
+      type: 'EV charging', kind: 'ev', kw: 345, yield: 12.27, raised: 149999.99, status: 'distributing',
+      payments: 8, last: 'Sep 2026', lastAmt: 1071.38, term: 'Pays until 2028', inv: 7,
       note: '19 fast chargers on Indian highways. Paid per use, so payouts move with traffic. July 2026 was paid inside August after a billing change.' },
     { id: 'vox', name: 'EV Charging Stations', operator: 'VOX', place: 'Rio de Janeiro, Brazil', lat: -22.91, lon: -43.17,
       type: 'EV charging', kind: 'ev', kw: 112, yield: 9.3, raised: 49999.2, status: 'maintenance',
@@ -43,22 +44,20 @@ const DATA = {
       payments: 8, last: 'Mar 2026', lastAmt: 941.0, term: 'Pays until 2055', inv: 5,
       note: 'Paid $941 a month until March 2026, then stopped while its power contract moved to GEDISA. The transfer closed on 27 April. Payments are pending.' },
     { id: 'exodos', name: 'Exodos 1', operator: 'IPE Assets', place: 'Brazil', lat: -23.55, lon: -46.63,
-      type: 'Solar', kind: 'solar', kw: 50.8, yield: 14.72, raised: 32499.93, status: 'distributing',
-      payments: 22, last: 'Aug 2026', lastAmt: 324.0, term: 'Pays until 2048', inv: 4,
-      note: "Brazil's first tokenized solar plant. 22 payments since October 2024. April 2026 was paid late, in May." },
+      type: 'Solar', kind: 'solar', kw: 50.8, yield: 14.53, raised: 32499.93, status: 'distributing',
+      payments: 23, last: 'Sep 2026', lastAmt: 273.0, term: 'Pays until 2048', inv: 4,
+      note: "Brazil's first tokenized solar plant. 23 payments since October 2024. April 2026 was paid late, in May." },
   ],
   validator: [
-    { v: '99.95', u: '%', l: 'Uptime, last 12 months', p: 'real' },
+    { v: '190.8', u: 'K SOL', l: 'Staked', p: 'real' },
+    { v: '99.95', u: '%', l: 'Uptime, 12 months', p: 'real' },
     { v: '0', u: '%', l: 'Skip rate', p: 'real' },
-    { v: '30', u: '%', l: 'Of our fees to impact', p: 'real' },
+    { v: '30', u: '%', l: 'Fees to impact', p: 'real' },
   ],
   community: { v: '1,500', p: 'verify' },
 };
 
-const countries = new Set(DATA.assets.map((a) => a.place.split(', ').pop())).size;
-const raisedK = Math.round(DATA.assets.reduce((s, a) => s + a.raised, 0) / 1000);
 const statText = (s: (typeof DATA.stats)[number]) => (s.prefix ?? '') + s.v.toLocaleString('en-US') + (s.suffix ?? '');
-const ordinal = (n: number) => String(n).padStart(2, '0');
 ---
 <Base title="ReFi Hub · Solar and EV charging, paid in USDC" description="We finance operating solar and EV charging in Brazil, India and Singapore. Their power sales pay investors in USDC. Stake SOL with us and part of our fees funds the next ones." home>
 <Fragment slot="before-nav">
@@ -79,19 +78,11 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
   <div class="bg" style={`background-image:url(${u('/hero-solar.jpg')})`} role="img" aria-label="Sunlight across a solar panel array"></div>
   <div class="veil"></div>
   <div class="wrap"><div class="hero-in">
-    <p class="kicker"><span>ReFi Hub</span><i></i>Since 2021</p>
     <h1 class="display">We turn clean energy into USDC.</h1>
-    <p class="lede">We finance operating energy assets in Brazil, India and Singapore. Their power sales pay investors. Stake SOL with us and part of our fees funds the next ones.</p>
+    <p class="lede">We finance operating energy assets in Brazil, India and Singapore. Their energy sales pay investors. Stake SOL with us and part of our fees funds the next ones.</p>
     <div class="btns">
-      <a class="btn btn-primary" href="#record">See the record</a>
-      <a class="btn btn-ghost" href="#refisol">How staking works</a>
+      <a class="btn btn-primary" href="#record">Check the numbers</a>
     </div>
-  </div></div>
-  <div class="readout"><div class="wrap">
-    <div><p class="label">Staked with our validator</p><span class="num">{DATA.staked.v}<span class="u">{DATA.staked.u}</span></span><span class="prov" data-p={DATA.staked.p}>{DATA.staked.p}</span></div>
-    <div><p class="label">Energy assets</p><span class="num">{DATA.assets.length}</span><span class="prov" data-p="real">real</span></div>
-    <div><p class="label">Raised</p><span class="num">${raisedK}<span class="u">K</span></span><span class="prov" data-p="real">real</span></div>
-    <span class="src">{DATA.staked.src} · app.refihub.io</span>
   </div></div>
 </section>
 
@@ -100,9 +91,8 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
   <div class="wrap split r48">
     <div>
       <div class="sec-head">
-        <p class="kicker"><span>{ordinal(1)}</span><i></i>The record</p>
         <h2 class="h2">Impact investing on Solana DeFi.</h2>
-        <p class="lede">We finance energy assets that already run. When they sell power, investors get paid.</p>
+        <p class="lede">We finance energy assets that already run. When they sell energy, investors get paid.</p>
       </div>
       <div class="lead-num">
         <span class="label">{DATA.staked.label}<span class="prov" data-p={DATA.staked.p}>{DATA.staked.p}</span></span>
@@ -127,7 +117,6 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
 
 <section class="sec band-sand mapsec" id="map"><div class="wrap">
   <div class="sec-head">
-    <p class="kicker"><span>{ordinal(2)}</span><i></i>Assets</p>
     <h2 class="h2">Six assets. Three countries.</h2>
     <p class="lede">Click an asset to see what it raised, what it has paid, and where it stands.</p>
   </div>
@@ -159,7 +148,6 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
   <canvas class="bg-art" data-energy="sun" data-dark data-seed="8" aria-hidden="true"></canvas>
   <div class="wrap split">
     <div>
-      <p class="kicker"><span>{ordinal(3)}</span><i></i>refiSOL</p>
       <h2 class="h2">Stake SOL. Fund coral reefs.</h2>
       <p class="say">refiSOL is the <b>liquid staking token from our validator</b>. 30% of our fees fund coral reefs and clean energy.<span class="prov" data-p="verify">verify</span></p>
       <div class="btns">
@@ -173,7 +161,7 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
           <div class="meter"><span class="label">{m.l}<span class="prov" data-p={m.p}>{m.p}</span></span><span class="num m">{m.v}<span class="u">{m.u}</span></span></div>
         ))}
       </div>
-      <p class="fine">Data: <a href="https://stakewiz.com/validator/ReFiSbuMcV8PMYcpvm9RmHDhF9HR3qyxsHZgf359NUx" target="_blank" rel="noopener">Stakewiz</a> and <a href="https://www.validators.app/validators/ReFiqMfGnc7tW8WQtFFcJRPZSDAWDBnAsdoFYF2QnfR?locale=en&amp;network=mainnet" target="_blank" rel="noopener">validators.app</a>, 13 Oct 2026. Rewards vary. Downtime never touches your principal. refiSOL can trade below its SOL value.</p>
+      <p class="fine">Data: staked SOL from Stakewiz, 22 Oct 2026; the rest from <a href="https://stakewiz.com/validator/ReFiSbuMcV8PMYcpvm9RmHDhF9HR3qyxsHZgf359NUx" target="_blank" rel="noopener">Stakewiz</a> and <a href="https://www.validators.app/validators/ReFiqMfGnc7tW8WQtFFcJRPZSDAWDBnAsdoFYF2QnfR?locale=en&amp;network=mainnet" target="_blank" rel="noopener">validators.app</a>, 13 Oct 2026. Rewards vary. Downtime never touches your principal. refiSOL can trade below its SOL value.</p>
     </div>
   </div>
 </section>
@@ -181,7 +169,6 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
 <section class="sec reports-home" id="reports"><div class="wrap">
   <div class="sec-head row">
     <div>
-      <p class="kicker"><span>{ordinal(4)}</span><i></i>Reports</p>
       <h2 class="h2">Every asset, reported on.</h2>
       <p class="lede">Monthly operating and payment reports from each asset, and how we pick them.</p>
     </div>
@@ -206,15 +193,14 @@ const ordinal = (n: number) => String(n).padStart(2, '0');
 
 <section class="sec band-sand proof" id="proof"><div class="wrap">
   <div class="sec-head">
-    <p class="kicker"><span>{ordinal(5)}</span><i></i>Since 2021</p>
-    <h2 class="h2">Building since 2021.</h2>
-    <p class="lede">Our app, docs and audit are public. Check any number on this page against them.</p>
+    <h2 class="h2">Building on Solana since 2021.</h2>
+    <p class="lede">Our app, docs and audit are public.</p>
   </div>
   <div class="rows">
     <div class="row-item"><h3 class="h3">Solana Foundation</h3><p>Backer <span class="prov" data-p="verify">verify</span></p><span></span></div>
     <div class="row-item"><h3 class="h3"><a href="https://superteamuk.org/" target="_blank" rel="noopener">Superteam UK</a> and <a href="https://superteam.ca/" target="_blank" rel="noopener">Superteam Canada</a></h3><p>Incubator and ecosystem partners <span class="prov" data-p="verify">verify</span></p><span></span></div>
     <div class="row-item"><h3 class="h3">Our own validator</h3><p>refiSOL, live on Solana <span class="prov" data-p="verify">link to vote account</span></p><span></span></div>
-    <div class="row-item"><h3 class="h3">Over {DATA.community.v} members</h3><p>Investors, holders and <a href="https://www.coraltribe.io/" target="_blank" rel="noopener">Coral Tribe</a> members <span class="prov" data-p={DATA.community.p}>{DATA.community.p}</span></p><span></span></div>
+    <div class="row-item"><h3 class="h3">Over {DATA.community.v} members</h3><p>Investors, holders and members of <a href="https://www.coraltribe.io/" target="_blank" rel="noopener">Coral Tribe</a> (our sister company) <span class="prov" data-p={DATA.community.p}>{DATA.community.p}</span></p><span></span></div>
   </div>
   <div class="cards">
     <a class="card" href="https://app.refihub.io/energy-assets/" target="_blank" rel="noopener"><h3 class="h3">The app</h3><p>Asset pages, monthly reports and every distribution.</p><span class="lnk">app.refihub.io →</span></a>

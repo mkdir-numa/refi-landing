@@ -1,20 +1,41 @@
 ---
 import Logo from './Logo.astro';
 import { u } from '../lib/url';
+const VOTE = 'ReFiSbuMcV8PMYcpvm9RmHDhF9HR3qyxsHZgf359NUx';
 ---
 <footer><div class="wrap">
-  <a class="flogo" href={u('/')} aria-label="ReFi Hub home"><Logo /></a>
-  <p class="ftag">Energy finance starts here.</p>
-  <a class="fmail" href="mailto:info@refihub.io"><span aria-hidden="true">@</span> info@refihub.io</a>
+  <div class="ftop">
+    <div>
+      <a class="flogo" href={u('/')} aria-label="ReFi Hub home"><Logo /></a>
+      <p class="ftag">Energy finance starts here.</p>
+    </div>
+    <div class="fside">
+      <p class="fside-l">Talk to the team</p>
+      <a class="fpill" href="mailto:info@refihub.io"><b>Email</b> info@refihub.io</a>
+      <button type="button" class="fpill" id="copyVote" data-copy={VOTE} aria-label="Copy the validator vote account"><b>Vote account</b> {VOTE.slice(0, 6)}...{VOTE.slice(-4)} <em>Copy</em></button>
+    </div>
+  </div>
   <nav class="fcols" aria-label="Footer">
     <div><b>Company</b><a href={u('/')}>Home</a><a href="https://app.refihub.io/">App</a><a href="https://www.refihub.io/volt">Volt</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/why-refi-hub-exists">About</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/what-refi-hub-does">How it works</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/transparency-and-reporting">Reporting</a></div>
     <div><b>Live assets</b><a href="https://app.refihub.io/investments/8/">Solar infrastructure</a><a href="https://app.refihub.io/investments/7/">EV charging assets</a><a href="https://app.refihub.io/energy-assets">View all assets</a></div>
     <div><b>Resources</b><a href={u('/blog?c=asset-updates')}>Investor reports</a><a href="https://refihub-images.s3.eu-central-1.amazonaws.com/Singapore+Solar+Market+Overview.pdf">Singapore market study</a><a href={u('/blog')}>Articles</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/where-returns-come-from">Documentation</a><a href="https://refihub.gitbook.io/refi-hub/how-refi-hub-works/asset-selection-and-due-diligence">Due diligence framework</a><a href="https://resources.refihub.io/blog/kyc-faqs">KYC verification FAQs</a></div>
+    <div><b>Staking</b><a href="https://mkdir-numa.github.io/reeefisol/">Stake Solana</a><a href="https://mkdir-numa.github.io/reeefisol/#faq-fees">Fees and risks</a><a href={`https://stakewiz.com/validator/${VOTE}`}>Stakewiz</a><a href="https://www.validators.app/validators/ReFiqMfGnc7tW8WQtFFcJRPZSDAWDBnAsdoFYF2QnfR?locale=en&amp;network=mainnet">validators.app</a></div>
   </nav>
-  <div class="fsoc">
+  <div class="fbottom">
+    <p class="legal">© 2026 ReFi Hub LTD. All rights reserved. · <a href="https://refihub.gitbook.io/refi-hub/legal/terms-and-conditions">Terms</a> · <a href="https://refihub.gitbook.io/refi-hub/legal/privacy-policy">Privacy</a></p>
+    <div class="fsoc">
     <a href="https://x.com/refihub" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     <a href="https://www.linkedin.com/company/refi-hub" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.62 4.79 6.04v5.91h-4v-5.24c0-1.25-.02-2.86-1.75-2.86-1.75 0-2.02 1.37-2.02 2.77v5.33h-4z"/></svg></a>
     <a href="https://discord.gg/yZ9fp43wCd" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.4 2.85a13.6 13.6 0 0 0-.63 1.29 18.4 18.4 0 0 0-5.53 0 13 13 0 0 0-.64-1.29 19.7 19.7 0 0 0-4.92 1.52C.56 9.05-.28 13.6.14 18.1a19.9 19.9 0 0 0 6.03 3.05c.49-.66.92-1.36 1.3-2.1a12.9 12.9 0 0 1-2.04-.98l.5-.39a14.2 14.2 0 0 0 12.14 0l.5.39c-.65.39-1.33.71-2.05.98.38.74.81 1.44 1.3 2.1a19.8 19.8 0 0 0 6.04-3.05c.5-5.22-.84-9.73-3.54-13.73zM8.02 15.33c-1.18 0-2.16-1.09-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.33-.95 2.42-2.16 2.42zm7.97 0c-1.18 0-2.16-1.09-2.16-2.42s.95-2.42 2.16-2.42 2.18 1.09 2.16 2.42c0 1.33-.95 2.42-2.16 2.42z"/></svg></a>
   </div>
-  <div class="legal"><span>© 2026 ReFi Hub LTD. All rights reserved.</span><span><a href="https://refihub.gitbook.io/refi-hub/legal/terms-and-conditions">Terms</a><a href="https://refihub.gitbook.io/refi-hub/legal/privacy-policy">Privacy</a></span></div>
+  </div>
 </div></footer>
+<script>
+  const copy = document.getElementById('copyVote');
+  copy?.addEventListener('click', async () => {
+    const em = copy.querySelector('em')!;
+    try { await navigator.clipboard.writeText(copy.dataset.copy!); em.textContent = 'Copied'; }
+    catch { em.textContent = 'Copy failed'; }
+    setTimeout(() => { em.textContent = 'Copy'; }, 1800);
+  });
+</script>

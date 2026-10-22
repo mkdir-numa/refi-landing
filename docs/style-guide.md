@@ -6,7 +6,7 @@ Draft for review, 22 October 2026. Nothing on the site has changed yet. This gui
 
 Decisions still open are marked **Decision**. Each one has a recommendation, but the call is yours.
 
-**Decided (22 October 2026):** accent set A, Daylight. Hero A, the solar photo with a readout strip. Sunfield as the lead motif.
+**Decided (22 October 2026):** accent set A, Daylight. Hero A, the solar photo, later simplified to the headline and one button with no readout strip. Sunfield as the lead motif. No kickers above headings on the site (team feedback, 22 October): the numbered kicker described below is kept in the specimen for reference only.
 
 ---
 

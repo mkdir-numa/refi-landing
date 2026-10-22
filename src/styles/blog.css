@@ -47,7 +47,8 @@ body.blog{background:var(--b-bg)}
 /* ---------- /blog index ---------- */
 .bhero{position:relative;min-height:min(calc(100svh - 67px),860px);display:flex;align-items:flex-end;overflow:hidden;background:var(--dark);color:#fff}
 .bhero > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.bhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,.08) 40%,rgba(0,0,0,.55) 100%)}
+/* dark overlay so the white headline and lead read clearly over any photo */
+.bhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,14,12,.5) 0%,rgba(15,14,12,.15) 70%),linear-gradient(180deg,rgba(15,14,12,.4) 0%,rgba(15,14,12,.3) 45%,rgba(15,14,12,.8) 100%)}
 .bhero .bwrap{position:relative;z-index:1;width:100%;padding-top:160px;padding-bottom:clamp(56px,6.5vw,96px);display:flex;flex-direction:column;gap:24px}
 .bhero h1{max-width:900px;color:#fff}
 .bhero .lead{max-width:510px;color:#fff}
