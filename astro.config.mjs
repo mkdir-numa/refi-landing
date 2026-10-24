@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // GitHub Pages builds set SITE and BASE_PATH (see .github/workflows/deploy.yml).
+  // SITE and BASE_PATH can be set by a host that serves the site from a sub-path; Netlify needs neither.
   site: process.env.SITE ?? 'https://www.refihub.io',
   base: process.env.BASE_PATH ?? '/',
   // Keep Framer's URL shape (/blog/<slug>, no trailing slash) so existing links and rankings carry over.
