@@ -19,7 +19,7 @@ artifact. Edit the Astro page first, then copy changes across.
 The copy follows the staking site's voice: short declarative lines, proof from third parties
 (Stakewiz, validators.app, the asset pages), costs and risks named plainly, sentence case, no em
 dashes, no italic titles. Stake buttons point to the staking site
-(https://mkdir-numa.github.io/reeefisol/ for now; swap in the final domain before launch).
+(https://refihub-stake.netlify.app/ for now; swap in the final domain before launch).
 
 **Live prototype:** https://claude.ai/code/artifact/9b54fbab-1c28-4ac2-9ab2-cda0973ea600
 
@@ -144,8 +144,17 @@ only work while the Framer site is still up.
 
 ## Hosting
 
-`dist/` is static. On Vercel, `vercel.json` sets clean URLs, so `/blog/<slug>` is served
-without `.html` or a trailing slash. Cloudflare Pages does the same by default.
+Hosted on Netlify (site `refihub-site-preview`, team `numa-tribe`): https://refihub-site-preview.netlify.app/.
+Netlify builds and deploys every push to `main`, and posts a preview link on every pull request.
+Settings are in `netlify.toml`: `npm run build`, publish `dist/`, Node 24. Netlify serves
+`/blog/<slug>` from `blog/<slug>.html` without the extension by default.
+
+While this is a preview, `netlify.toml` sends a `noindex` header so search engines skip it.
+Remove that block when the site moves to www.refihub.io.
+
+GitHub keeps the code, reviews and issues; GitHub Pages is no longer used. `dist/` is plain
+static HTML, so it would also run on Vercel (`vercel.json` sets the same clean URLs) or
+Cloudflare Pages.
 
 ## reference/
 

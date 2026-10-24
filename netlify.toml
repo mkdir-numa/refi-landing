@@ -1,0 +1,14 @@
+# Netlify hosting for the ReFi Hub site (site "refihub-site-preview", team "numa-tribe").
+# Netlify builds every push to main, and a preview for every pull request.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Preview only: keep search engines off until this becomes www.refihub.io. Remove this block at launch.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
